@@ -1,1 +1,74 @@
-/* You can add global styles to this file, and also import other style files */
+/*** global configuration styles ***/
+
+/* importing fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+/* colors */
+$primary: #4C7FC5;
+$secondary: #325280;
+$acent: #111111;
+$grey: #B7B7B7;
+$white: #EFEFEF;
+
+/* fonts */
+$font-roboto: Roboto;
+$font-arial: Arial;
+
+$font-size-root: 12px;
+/* responsive fonts */
+html
+    font-size: $font-size-root;
+
+h1
+	font-size: 3rem;
+
+h2
+	font-size: 2rem;
+
+h3
+    font-size: 1.5em;
+
+p, li
+	font-size: 1rem;
+
+@media screen and (min-width: 500px)
+  html
+    font-size: $font-size-root;
+  
+@media screen and (min-width: 570px)
+  html
+    font-size: $font-size-root+2;
+
+@media screen and (min-width: 620px)
+  html
+    font-size: $font-size-root+3;
+
+@media screen and (min-width: 680px)
+  html
+    font-size: $font-size-root+4;
+
+@media screen and (min-width: 720px)
+  html
+    font-size: $font-size-root+5;
+
+@media screen and (min-width: 800px)
+  html
+    font-size: $font-size-root+6;
+
+@media screen and (min-width: 860px)
+  html
+    font-size: $font-size-root+7;
+
+@media screen and (min-width: 920px)
+  html
+    font-size: $font-size-root+8;
+
+@media screen and (min-width: 1000px)
+  html
+    font-size: $font-size-root+9;
+
+/* styles */
+
+body
+    background-color: $white;
+    font-family: $font-roboto; 

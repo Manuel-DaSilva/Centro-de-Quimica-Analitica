@@ -15,7 +15,7 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: 'services',
+        path: 'servicios',
         component: ServicesComponent
       },
       {
