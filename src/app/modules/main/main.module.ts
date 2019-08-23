@@ -5,9 +5,11 @@ import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { MainComponent } from './main.component';
 import { ServicesComponent } from './pages/services/services.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [HomeComponent, MainComponent, ServicesComponent],
+  declarations: [HomeComponent, MainComponent, ServicesComponent, HeaderComponent, FooterComponent],
   imports: [
     CommonModule,
     MainRoutingModule

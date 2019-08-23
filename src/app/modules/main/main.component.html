@@ -1,7 +1,7 @@
-<p>
-  main works!
-</p>
+<app-header></app-header>
 
-<a [routerLink]="[ '/sitio', 'home' ]">Home</a> - <a [routerLink]="[ '/sitio', 'servicios' ]">Servicios</a>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
 
-<router-outlet></router-outlet>
+<app-footer></app-footer>
