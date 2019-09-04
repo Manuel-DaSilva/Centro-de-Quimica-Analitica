@@ -1,3 +1,4 @@
+<!-- carousel start -->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -5,35 +6,16 @@
     <li data-target="#myCarousel" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="first-slide" src="https://www.conncoll.edu/media/major-images/Chemistry.jpg" alt="banner1">
-      <div class="container">
-        <div class="carousel-caption text-left">
-          <h1>Facultad de quimica</h1>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-          <p><a class="btn btn-lg btn-primary" role="button">Cotizar</a></p>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img class="second-slide" src="https://carleton.ca/chemistry/wp-content/uploads/banner-chemistry.jpg" alt="banner2">
+    <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let item of carouselItems; let i = index">
+      <img [src]="item.imgUrl" [alt]="'banner' + i">
       <div class="container">
         <div class="carousel-caption">
-          <h1>Centro de quimica</h1>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-          <p><a class="btn btn-lg btn-primary" role="button">Cotizar</a></p>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img class="third-slide" src="http://www.utas.edu.au/tf-assets/media/images/Untitled-1-CHEMISTRY.2e16d0ba.fill-1200x600-c100_hGt8icS.jpg" alt="banner3">
-      <div class="container">
-        <div class="carousel-caption text-right">
-          <h1>Quimica analitica</h1>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+          <h1>{{item.title}}</h1>
+          <p>{{item.desc}}</p>
           <p><a class="btn btn-lg btn-primary" role="button">Cotizar</a></p>
         </div>
       </div>
     </div>
   </div>
 </div>
+<!-- carousel end -->

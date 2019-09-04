@@ -16,7 +16,8 @@ import { ResearchesComponent } from './pages/researches/researches.component';
   declarations: [HomeComponent, MainComponent, ServicesComponent, HeaderComponent, FooterComponent, QuotesComponent, EquipmentComponent, ContactComponent, ResearchesComponent],
   imports: [
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    
   ]
 })
 export class MainModule { }
