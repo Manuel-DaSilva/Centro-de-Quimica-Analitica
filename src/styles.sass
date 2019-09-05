@@ -5,69 +5,34 @@
 
 /* colors */
 $primary: #4C7FC5;
+$primary-dark: #4978b9;
 $secondary: #325280;
-$acent: #111111;
+$secondary-light: #395e92;
+$secondary-dark: #2e4b74;
+$accent: #111111;
 $grey: #B7B7B7;
 $white: #EFEFEF;
 
 /* fonts */
+
 $font-roboto: Roboto;
+
 $font-arial: Arial;
 
 $font-size-root: 12px;
-/* responsive fonts */
-html
-  font-size: $font-size-root;
-  
-h1
-	font-size: 3rem;
 
-h2
-	font-size: 2rem;
+/** bootstrap re-theme **/
+.bg-primary
+  background-color: $primary!important;
 
-h3
-    font-size: 1.5em;
+.btn-primary
+  background-color: $primary;
 
-p, li
-	font-size: 1rem;
+.btn-primary:hover
+  background-color: $primary-dark;
 
-@media screen and (min-width: 500px)
-  html
-    font-size: $font-size-root;
-  
-@media screen and (min-width: 570px)
-  html
-    font-size: $font-size-root+2;
+/*** styles ***/
 
-@media screen and (min-width: 620px)
-  html
-    font-size: $font-size-root+3;
-
-@media screen and (min-width: 680px)
-  html
-    font-size: $font-size-root+4;
-
-@media screen and (min-width: 720px)
-  html
-    font-size: $font-size-root+5.5;
-
-@media screen and (min-width: 800px)
-  html
-    font-size: $font-size-root+5.5;
-
-@media screen and (min-width: 860px)
-  html
-    font-size: $font-size-root+5.5;
-
-@media screen and (min-width: 920px)
-  html
-    font-size: $font-size-root+6;
-
-@media screen and (min-width: 1000px)
-  html
-    font-size: $font-size-root+6;
-
-/* styles */
 body
     background-color: $white;
     font-family: $font-roboto; 
@@ -76,6 +41,7 @@ body
   padding: 0px;
 
 /* footer */
+
 html
   position: relative;
   min-height: 100%;
@@ -112,14 +78,200 @@ body
   height: 32rem;
   filter: blur(5px) opacity(50%);
 
-/* marketing */
-.marketing .col-lg-4
-  margin-bottom: 1.5rem;
-  text-align: center;
+/* login */
 
-.marketing h2
+.form-signin
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+
+.form-signin .checkbox
   font-weight: 400;
 
-.marketing .col-lg-4 p
-  margin-right: .75rem;
-  margin-left: .75rem;
+.form-signin .form-control
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+
+.form-signin .form-control:focus
+  z-index: 2;
+
+.form-signin input[type="email"]
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+
+.form-signin input[type="password"]
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+
+.login-box
+  margin-top: 100px;
+
+@media screen and (max-width: 860px)
+  .login-box
+    margin-top: 50px;
+
+/* sidebar / navbar-admin */
+
+li a
+  text-decoration: none!important;
+
+.admin-navbar
+  padding: 15px 10px;
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+
+.navbar-btn
+  box-shadow: none;
+  outline: none !important;
+  border: none;
+
+.nav-item:hover
+  cursor: pointer;
+
+.line
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 40px 0;
+
+.wrapper
+    display: flex;
+    width: 100%;
+
+#sidebar
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: $secondary-light;
+    color: #fff;
+    transition: all 0.3s;
+
+#sidebar.active
+  margin-left: -250px;
+
+#sidebar .sidebar-header
+  padding: 20px;
+  background: $secondary;
+  border-bottom: 2px solid $grey;
+
+#sidebar ul.components
+  padding: 20px 0;
+
+#sidebar ul.components li a
+  color: $white;
+
+#sidebar ul.components li a i
+  color: $secondary-dark;
+  margin-right: 15px;
+  width: 16px;
+  height: 16px;
+
+#sidebar ul.components li.active a i
+  color: $white;
+
+
+#sidebar ul p
+  color: $white;
+  padding: 10px;
+
+#sidebar ul li a
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+
+#sidebar ul li a:hover
+  color: $secondary;
+  background: $white;
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"]
+  color: #fff;
+  background: $secondary;
+
+a[data-toggle="collapse"]
+  position: relative;
+
+.dropdown-toggle::after
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+
+ul ul a
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: $secondary;
+
+a.download
+  background: #fff;
+  color: #7386D5;
+
+
+a.article,
+a.article:hover
+  background: #6d7fcc !important;
+  color: #fff !important;
+
+#content
+    width: calc(100% - 250px);
+    padding: 15px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+#content.active
+    width: 100%;
+
+@media (max-width: 768px)
+  #sidebar
+    margin-left: -250px;
+  
+  #sidebar.active
+    margin-left: 0;
+  
+  #content
+    width: 100%;
+
+  #content.active
+    width: calc(100% - 250px);
+
+  #sidebarCollapse span
+    display: none;
+
+/* main animation */
+
+@-webkit-keyframes fadeIn
+  from
+    opacity: 0;
+  to
+    opacity: 1;
+
+@keyframes fadeIn
+  from
+    opacity: 0;
+  to
+    opacity: 1;
+
+.fadeIn
+  -webkit-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  

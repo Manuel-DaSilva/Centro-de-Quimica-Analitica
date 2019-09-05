@@ -1,4 +1,24 @@
-<p>
-  login works!
-</p>
-<a [routerLink]="[ '/admin', 'dashboard' ]">Back to dashboard</a>
+<div class="text-center login-box">
+  <form class="form-signin">
+    <img
+      class="mb-4"
+      src="../../../../../assets/images/logo-cqa.png"
+      alt=""
+      width="72"
+      height="72"
+    />
+    <h1 class="h3 mb-3 font-weight-normal">Bienvenido</h1>
+    <label for="inputEmail" class="sr-only">Usuario</label>
+    <input type="email" class="form-control" placeholder="Correo" autofocus />
+    <label for="inputPassword" class="sr-only">Contraseña</label>
+    <input type="password" class="form-control" placeholder="Contraseña" />
+    <button
+      [routerLink]="['dashboard']"
+      class="btn btn-lg btn-primary btn-block"
+      type="submit"
+    >
+      Ingresar
+    </button>
+    <p class="mt-5 mb-3 text-muted">&copy; Centro de quimica analitica</p>
+  </form>
+</div>

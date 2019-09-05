@@ -1,34 +1,63 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { LoginComponent } from './pages/login/login.component';
-import { AdminComponent } from './admin.component';
-import { AuthGuard } from 'src/app/guards/auth.guard';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+
+//guards
+import { AuthGuard } from "src/app/guards/auth.guard";
+
+// components
+import { AdminComponent } from "./admin.component";
+import { DashboardComponent } from "./pages/dashboard/dashboard.component";
+import { LoginComponent } from "./pages/login/login.component";
+import { ServicesComponent } from "./pages/services/services.component";
+import { EquipmentComponent } from "./pages/equipment/equipment.component";
+import { InstrumentsComponent } from "./pages/instruments/instruments.component";
+import { InvestigationsComponent } from "./pages/investigations/investigations.component";
+import { LaboratoriesComponent } from "./pages/laboratories/laboratories.component";
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: "login",
     component: LoginComponent
   },
   {
-    path: '',
+    path: "",
     component: AdminComponent,
     children: [
       {
-        path: 'dashboard',
+        path: "dashboard",
         component: DashboardComponent
       },
       {
-        path: '',
-        redirectTo: 'dashboard'
+        path: "instrumentos",
+        component: InstrumentsComponent
+      },
+      {
+        path: "equipos",
+        component: EquipmentComponent
+      },
+      {
+        path: "investigaciones",
+        component: InvestigationsComponent
+      },
+      {
+        path: "laboratorios",
+        component: LaboratoriesComponent
+      },
+      {
+        path: "servicios",
+        component: ServicesComponent
+      },
+      {
+        path: "",
+        redirectTo: "dashboard"
       }
     ],
     canActivate: [AuthGuard]
   },
   {
-    path: '**',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
+    path: "**",
+    redirectTo: "dashboard",
+    pathMatch: "full"
   }
 ];
 
@@ -36,4 +65,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}
