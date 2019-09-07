@@ -1,5 +1,5 @@
 export interface Laboratory {
-    id: number,
-    name: string,
-    description: string
+  id: string;
+  name: string;
+  description: string;
 }

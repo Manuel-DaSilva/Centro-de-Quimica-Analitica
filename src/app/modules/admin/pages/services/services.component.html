@@ -10,7 +10,10 @@
   <!-- create -->
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary mb-3">
+      <button
+        (click)="openModal(); console.log('click')"
+        class="btn btn-primary mb-3"
+      >
         Crear nuevo servicio <i class="fas fa-plus"></i>
       </button>
     </div>
@@ -27,15 +30,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
+      <tr *ngFor="let service of testServices; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ service.name }}</td>
+        <td>{{ service.description }}</td>
         <td class="text-center">
-          <button class="btn btn-primary mr-1">
+          <button
+            (click)="openModal(service)"
+            class="btn btn-icon btn-primary mr-1"
+          >
             <i class="fas fa-edit"></i>
           </button>
-          <button class="btn btn-secondary">
+          <button class="btn btn-icon btn-secondary mr-1">
             <i class="fas fa-trash"></i>
           </button>
         </td>

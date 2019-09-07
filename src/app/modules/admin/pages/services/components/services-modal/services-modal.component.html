@@ -1,0 +1,67 @@
+<div class="modal-header">
+  <h5 class="modal-title">
+    <span *ngIf="mode === 'create'">Crear servicio</span>
+    <span *ngIf="mode === 'edit'">Editar servicio</span>
+  </h5>
+  <button (click)="closeModal()" type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="serviceForm">
+    <div class="form-group">
+      <label for="serviceName">Nombre</label>
+      <input
+        formControlName="name"
+        type="text"
+        class="form-control"
+        placeholder="Nombre del servicio"
+      />
+    </div>
+    <div class="form-group">
+      <label for="serviceCategory">Categoria</label>
+      <select formControlName="category" class="form-control">
+        <option>category1</option>
+        <option>category2</option>
+        <option>category3</option>
+        <option>category4</option>
+        <option>category5</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="serviceDescription">Descripcion</label>
+      <textarea
+        formControlName="description"
+        class="form-control"
+        rows="3"
+        placeholder="Descripcion del servicio"
+      ></textarea>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    (click)="closeModal()"
+    type="button"
+    class="btn btn-secondary"
+    data-dismiss="modal"
+  >
+    Cancelar
+  </button>
+  <button
+    *ngIf="mode === 'create'"
+    (click)="createService()"
+    type="button"
+    class="btn btn-primary"
+  >
+    Crear
+  </button>
+  <button
+    *ngIf="mode === 'edit'"
+    (click)="editService()"
+    type="button"
+    class="btn btn-primary"
+  >
+    Guardar cambios
+  </button>
+</div>

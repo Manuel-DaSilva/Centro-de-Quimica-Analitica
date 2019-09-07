@@ -10,7 +10,8 @@ import { LaboratoriesComponent } from "./pages/laboratories/laboratories.compone
 import { InvestigationsComponent } from "./pages/investigations/investigations.component";
 import { InstrumentsComponent } from "./pages/instruments/instruments.component";
 import { EquipmentComponent } from "./pages/equipment/equipment.component";
-import { LoaderComponent } from './components/loader/loader.component';
+import { LoaderComponent } from "./components/loader/loader.component";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,6 @@ import { LoaderComponent } from './components/loader/loader.component';
     EquipmentComponent,
     LoaderComponent
   ],
-  imports: [CommonModule, AdminRoutingModule]
+  imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule, FormsModule]
 })
 export class AdminModule {}
