@@ -38,7 +38,6 @@ export class ServicesModalComponent implements OnInit {
   }
 
   setForEdit(service: Service) {
-    console.log("EDITING ", service);
     this.serviceForm.controls["name"].setValue(service.name);
     this.serviceForm.controls["category"].setValue(service.category);
     this.serviceForm.controls["description"].setValue(service.description);
