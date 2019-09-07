@@ -13,6 +13,7 @@ import { EquipmentComponent } from "./pages/equipment/equipment.component";
 import { InstrumentsComponent } from "./pages/instruments/instruments.component";
 import { InvestigationsComponent } from "./pages/investigations/investigations.component";
 import { LaboratoriesComponent } from "./pages/laboratories/laboratories.component";
+import { AccountComponent } from "./pages/account/account.component";
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: "servicios",
         component: ServicesComponent
+      },
+      {
+        path: "cuenta",
+        component: AccountComponent
       },
       {
         path: "",

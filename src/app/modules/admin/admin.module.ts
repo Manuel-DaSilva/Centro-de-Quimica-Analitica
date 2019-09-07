@@ -12,6 +12,7 @@ import { InstrumentsComponent } from "./pages/instruments/instruments.component"
 import { EquipmentComponent } from "./pages/equipment/equipment.component";
 import { LoaderComponent } from "./components/loader/loader.component";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { AccountComponent } from './pages/account/account.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
     InvestigationsComponent,
     InstrumentsComponent,
     EquipmentComponent,
-    LoaderComponent
+    LoaderComponent,
+    AccountComponent
   ],
   imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule, FormsModule]
 })

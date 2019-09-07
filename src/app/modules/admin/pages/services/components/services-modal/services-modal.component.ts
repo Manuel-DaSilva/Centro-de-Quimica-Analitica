@@ -9,14 +9,12 @@ import { Service } from "src/app/models/service.interface";
 })
 export class ServicesModalComponent implements OnInit {
   public mode: string;
-  public service: any;
-
   public serviceForm: FormGroup;
 
   // input fields
   @Input()
   set inputServiceData(service: Service) {
-    this.setData(service);
+    this.setService(service);
   }
   constructor(private activeModal: NgbActiveModal) {
     this.serviceForm = new FormGroup({
@@ -28,7 +26,11 @@ export class ServicesModalComponent implements OnInit {
 
   ngOnInit() {}
 
-  setData(service: Service) {
+  /*
+   * @desc handle the type of action over the service
+   * @param service to edit
+   */
+  setService(service: Service) {
     if (service) {
       this.mode = "edit";
       this.setForEdit(service);
