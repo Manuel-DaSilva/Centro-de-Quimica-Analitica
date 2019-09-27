@@ -1,3 +1,74 @@
-<p>
-  equipment works!
-</p>
+<div class="container">
+  <div class="row mt-3 mb-3">
+    <div class="col text-center">
+      <h1 class="mt-4 mb-4">Equipo</h1>
+    </div>
+    <div class="accordion w-100" id="equipmentAccordion">
+      <div class="card" *ngFor="let equip of equipment; let i = index">
+        <div
+          class="card-header custom-header"
+          [id]="'EquipHeading' + i"
+          data-toggle="collapse"
+          [attr.data-target]="'#EquipCollapse' + i"
+          aria-expanded="true"
+          [attr.aria-controls]="'EquipCollapse' + i"
+        >
+          <h4 class="mb-0 text-white">
+            {{ equip.name }}
+            <div class="plus-symbol text-white">
+              <i class="fas fa-plus"></i>
+            </div>
+          </h4>
+        </div>
+
+        <div
+          [id]="'EquipCollapse' + i"
+          class="collapse"
+          [attr.aria-labelledby]="'EquipHeading' + i"
+          data-parent="#equipmentAccordion"
+        >
+          <div class="card-body">
+            {{ equip.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3 mb-3">
+    <div class="col text-center">
+      <h1 class="mt-4 mb-4">Instrumentos</h1>
+    </div>
+
+    <div class="accordion w-100 mb-4" id="instrumentsAccordion">
+      <div class="card" *ngFor="let instrument of instruments; let i = index">
+        <div
+          class="card-header custom-header custom-header-alt"
+          [id]="'InstHeading' + i"
+          data-toggle="collapse"
+          [attr.data-target]="'#InstCollapse' + i"
+          aria-expanded="true"
+          [attr.aria-controls]="'InstCollapse' + i"
+        >
+          <h4 class="mb-0 text-white">
+            {{ instrument.name }}
+          </h4>
+          <div class="plus-symbol text-white">
+            <i class="fas fa-plus"></i>
+          </div>
+        </div>
+
+        <div
+          [id]="'InstCollapse' + i"
+          class="collapse"
+          [attr.aria-labelledby]="'InstHeading' + i"
+          data-parent="#instrumentsAccordion"
+        >
+          <div class="card-body">
+            {{ instrument.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

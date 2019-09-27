@@ -13,6 +13,8 @@ import { EquipmentComponent } from "./pages/equipment/equipment.component";
 import { LoaderComponent } from "./components/loader/loader.component";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { AccountComponent } from './pages/account/account.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { AccountComponent } from './pages/account/account.component';
     InstrumentsComponent,
     EquipmentComponent,
     LoaderComponent,
-    AccountComponent
+    AccountComponent,
+    SidebarComponent,
+    NavbarComponent
   ],
   imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule, FormsModule]
 })

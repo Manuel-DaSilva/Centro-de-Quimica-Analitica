@@ -1,0 +1,27 @@
+<div class="sidebar-header">
+  <small>
+    <h6><i class="fas fa-user"></i> Manuel Da Silva</h6>
+    <h6 style="font-size: 12px">{{ date | date: "short" }}</h6>
+  </small>
+</div>
+
+<ul class="list-unstyled components">
+  <li [routerLinkActive]="['active']" [routerLink]="['dashboard']">
+    <a><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+  </li>
+  <li [routerLinkActive]="['active']" [routerLink]="['instrumentos']">
+    <a><i class="fas fa-hammer"></i> Instrumentos</a>
+  </li>
+  <li [routerLinkActive]="['active']" [routerLink]="['equipos']">
+    <a><i class="fas fa-toolbox"></i> Equipo</a>
+  </li>
+  <li [routerLinkActive]="['active']" [routerLink]="['investigaciones']">
+    <a><i class="fas fa-scroll"></i> Investigaciones</a>
+  </li>
+  <li [routerLinkActive]="['active']" [routerLink]="['laboratorios']">
+    <a class="nav-link"><i class="fas fa-warehouse"></i> Laboratorios</a>
+  </li>
+  <li [routerLinkActive]="['active']" [routerLink]="['servicios']">
+    <a class="nav-link"><i class="fas fa-concierge-bell"></i> Servicios</a>
+  </li>
+</ul>

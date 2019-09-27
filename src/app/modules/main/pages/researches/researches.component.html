@@ -1,3 +1,40 @@
-<p>
-  researches works!
-</p>
+<div class="container">
+    <div class="row mt-3 mb-3">
+      <div class="col text-center">
+        <h1>Investigaciones</h1>
+      </div>
+      <div class="accordion w-100" id="researchAccordion">
+        <div class="card" *ngFor="let research of researches; let i = index">
+          <div class="card-header custom-header" [id]="'ResearchHeading' + i"
+          data-toggle="collapse"
+          [attr.data-target]="'#ResearchCollapse' + i"
+          aria-expanded="true"
+          [attr.aria-controls]="'ResearchCollapse' + i"
+          >
+            <h4 class="mb-0 text-white">
+              {{ research.name }}
+            </h4>
+            <div class="plus-symbol text-white">
+               <i class="fas fa-plus"></i>
+            </div>
+          </div>
+          
+          <div
+            [id]="'ResearchCollapse' + i"
+            class="collapse"
+            [attr.aria-labelledby]="'ResearchHeading' + i"
+            data-parent="#researchAccordion"
+          >
+            <div class="card-body">
+              <p>{{ research.description }}</p>
+              <br>
+              <h4>
+                  Investigadores participantes:
+                  <span *ngFor="let researcher of research.researches" class="badge badge-primary ml-1 mr-1">{{researcher}}</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>  
