@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormGroup, FormControl, Validators, Form } from "@angular/forms";
 import { NgbTabset } from "@ng-bootstrap/ng-bootstrap";
 import { DataService } from "../../services/data.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-quotes",
@@ -36,7 +37,10 @@ export class QuotesComponent implements OnInit {
   ];
   @ViewChild("tabSet") private tabSet: NgbTabset;
 
-  constructor(private dataService: DataService) {
+  constructor(
+    private dataService: DataService,
+    private toastService: ToastrService
+  ) {
     this.companyForm = new FormGroup({
       company: new FormControl("", Validators.required),
       rif: new FormControl("", Validators.required),
@@ -80,11 +84,16 @@ export class QuotesComponent implements OnInit {
         .subscribe(
           (res: any) => {
             // show success alert
+            this.toastService.success(
+              "¡Cotizacion enviada",
+              "Te contactaremos pronto"
+            );
             this.infoForm.reset();
             this.companyForm.reset();
             this.tabSet.select("tabType");
           },
           err => {
+            this.toastService.error("Error al enviar", "Intenta mas tarde");
             console.log("error sending info quote");
             console.log(err);
           }
@@ -95,11 +104,16 @@ export class QuotesComponent implements OnInit {
         .subscribe(
           (res: any) => {
             // show success alert
+            this.toastService.success(
+              "¡Cotizacion enviada",
+              "Te contactaremos pronto"
+            );
             this.infoForm.reset();
             this.companyForm.reset();
             this.tabSet.select("tabType");
           },
           err => {
+            this.toastService.error("Error al enviar", "Intenta mas tarde");
             console.log("error sending info quote");
             console.log(err);
           }

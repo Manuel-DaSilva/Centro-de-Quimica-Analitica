@@ -8,14 +8,18 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ServicesModalComponent } from "./modules/admin/pages/services/components/services-modal/services-modal.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule } from "ngx-toastr";
 @NgModule({
   declarations: [AppComponent, ServicesModalComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
+    NgbModule.forRoot(),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   bootstrap: [AppComponent],
   entryComponents: [ServicesModalComponent]

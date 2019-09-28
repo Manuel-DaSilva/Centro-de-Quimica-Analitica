@@ -12,9 +12,10 @@ import { InstrumentsComponent } from "./pages/instruments/instruments.component"
 import { EquipmentComponent } from "./pages/equipment/equipment.component";
 import { LoaderComponent } from "./components/loader/loader.component";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { AccountComponent } from './pages/account/account.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { AccountComponent } from "./pages/account/account.component";
+import { SidebarComponent } from "./components/sidebar/sidebar.component";
+import { NavbarComponent } from "./components/navbar/navbar.component";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     SidebarComponent,
     NavbarComponent
   ],
-  imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule, FormsModule]
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgbModule
+  ]
 })
 export class AdminModule {}

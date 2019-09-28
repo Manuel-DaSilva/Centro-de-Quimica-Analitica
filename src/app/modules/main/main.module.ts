@@ -15,6 +15,7 @@ import { LaboratoriesComponent } from "./pages/laboratories/laboratories.compone
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HttpClientModule } from "@angular/common/http";
     MainRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule
   ]
 })
 export class MainModule {}
