@@ -7,10 +7,16 @@ import { AppComponent } from "./app.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ServicesModalComponent } from "./modules/admin/pages/services/components/services-modal/services-modal.component";
 import { ReactiveFormsModule } from "@angular/forms";
-
+import { HttpClientModule } from "@angular/common/http";
 @NgModule({
   declarations: [AppComponent, ServicesModalComponent],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ServicesModalComponent]
 })

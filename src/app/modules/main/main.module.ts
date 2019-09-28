@@ -14,6 +14,7 @@ import { ResearchesComponent } from "./pages/researches/researches.component";
 import { LaboratoriesComponent } from "./pages/laboratories/laboratories.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,12 @@ import { ReactiveFormsModule } from "@angular/forms";
     ResearchesComponent,
     LaboratoriesComponent
   ],
-  imports: [CommonModule, MainRoutingModule, NgbModule, ReactiveFormsModule]
+  imports: [
+    CommonModule,
+    MainRoutingModule,
+    NgbModule,
+    ReactiveFormsModule,
+    HttpClientModule
+  ]
 })
 export class MainModule {}
