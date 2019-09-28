@@ -29,6 +29,15 @@ $font-size-root: 12px;
 .btn-primary
   background-color: $primary;
 
+.btn-outline-primary
+  color: $primary;
+  border-color: $primary;
+
+.btn-outline-primary:hover
+  color: #fff;
+  background-color: $primary;
+  border-color: $primary-dark;
+
 .btn-primary:hover
   background-color: $primary-dark;
 
@@ -54,7 +63,7 @@ html
   min-height: 100%;
 
 body
-  margin-bottom: 80px;
+  margin-bottom: 150px;
 
 .footer
   position: absolute;
@@ -325,3 +334,26 @@ a.article:hover
   height: auto;
   max-width: 100%
   margin-bottom: 80px;
+/* cotizaciones */
+.option-card
+  cursor: pointer;
+
+.option-card:hover
+  background-color: $primary-dark!important;
+
+.nav-tabs
+  border: none!important; 
+
+.quote-container
+  border: 1px solid #dee2e6;
+  background-color: white!important;
+  border-radius: 10px;
+
+.form-container
+  max-width: 1000px!important;
+  padding-left: 30px;
+  padding-right: 30px;
+
+.disabled
+  background-color: $grey;
+  cursor: not-allowed!important;

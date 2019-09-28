@@ -1,3 +1,291 @@
-<p>
-  quotes works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center mt-2">
+      <h1>¿Quieres realizar una cotizacion?</h1>
+    </div>
+    <div class="col mt-2">
+      <ngb-tabset justify="center" #tabSet>
+        <ngb-tab title="Tipo de servicio" id="tabType">
+          <ng-template ngbTabContent>
+            <div class="container pt-5 quote-container">
+              <div class="row">
+                <div class="col col-md-6">
+                  <div
+                    class="card text-white bg-primary mb-3 option-card text-center"
+                    (click)="setType('info')"
+                  >
+                    <div class="card-header">
+                      <h3>Solicitar informacion</h3>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col col-md-6">
+                  <div
+                    class="card text-white bg-primary mb-3 option-card text-center"
+                    (click)="setType('service')"
+                  >
+                    <div class="card-header"><h3>Servicio Analitico</h3></div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-center mt-3">Selecciona una de las opciones</p>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Informacion" id="tabInfo">
+          <ng-template ngbTabContent>
+            <div
+              *ngIf="type === 'info'; then infoTemplate; else serviceTemplate"
+            ></div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Contacto" id="tabContact">
+          <ng-template ngbTabContent>
+            <div class="container pt-5 pb-3 quote-container form-container">
+              <p class="text-muted small text-center">
+                Llene el siguiente formulario
+              </p>
+              <form [formGroup]="companyForm">
+                <div class="row">
+                  <div class="col-12 col-md-8">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Compañia:</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="company"
+                        placeholder="Nombre de la compañia"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">RIF:</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="rif"
+                        placeholder="RIF de la compañia"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1"
+                        >Direccion fiscal:</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="address"
+                        placeholder="Direccion fiscal de la compañia"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1"
+                        >Persona de contacto:</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="contactName"
+                        placeholder="Nombre de la persona"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1"
+                        >Numero de contacto:</label
+                      >
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="contactPhone"
+                        placeholder="Numero de la persona"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1"
+                        >Correo de contacto:</label
+                      >
+                      <input
+                        type="email"
+                        class="form-control"
+                        formControlName="contactEmail"
+                        placeholder="Correo de la persona"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 text-center">
+                    <button
+                      [ngClass]="{ disabled: companyForm.invalid }"
+                      class="btn btn-primary"
+                    >
+                      Enviar cotizacion
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+  </div>
+</div>
+<ng-template #infoTemplate>
+  <div class="container pt-5 pb-3 quote-container form-container">
+    <p class="text-center text-muted small">Llene el siguiente formulario</p>
+    <form [formGroup]="infoForm">
+      <div class="row">
+        <div class="col-12 col-md-12">
+          <div class="form-group">
+            <label for="exampleFormControlInput1"
+              >Informacion a solicitar:</label
+            >
+            <textarea
+              class="form-control"
+              rows="5"
+              placeholder="Informacion..."
+              formControlName="information"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col-12 text-center">
+          <button
+            [ngClass]="{ disabled: infoForm.invalid }"
+            class="btn btn-primary"
+            (click)="setInfoReady()"
+          >
+            Continuar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<ng-template #serviceTemplate>
+  <div class="container pt-5 pb-3 quote-container form-container">
+    <p class="text-center small text-muted">Llene el siguiente formulario</p>
+    <form [formGroup]="serviceForm">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Identificacion:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="identification"
+              placeholder="Identificacion de la muestra"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Tipo:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="type"
+              placeholder="Tipo de la muestra"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Uso:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="use"
+              placeholder="uso de la muestra"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Estado fisico:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="state"
+              placeholder="Estado de la muestra"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Numero de muestras:</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="quantity"
+              placeholder="Numero de muestras"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Tipo de analisis:</label>
+            <select class="form-control" formControlName="analisis">
+              <option value="" disabled selected="selected"
+                >Seleccionar analisis</option
+              >
+              <option *ngFor="let item of analisis" [value]="item.id">{{
+                item.name
+              }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Otros analisis:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="others"
+              placeholder="Numero de muestras"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-md-12">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Observaciones:</label>
+            <textarea
+              class="form-control"
+              rows="5"
+              placeholder="Observaciones..."
+              formControlName="observations"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col-12 text-center">
+          <button
+            [ngClass]="{ disabled: serviceForm.invalid }"
+            class="btn btn-primary"
+            (click)="setInfoReady()"
+          >
+            Continuar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

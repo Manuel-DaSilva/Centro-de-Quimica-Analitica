@@ -6,7 +6,6 @@ import { Component, OnInit } from "@angular/core";
   styles: []
 })
 export class EquipmentComponent implements OnInit {
-  // !test data
   public instruments = [
     {
       name: "Instrumento 1",
@@ -29,7 +28,6 @@ export class EquipmentComponent implements OnInit {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit iusto quibusdam autem facere velit! Sapiente quae magni non? Magnam veritatis nemo ratione vero fuga deleniti aliquam fugiat voluptatum consequatur numquam!"
     }
   ];
-  // !test data
   public equipment = [
     {
       name: "Equipo 1",
@@ -52,7 +50,11 @@ export class EquipmentComponent implements OnInit {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit iusto quibusdam autem facere velit! Sapiente quae magni non? Magnam veritatis nemo ratione vero fuga deleniti aliquam fugiat voluptatum consequatur numquam!"
     }
   ];
+
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.getEquipment();
+    // this.getInstruments();
+  }
 }

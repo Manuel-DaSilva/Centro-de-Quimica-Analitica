@@ -1,4 +1,40 @@
-<p>
-  services works!
-</p>
+<div class="container">
+  <h1 class="text-center mt-2">Servicios ofrecidos</h1>
 
+  <div class="row" *ngFor="let group of servicesOrganized; let j = index">
+    <div class="col mt-2">
+      <h3>{{ group["0"] }}</h3>
+      <div class="accordion w-100" [id]="'ServiceAccordion' + j">
+        <div class="card" *ngFor="let service of group['1']; let i = index">
+          <div
+            class="card-header custom-header"
+            [id]="'ServiceHeading' + i + j"
+            data-toggle="collapse"
+            [attr.data-target]="'#ServiceCollapse' + i + j"
+            aria-expanded="true"
+            [attr.aria-controls]="'ServiceCollapse' + i + j"
+          >
+            <h4 class="mb-0 text-white">
+              {{ service.name }}
+            </h4>
+            <div class="plus-symbol text-white">
+              <i class="fas fa-plus"></i>
+            </div>
+          </div>
+
+          <div
+            [id]="'ServiceCollapse' + i + j"
+            class="collapse"
+            [attr.aria-labelledby]="'ServiceHeading' + i + j"
+            [attr.data-parent]="'#ServiceAccordion' + j"
+          >
+            <div class="card-body">
+              <p>{{ service.description }}</p>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

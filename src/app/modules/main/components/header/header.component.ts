@@ -1,43 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
+  selector: "app-header",
+  templateUrl: "./header.component.html",
   styles: []
 })
 export class HeaderComponent implements OnInit {
-
   public routes = [
     {
-      path: 'home',
-      name: 'Home'
+      path: "home",
+      name: "Home"
     },
     {
-      path: 'servicios',
-      name: 'Servicios'
+      path: "servicios",
+      name: "Servicios"
     },
     {
-      path: 'equipos',
-      name: 'Equipos'
+      path: "equipos",
+      name: "Equipos"
     },
     {
-      path: 'contacto',
-      name: 'Contacto'
+      path: "investigaciones",
+      name: "Investigaciones"
     },
     {
-      path: 'investigaciones',
-      name: 'Investigaciones'
+      path: "laboratorios",
+      name: "Laboratorios"
     },
     {
-      path: 'cotizaciones',
-      name: 'Cotizaciones'
-
+      path: "contacto",
+      name: "Contacto"
+    },
+    {
+      path: "cotizaciones",
+      name: "Cotizaciones"
     }
   ];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
