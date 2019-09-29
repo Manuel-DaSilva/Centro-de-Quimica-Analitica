@@ -12,10 +12,10 @@ import { ToastrService } from "ngx-toastr";
 export class QuotesComponent implements OnInit {
   private type;
 
-  private companyForm: FormGroup;
-  private infoForm: FormGroup;
+  public companyForm: FormGroup;
+  public infoForm: FormGroup;
 
-  private serviceForm: FormGroup;
+  public serviceForm: FormGroup;
   // !test
   public analisis = [
     {

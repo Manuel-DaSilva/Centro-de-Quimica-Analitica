@@ -1,17 +1,19 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
   {
-    path: 'sitio',
-    loadChildren: () => import('./modules/main/main.module').then(mod => mod.MainModule)
+    path: "sitio",
+    loadChildren: "./modules/main/main.module#MainModule"
   },
   {
-    path: 'admin',
-    loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule)
+    path: "admin",
+    loadChildren: "./modules/admin/admin.module#AdminModule"
   },
   {
-    path: '**', redirectTo: 'sitio', pathMatch: 'full'
+    path: "**",
+    redirectTo: "sitio",
+    pathMatch: "full"
   }
 ];
 
@@ -19,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
