@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { URL_SERVICES } from "src/app/config/config";
 
@@ -7,7 +6,7 @@ import { URL_SERVICES } from "src/app/config/config";
   providedIn: "root"
 })
 export class ServicesService {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   /*
    * @desc handles the petition to the backend API to get all services data
@@ -34,7 +33,6 @@ export class ServicesService {
     // returning the petition
     return this.http.get(url, config);
   }
-
 
   /*
    * @desc handles the petition to the backend API to create a new service
