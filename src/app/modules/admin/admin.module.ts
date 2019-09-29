@@ -16,6 +16,7 @@ import { AccountComponent } from "./pages/account/account.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { MembersComponent } from './pages/members/members.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     LoaderComponent,
     AccountComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    MembersComponent
   ],
   imports: [
     CommonModule,

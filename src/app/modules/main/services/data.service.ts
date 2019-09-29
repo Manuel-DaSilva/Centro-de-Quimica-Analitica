@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { URL_SERVICES } from "src/app/config/config";
 
 @Injectable({
   providedIn: "root"
@@ -12,7 +13,7 @@ export class DataService {
    */
   reqInstruments() {
     // url of api endpoint
-    const url = "api/ulr/instruments";
+    const url = URL_SERVICES + "api/ulr/instruments";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
@@ -25,7 +26,7 @@ export class DataService {
    */
   reqEquipment() {
     // url of api endpoint
-    const url = "api/ulr/equipment";
+    const url = URL_SERVICES + "api/ulr/equipment";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
@@ -38,7 +39,7 @@ export class DataService {
    */
   reqInvestigations() {
     // url of api endpoint
-    const url = "api/ulr/investigations";
+    const url = URL_SERVICES + "api/ulr/investigations";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
@@ -51,7 +52,7 @@ export class DataService {
    */
   reqLaboratories() {
     // url of api endpoint
-    const url = "api/ulr/laboratories";
+    const url = URL_SERVICES + "api/ulr/laboratories";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
@@ -64,7 +65,7 @@ export class DataService {
    */
   reqServices() {
     // url of api endpoint
-    const url = "api/ulr/services";
+    const url = URL_SERVICES + "api/ulr/services";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
@@ -77,7 +78,7 @@ export class DataService {
    */
   sendInfoQuote(serviceData, companyData) {
     // url of api endpoint
-    const url = "api/new/infoQuote";
+    const url = URL_SERVICES + "api/new/infoQuote";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
@@ -90,7 +91,7 @@ export class DataService {
    */
   sendServiceQuote(infoData, companyData) {
     // url of api endpoint
-    const url = "api/new/infoQuote";
+    const url = URL_SERVICES + "api/new/infoQuote";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };

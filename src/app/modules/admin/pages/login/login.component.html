@@ -1,5 +1,5 @@
 <div class="text-center login-box">
-  <form class="form-signin">
+  <form [formGroup]="userForm" class="form-signin">
     <img
       class="mb-4"
       src="../../../../../assets/images/logo-cqa.png"
@@ -9,13 +9,25 @@
     />
     <h1 class="h3 mb-3 font-weight-normal">Bienvenido</h1>
     <label for="inputEmail" class="sr-only">Usuario</label>
-    <input type="email" class="form-control" placeholder="Correo" autofocus />
+    <input
+      type="email"
+      formControlName="email"
+      class="form-control"
+      placeholder="Correo"
+      autofocus
+    />
     <label for="inputPassword" class="sr-only">Contraseña</label>
-    <input type="password" class="form-control" placeholder="Contraseña" />
+    <input
+      type="password"
+      formControlName="password"
+      class="form-control"
+      placeholder="Contraseña"
+    />
     <button
-      [routerLink]="['dashboard']"
       class="btn btn-lg btn-primary btn-block"
       type="submit"
+      [ngClass]="{ disabled: userForm.invalid }"
+      (click)="login()"
     >
       Ingresar
     </button>

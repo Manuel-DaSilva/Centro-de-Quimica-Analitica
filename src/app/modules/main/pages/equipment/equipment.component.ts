@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { DataService } from "../../services/data.service";
 
 @Component({
   selector: "app-equipment",
@@ -51,10 +52,40 @@ export class EquipmentComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
     // this.getEquipment();
     // this.getInstruments();
+  }
+
+  /*
+   * @desc handles the request to get the equipment data
+   */
+  getEquipment() {
+    this.dataService.reqEquipment().subscribe(
+      (res: any) => {
+        this.equipment = res.data;
+      },
+      err => {
+        console.log("error getting equipment");
+        console.log(err);
+      }
+    );
+  }
+
+  /*
+   * @desc handles the request to get the equipment data
+   */
+  getInstruments() {
+    this.dataService.reqInstruments().subscribe(
+      (res: any) => {
+        this.instruments = res.data;
+      },
+      err => {
+        console.log("error getting instruments");
+        console.log(err);
+      }
+    );
   }
 }

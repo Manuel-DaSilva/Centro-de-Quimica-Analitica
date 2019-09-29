@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { DataService } from "../../services/data.service";
 
 @Component({
   selector: "app-laboratories",
@@ -25,7 +26,22 @@ export class LaboratoriesComponent implements OnInit {
       description: "lab4"
     }
   ];
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {}
+
+  /*
+   * @desc handles the request to get the laboratories data
+   */
+  getResearches() {
+    this.dataService.reqLaboratories().subscribe(
+      (res: any) => {
+        this.laboratories = res.data;
+      },
+      err => {
+        console.log("error getting laboratories");
+        console.log(err);
+      }
+    );
+  }
 }

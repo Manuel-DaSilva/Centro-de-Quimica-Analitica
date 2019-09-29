@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-admin",
@@ -10,16 +12,14 @@ export class AdminComponent implements OnInit {
   @ViewChild("sidebar") sidebar: ElementRef;
   @ViewChild("content") content: ElementRef;
 
-  // date variable for clock
-  public date = new Date();
+  constructor(private authService: AuthService, private router: Router) {}
 
-  constructor() {}
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["/admin", "login"]);
+  }
 
   ngOnInit() {
-    // updating clock
-    setInterval(() => {
-      this.date = new Date();
-    }, 60000);
   }
 
   /*

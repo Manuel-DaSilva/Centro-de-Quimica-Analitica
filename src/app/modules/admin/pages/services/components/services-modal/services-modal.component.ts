@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Service } from "src/app/models/service.interface";
+import { ServicesService } from "../../../../services/services.service";
+import { ToastrService } from "ngx-toastr";
 @Component({
   selector: "app-services-modal",
   templateUrl: "./services-modal.component.html",
@@ -10,13 +12,27 @@ import { Service } from "src/app/models/service.interface";
 export class ServicesModalComponent implements OnInit {
   public mode: string;
   public serviceForm: FormGroup;
+  public categories = [
+    {
+      id: 1,
+      name: "Cateogria 1"
+    },
+    {
+      id: 2,
+      name: "Categoria 2"
+    }
+  ];
 
   // input fields
   @Input()
   set inputServiceData(service: Service) {
     this.setService(service);
   }
-  constructor(private activeModal: NgbActiveModal) {
+  constructor(
+    private activeModal: NgbActiveModal,
+    private servicesService: ServicesService,
+    private toastService: ToastrService
+  ) {
     this.serviceForm = new FormGroup({
       name: new FormControl(""),
       category: new FormControl(""),
@@ -51,11 +67,49 @@ export class ServicesModalComponent implements OnInit {
 
   editService() {
     // edit code
-    this.activeModal.close();
+    this.servicesService.updateService(this.serviceForm.value).subscribe(
+      res => {
+        this.toastService.success("correctamente", "Servicio actualizado");
+        this.activeModal.close({ success: true });
+      },
+      err => {
+        console.log("error updating service");
+        console.log(err);
+        this.toastService.error(
+          "el servidor no respondio",
+          "Error al editar el servicio"
+        );
+      }
+    );
   }
 
   createService() {
     // create code
-    this.activeModal.close();
+    this.servicesService.createService(this.serviceForm.value).subscribe(
+      res => {
+        this.toastService.success("correctamente", "Servicio creado");
+        this.activeModal.close({ success: true });
+      },
+      err => {
+        console.log("error creating service");
+        console.log(err);
+        this.toastService.error(
+          "el servidor no respondio",
+          "Error al crear el servicio"
+        );
+      }
+    );
+  }
+
+  getCategories() {
+    this.servicesService.reqCategories().subscribe(
+      (res: any) => {
+        this.categories = res.data;
+      },
+      err => {
+        console.log("error getting categories");
+        console.log(err);
+      }
+    );
   }
 }

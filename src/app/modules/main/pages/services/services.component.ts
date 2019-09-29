@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Service } from "src/app/models/service.interface";
+import { DataService } from "../../services/data.service";
 
 @Component({
   selector: "app-services",
@@ -7,7 +8,7 @@ import { Service } from "src/app/models/service.interface";
   styles: []
 })
 export class ServicesComponent implements OnInit {
-  public servicesOrganized;
+  public organizedServices;
   // !test
   public services: Array<Service> = [
     {
@@ -48,12 +49,16 @@ export class ServicesComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
+    // this.getServices();
     this.configServices();
   }
 
+  /*
+   * @desc divides all services into his categories
+   */
   configServices() {
     // creating new map
     const servicesOrganized = new Map();
@@ -67,7 +72,7 @@ export class ServicesComponent implements OnInit {
         servicesOrganized.set(key, collection);
       }
     });
-    this.servicesOrganized = Array.from(servicesOrganized);
+    this.organizedServices = Array.from(servicesOrganized);
   }
 
   /*
@@ -82,5 +87,21 @@ export class ServicesComponent implements OnInit {
       }
     });
     return collection;
+  }
+
+  /*
+   * @desc handles the request to get the services data
+   */
+  getServices() {
+    this.dataService.reqServices().subscribe(
+      (res: any) => {
+        this.services = res.data;
+        this.configServices();
+      },
+      err => {
+        console.log("error getting services");
+        console.log(err);
+      }
+    );
   }
 }
