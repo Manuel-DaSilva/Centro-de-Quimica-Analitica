@@ -1,21 +1,21 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
+// routes
 import { MainRoutingModule } from "./main-routing.module";
+
+// pages
 import { HomeComponent } from "./pages/home/home.component";
 import { MainComponent } from "./main.component";
 import { ServicesComponent } from "./pages/services/services.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
-import { QuotesComponent } from "./pages/quotes/quotes.component";
 import { EquipmentComponent } from "./pages/equipment/equipment.component";
 import { ContactComponent } from "./pages/contact/contact.component";
 import { ResearchesComponent } from "./pages/researches/researches.component";
-import { LaboratoriesComponent } from "./pages/laboratories/laboratories.component";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { ReactiveFormsModule } from "@angular/forms";
+
+// modules
 import { HttpClientModule } from "@angular/common/http";
-import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -24,19 +24,10 @@ import { ToastrModule } from "ngx-toastr";
     ServicesComponent,
     HeaderComponent,
     FooterComponent,
-    QuotesComponent,
     EquipmentComponent,
     ContactComponent,
-    ResearchesComponent,
-    LaboratoriesComponent
+    ResearchesComponent
   ],
-  imports: [
-    CommonModule,
-    MainRoutingModule,
-    NgbModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    ToastrModule
-  ]
+  imports: [CommonModule, MainRoutingModule, HttpClientModule]
 })
 export class MainModule {}

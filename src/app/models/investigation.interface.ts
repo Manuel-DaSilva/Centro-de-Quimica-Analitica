@@ -1,5 +1,6 @@
 export interface Investigation {
-  id: string;
+  id?: string;
   name: string;
   description: string;
+  researches: string[];
 }

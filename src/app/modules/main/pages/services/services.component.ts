@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Service } from "src/app/models/service.interface";
 import { DataService } from "../../services/data.service";
 
@@ -9,46 +9,48 @@ import { DataService } from "../../services/data.service";
 })
 export class ServicesComponent implements OnInit {
   public organizedServices;
+  public selectedService: Service;
   // !test
-  public services: Array<Service> = [
+  public services: Service[] = [
     {
       id: "1",
-      name: "Servicio 1",
+      name: "Servicio agua1",
       description: "Descripcion servicio 1",
       category: "Tratamiento de agua"
     },
     {
       id: "2",
-      name: "Servicio 2",
+      name: "Servicio agua2",
       description: "Descripcion servicio 1",
       category: "Tratamiento de agua"
     },
     {
       id: "3",
-      name: "Servicio 3",
+      name: "Servicio agua3",
       description: "Descripcion servicio 1",
       category: "Tratamiento de agua"
     },
     {
       id: "4",
-      name: "Servicio 4",
+      name: "Servicio suelos1",
       description: "Descripcion servicio 1",
       category: "Suelos"
     },
     {
       id: "5",
-      name: "Servicio 5",
+      name: "Servicio suelos2",
       description: "Descripcion servicio 1",
       category: "Suelos"
     },
     {
       id: "5",
-      name: "Servicio 5",
+      name: "Servicio suelos3",
       description: "Descripcion servicio 1",
       category: "Quimicos"
     }
   ];
 
+  @ViewChild('serviceCard') serviceCard: ElementRef;
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
@@ -94,8 +96,8 @@ export class ServicesComponent implements OnInit {
    */
   getServices() {
     this.dataService.reqServices().subscribe(
-      (res: any) => {
-        this.services = res.data;
+      (res: Service[]) => {
+        this.services = res;
         this.configServices();
       },
       err => {
@@ -103,5 +105,14 @@ export class ServicesComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  setService(service: Service){
+    this.selectedService = service;
+    this.serviceCard.nativeElement.classList.add('fadeIn');
+    setTimeout(() => {
+      this.serviceCard.nativeElement.classList.remove('fadeIn');
+    }, 800);
+    
   }
 }

@@ -1,21 +1,21 @@
 <div class="container">
   <h1 class="text-center mt-2">Servicios ofrecidos</h1>
 
-  <div class="row" *ngFor="let group of organizedServices; let j = index">
-    <div class="col mt-2">
-      <h3>{{ group["0"] }}</h3>
-      <div class="accordion w-100" [id]="'ServiceAccordion' + j">
-        <div class="card" *ngFor="let service of group['1']; let i = index">
-          <div
+  <div class="row">
+    <div class="col-12 col-md-6 mt-2">
+      <h3>Categorias</h3>
+      <div class="accordion w-100" id="ServiceAccordion">
+        <div class="card" *ngFor="let group of organizedServices; let i = index">
+            <div
             class="card-header custom-header"
-            [id]="'ServiceHeading' + i + j"
+            [id]="'ServiceHeading' + i"
             data-toggle="collapse"
-            [attr.data-target]="'#ServiceCollapse' + i + j"
+            [attr.data-target]="'#ServiceCollapse' + i"
             aria-expanded="true"
-            [attr.aria-controls]="'ServiceCollapse' + i + j"
+            [attr.aria-controls]="'ServiceCollapse' + i"
           >
             <h4 class="mb-0 text-white">
-              {{ service.name }}
+                {{ group['0'] }}
             </h4>
             <div class="plus-symbol text-white">
               <i class="fas fa-plus"></i>
@@ -23,18 +23,38 @@
           </div>
 
           <div
-            [id]="'ServiceCollapse' + i + j"
+            [id]="'ServiceCollapse' + i"
             class="collapse"
-            [attr.aria-labelledby]="'ServiceHeading' + i + j"
-            [attr.data-parent]="'#ServiceAccordion' + j"
+            [attr.aria-labelledby]="'ServiceHeading' + i"
+            [attr.data-parent]="'#ServiceAccordion'"
           >
             <div class="card-body">
-              <p>{{ service.description }}</p>
+                <ul>
+                    <li (click)="setService(service)" *ngFor="let service of group['1']">{{service.name}}</li>
+                  </ul>
               <br />
             </div>
           </div>
+
+      
+
+        
         </div>
       </div>
+    </div>
+
+    <div #serviceCard class="col-12 col-md-6 mt-2" >
+        <div class="card" *ngIf="selectedService">
+            <div class="card-body">
+              <h5 class="card-title">{{selectedService.name}}</h5>
+              <p class="card-text">{{selectedService.description}}</p>
+              <p class="card-text">{{selectedService.category}}</p>
+              <button class="btn btn-primary btn-block" [routerLink]="[ '/sitio','laboratorio', 'cotizacion', 2 ]"> Cotizar o consultar sobre este servicio!</button>
+            </div>
+          </div>
+    
+     
+
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormGroup, FormControl, Validators, Form } from "@angular/forms";
 import { NgbTabset } from "@ng-bootstrap/ng-bootstrap";
-import { DataService } from "../../services/data.service";
+import { DataService } from "../../../../services/data.service";
 import { ToastrService } from "ngx-toastr";
 
 @Component({

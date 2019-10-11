@@ -8,15 +8,15 @@
   <div class="carousel-inner">
     <div
       class="carousel-item"
-      [ngClass]="{ active: i === 0 }"
       *ngFor="let item of carouselItems; let i = index"
+      [ngClass]="{ 'active': i === 0 }"
+
     >
       <img [src]="item.imgUrl" [alt]="'banner' + i" />
       <div class="container">
         <div class="carousel-caption">
           <h1>{{ item.title }}</h1>
           <p>{{ item.desc }}</p>
-          <p><a class="btn btn-lg btn-primary" role="button">Cotizar</a></p>
         </div>
       </div>
     </div>

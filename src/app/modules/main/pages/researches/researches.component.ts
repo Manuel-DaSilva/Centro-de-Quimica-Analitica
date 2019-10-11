@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../services/data.service";
+import { Investigation } from 'src/app/models/investigation.interface';
 
 @Component({
   selector: "app-researches",
@@ -7,7 +8,7 @@ import { DataService } from "../../services/data.service";
   styles: []
 })
 export class ResearchesComponent implements OnInit {
-  public researches = [
+  public researches: Investigation[] = [
     {
       name: "Ingestigacion",
       description:
@@ -75,8 +76,8 @@ export class ResearchesComponent implements OnInit {
    */
   getResearches() {
     this.dataService.reqInvestigations().subscribe(
-      (res: any) => {
-        this.researches = res.data;
+      (res: Investigation[]) => {
+        this.researches = res;
       },
       err => {
         console.log("error getting researches");

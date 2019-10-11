@@ -1,5 +1,4 @@
 export interface Equipment {
-  id: string;
+  id?: string;
   name: string;
-  description: string;
 }

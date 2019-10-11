@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Member } from "src/app/models/member.interface";
 
 @Component({
   selector: "app-home",
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit {
     }
   ];
   // !test data
-  public members = [
+  public members: Member[] = [
     {
       name: "Andres Enrique",
       email: "email@email.com",

@@ -8,8 +8,6 @@ import { ServicesComponent } from "./pages/services/services.component";
 import { EquipmentComponent } from "./pages/equipment/equipment.component";
 import { ContactComponent } from "./pages/contact/contact.component";
 import { ResearchesComponent } from "./pages/researches/researches.component";
-import { QuotesComponent } from "./pages/quotes/quotes.component";
-import { LaboratoriesComponent } from "./pages/laboratories/laboratories.component";
 
 const routes: Routes = [
   {
@@ -21,29 +19,24 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: "servicios",
-        component: ServicesComponent
+        path: "investigaciones",
+        component: ResearchesComponent
       },
       {
         path: "equipos",
         component: EquipmentComponent
       },
       {
+        path: "servicios",
+        component: ServicesComponent
+      },
+      {
         path: "contacto",
         component: ContactComponent
       },
-
       {
-        path: "investigaciones",
-        component: ResearchesComponent
-      },
-      {
-        path: "cotizaciones",
-        component: QuotesComponent
-      },
-      {
-        path: "laboratorios",
-        component: LaboratoriesComponent
+        path: "laboratorio",
+        loadChildren: "./modules/laboratory/laboratory.module#LaboratoryModule"
       },
       {
         path: "",
