@@ -99,14 +99,21 @@ body
   max-width: 300px;
   height: auto;
 
+.carousel-bg-img
+  background-position: center;
+  background-size: cover;
+  -webkit-box-shadow: inset 0px -183px 60px -57px rgba(0,0,0,0.72);
+  -moz-box-shadow: inset 0px -183px 60px -57px rgba(0,0,0,0.72);
+  box-shadow: inset 0px -183px 60px -57px rgba(0,0,0,0.72);
 .carousel-ucv
-  background-image: url("https://www.conncoll.edu/media/major-images/Chemistry.jpg");
+  background-image: url("./assets/images/ucv.png");
 
 .carousel-ciencias
-  background-image: url("https://carleton.ca/chemistry/wp-content/uploads/banner-chemistry.jpg");
+  background-image: url("./assets/images/ciencias.png");
 
 .carousel-cqa
-  background-image: url("http://www.utas.edu.au/tf-assets/media/images/Untitled-1-CHEMISTRY.2e16d0ba.fill-1200x600-c100_hGt8icS.jpg"); 
+  background-image: url("./assets/images/centro.png");
+
 /* login */
 
 .form-signin
@@ -375,14 +382,21 @@ a.article:hover
 
 .lab-nav
   border-top: 1px solid $primary;
+  
 .lab
   background-color: #9c9c9c;
   color: white!important
   border-radius: 5px;
 
-.lab.active
+.lab.active, .lab:hover
   background: rgb(60,98,153);
   background: linear-gradient(90deg, rgba(60,98,153,1) 0%, rgba(76,127,197,1) 100%);
 
 li.lab > .nav-link
   color: white!important;
+
+/* service */
+.service-item:hover
+  color: white;
+  background: rgb(60,98,153);
+  background: linear-gradient(90deg, rgba(60,98,153,1) 0%, rgba(76,127,197,1) 100%);

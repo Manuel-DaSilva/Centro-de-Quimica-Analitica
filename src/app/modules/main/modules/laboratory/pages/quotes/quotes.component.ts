@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, Form } from "@angular/forms";
 import { NgbTabset } from "@ng-bootstrap/ng-bootstrap";
 import { DataService } from "../../../../services/data.service";
 import { ToastrService } from "ngx-toastr";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-quotes",
@@ -16,31 +17,19 @@ export class QuotesComponent implements OnInit {
   public infoForm: FormGroup;
 
   public serviceForm: FormGroup;
+
+  public selectedServiceId;
+  public selectedServiceName;
   // !test
-  public analisis = [
-    {
-      id: "1",
-      name: " Analisis 1"
-    },
-    {
-      id: "2",
-      name: " Analisis 2"
-    },
-    {
-      id: "3",
-      name: " Analisis 3"
-    },
-    {
-      id: "4",
-      name: " Analisis 4"
-    }
-  ];
+  public services;
   @ViewChild("tabSet") private tabSet: NgbTabset;
 
   constructor(
     private dataService: DataService,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private activatedRoute: ActivatedRoute,
   ) {
+    this.services = this.dataService.getServices();
     this.companyForm = new FormGroup({
       company: new FormControl("", Validators.required),
       rif: new FormControl("", Validators.required),
@@ -64,6 +53,20 @@ export class QuotesComponent implements OnInit {
       others: new FormControl("", Validators.required),
       observations: new FormControl("", Validators.required)
     });
+
+    this.activatedRoute.params.subscribe(params => {
+      if(params.id){
+        let serviceId = params.id;
+        this.selectedServiceId = serviceId;
+        
+        this.serviceForm.controls['analisis'].setValue(serviceId);
+        this.selectedServiceName = this.getServiceName(serviceId);
+      }
+    });
+
+    this.serviceForm.controls['analisis'].valueChanges.subscribe(change => {
+      this.selectedServiceName =  this.getServiceName(change);
+    })
   }
 
   ngOnInit() {}
@@ -119,5 +122,18 @@ export class QuotesComponent implements OnInit {
           }
         );
     }
+  }
+
+  getServiceName(id){
+    let services = this.dataService.getServices();
+    let serviceName;
+    services.forEach(service => {
+      if(service.id === id){
+        serviceName = service.name;
+        return
+      }
+    });
+    return serviceName;
+
   }
 }

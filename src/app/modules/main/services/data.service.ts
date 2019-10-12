@@ -1,11 +1,51 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { URL_SERVICES } from "src/app/config/config";
+import { Service } from 'src/app/models/service.interface';
 
 @Injectable({
   providedIn: "root"
 })
 export class DataService {
+  // !parche
+  public services: Service[] = [
+    {
+      id: "1",
+      name: "Servicio agua1",
+      description: "Descripcion servicio 1",
+      category: "Tratamiento de agua"
+    },
+    {
+      id: "2",
+      name: "Servicio agua2",
+      description: "Descripcion servicio 1",
+      category: "Tratamiento de agua"
+    },
+    {
+      id: "3",
+      name: "Servicio agua3",
+      description: "Descripcion servicio 1",
+      category: "Tratamiento de agua"
+    },
+    {
+      id: "4",
+      name: "Servicio suelos1",
+      description: "Descripcion servicio 1",
+      category: "Suelos"
+    },
+    {
+      id: "5",
+      name: "Servicio suelos2",
+      description: "Descripcion servicio 1",
+      category: "Suelos"
+    },
+    {
+      id: "6",
+      name: "Servicio suelos3",
+      description: "Descripcion servicio 1",
+      category: "Quimicos"
+    }
+  ];
   constructor(private http: HttpClient) {}
 
   /*
@@ -98,5 +138,13 @@ export class DataService {
     const body = {};
     // returning the petition
     return this.http.post(url, body, config);
+  }
+
+  getServices(){
+    return this.services;
+  }
+
+  setServices(services){
+    this.services = services;
   }
 }

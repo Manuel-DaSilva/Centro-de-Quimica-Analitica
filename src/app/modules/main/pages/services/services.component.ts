@@ -56,6 +56,7 @@ export class ServicesComponent implements OnInit {
   ngOnInit() {
     // this.getServices();
     this.configServices();
+    this.dataService.setServices(this.services);
   }
 
   /*

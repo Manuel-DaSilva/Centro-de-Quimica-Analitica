@@ -65,6 +65,56 @@ export class ResearchesComponent implements OnInit {
       ]
     }
   ];
+
+
+  public researchesByMembers = [
+    {
+      researcher: "Profesora 1",
+      position: "Coordinadora",
+      researches: [
+        {
+          name: "Ingestigacion 1 ",
+          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit iusto quibusdam autem facere velit! Sapiente quae magni non? Magnam veritatis nemo ratione vero fuga deleniti aliquam fugiat voluptatum consequatur numquam!",
+        },
+        {
+          name: "Ingestigacion 2 ",
+          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit iusto quibusdam autem facere velit! Sapiente quae magni non? Magnam veritatis nemo ratione vero fuga deleniti aliquam fugiat voluptatum consequatur numquam!",
+        },
+        {
+          name: "Ingestigacion 3 ",
+          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit iusto quibusdam autem facere velit! Sapiente quae magni non? Magnam veritatis nemo ratione vero fuga deleniti aliquam fugiat voluptatum consequatur numquam!",
+        }
+      ]
+    },
+    {
+      researcher: "Profesor 2",
+      position: "Director",
+      researches: [
+        {
+          name: "Ingestigacion 3 ",
+          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit iusto quibusdam autem facere velit! Sapiente quae magni non? Magnam veritatis nemo ratione vero fuga deleniti aliquam fugiat voluptatum consequatur numquam!",
+        },
+        {
+          name: "Ingestigacion 4 ",
+          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit iusto quibusdam autem facere velit! Sapiente quae magni non? Magnam veritatis nemo ratione vero fuga deleniti aliquam fugiat voluptatum consequatur numquam!",
+        }
+      ]
+    },
+    {
+      researcher: "Profesora 3",
+      position: "Directora",
+      researches: [
+        {
+          name: "Ingestigacion 5 ",
+          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit iusto quibusdam autem facere velit! Sapiente quae magni non? Magnam veritatis nemo ratione vero fuga deleniti aliquam fugiat voluptatum consequatur numquam!",
+        },
+        {
+          name: "Ingestigacion 10 ",
+          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit iusto quibusdam autem facere velit! Sapiente quae magni non? Magnam veritatis nemo ratione vero fuga deleniti aliquam fugiat voluptatum consequatur numquam!",
+        }
+      ]
+    }
+  ]
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
@@ -72,8 +122,8 @@ export class ResearchesComponent implements OnInit {
   }
 
   /*
-   * @desc handles the request to get the researches data
-   */
+  * @desc handles the request to get the researches data
+  */
   getResearches() {
     this.dataService.reqInvestigations().subscribe(
       (res: Investigation[]) => {
@@ -85,4 +135,5 @@ export class ResearchesComponent implements OnInit {
       }
     );
   }
+  
 }

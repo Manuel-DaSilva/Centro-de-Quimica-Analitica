@@ -1,7 +1,8 @@
-<div class="container">
+<div class="container fadeIn">
   <div class="row">
     <div class="col-12 text-center mt-2">
-      <h1>¿Quieres realizar una cotizacion?</h1>
+      <h4 *ngIf="selectedServiceId">¿Que deseas realizar sobre nuestro servicio de <b>{{selectedServiceName}}</b>?</h4>
+      <h4 *ngIf="!selectedServiceId">¿Desear realizar alguna cotizacion o solicitud?</h4>
     </div>
     <div class="col mt-2">
       <ngb-tabset justify="center" #tabSet>
@@ -244,12 +245,12 @@
         </div>
         <div class="col-12 col-md-6">
           <div class="form-group">
-            <label for="exampleFormControlInput1">Tipo de analisis:</label>
+            <label for="exampleFormControlInput1">Servicio:</label>
             <select class="form-control" formControlName="analisis">
               <option value="" disabled selected="selected"
-                >Seleccionar analisis</option
+                >Seleccionar servicio</option
               >
-              <option *ngFor="let item of analisis" [value]="item.id">{{
+              <option *ngFor="let item of services" [value]="item.id">{{
                 item.name
               }}</option>
             </select>
