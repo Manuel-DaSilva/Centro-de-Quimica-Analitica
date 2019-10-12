@@ -6,20 +6,33 @@
     <li data-target="#myCarousel" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
-    <div
-      class="carousel-item"
-      *ngFor="let item of carouselItems; let i = index"
-      [ngClass]="{ 'active': i === 0 }"
-
-    >
-      <img [src]="item.imgUrl" [alt]="'banner' + i" />
-      <div class="container">
+    <div class="carousel-item active carousel-ucv">
+      <div class="container text-center">
         <div class="carousel-caption">
-          <h1>{{ item.title }}</h1>
-          <p>{{ item.desc }}</p>
+          <h1>Universidad Central de Venezuela</h1>
+          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit</p>
         </div>
+        <img class="carousel-img" src="./assets/images/logo-ucv.png" alt="ucv logo">
       </div>
     </div>
+    <div class="carousel-item carousel-ciencias">
+      <div class="container text-center">
+        <div class="carousel-caption">
+          <h1>Facultad de Ciencias</h1>
+          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit</p>
+        </div>
+        <img class="carousel-img" src="./assets/images/logo-ciencias.png" alt="ciencias logo">
+      </div>
+    </div>
+    <div class="carousel-item carousel-cqa">
+    <div class="container text-center">
+      <div class="carousel-caption">
+        <h1>Centro de Quimica analitica</h1>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit</p>
+      </div>
+      <img class="carousel-img" src="./assets/images/logo-cqa.png" alt="centro de quimica analitica logo">
+    </div>
+  </div>
   </div>
 </div>
 <!-- carousel end -->

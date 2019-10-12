@@ -1,9 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light pt-0 pb-0">
+<nav class="navbar navbar-expand-lg navbar-light bg-light pt-0 pb-0 lab-nav">
+  <div class="container">
+        <div class="navbar-nav mx-auto mt-2">
+          <h3>Laboratorio de Quimica Analitica</h3>
+        </div>
+  </div>
+  </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light pt-0 pb-0 ">
   <div class="container">
    
       <div class="navbar-nav mx-auto">
-        <a class="nav-item nav-link" href="#">Features</a>
-        <a class="nav-item nav-link" href="#">Pricing</a>
+        <a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['contacto']">Contacto</a>
+        <a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['cotizacion']">Cotizacion</a>
       </div>
   </div>
   </nav>

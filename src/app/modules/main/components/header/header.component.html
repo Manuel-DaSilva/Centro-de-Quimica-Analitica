@@ -26,6 +26,7 @@
           *ngFor="let route of routes"
           class="nav-item"
           routerLinkActive="active"
+          [ngClass]="{'lab': route.class === 'lab'}"
         >
           <a class="nav-link" [routerLink]="['/sitio', route.path]">{{
             route.name

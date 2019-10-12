@@ -26,6 +26,11 @@ export class HeaderComponent implements OnInit {
     {
       path: "contacto",
       name: "Contacto"
+    },
+    {
+      path: "laboratorio",
+      name: "Laboratorio",
+      class: "lab"
     }
   ];
 

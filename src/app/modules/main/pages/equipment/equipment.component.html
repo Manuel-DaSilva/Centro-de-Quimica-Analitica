@@ -34,41 +34,4 @@
       </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col text-center">
-      <h1 class="mt-4">Instrumentos</h1>
-    </div>
-
-    <div class="accordion w-100 mb-4" id="instrumentsAccordion">
-      <div class="card" *ngFor="let instrument of instruments; let i = index">
-        <div
-          class="card-header custom-header custom-header-alt"
-          [id]="'InstHeading' + i"
-          data-toggle="collapse"
-          [attr.data-target]="'#InstCollapse' + i"
-          aria-expanded="true"
-          [attr.aria-controls]="'InstCollapse' + i"
-        >
-          <h4 class="mb-0 text-white">
-            {{ instrument.name }}
-          </h4>
-          <div class="plus-symbol text-white">
-            <i class="fas fa-plus"></i>
-          </div>
-        </div>
-
-        <div
-          [id]="'InstCollapse' + i"
-          class="collapse"
-          [attr.aria-labelledby]="'InstHeading' + i"
-          data-parent="#instrumentsAccordion"
-        >
-          <div class="card-body">
-            {{ instrument.description }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
