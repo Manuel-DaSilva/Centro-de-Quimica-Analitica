@@ -19,7 +19,8 @@ export class QuotesComponent implements OnInit {
   public serviceForm: FormGroup;
 
   public selectedServiceId;
-  public selectedServiceName;
+  public selectedServiceName; 
+
   // !test
   public services;
   @ViewChild("tabSet") private tabSet: NgbTabset;
@@ -49,7 +50,7 @@ export class QuotesComponent implements OnInit {
       use: new FormControl("", Validators.required),
       state: new FormControl("", Validators.required),
       quantity: new FormControl("", Validators.required),
-      analisis: new FormControl("", Validators.required),
+      service: new FormControl("", Validators.required),
       others: new FormControl("", Validators.required),
       observations: new FormControl("", Validators.required)
     });
@@ -59,12 +60,12 @@ export class QuotesComponent implements OnInit {
         let serviceId = params.id;
         this.selectedServiceId = serviceId;
         
-        this.serviceForm.controls['analisis'].setValue(serviceId);
+        this.serviceForm.controls['service'].setValue(serviceId);
         this.selectedServiceName = this.getServiceName(serviceId);
       }
     });
 
-    this.serviceForm.controls['analisis'].valueChanges.subscribe(change => {
+    this.serviceForm.controls['service'].valueChanges.subscribe(change => {
       this.selectedServiceName =  this.getServiceName(change);
     })
   }
@@ -82,6 +83,7 @@ export class QuotesComponent implements OnInit {
 
   sendQuote() {
     if (this.type === "info") {
+
       this.dataService
         .sendInfoQuote(this.infoForm.value, this.companyForm.value)
         .subscribe(

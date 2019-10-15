@@ -1,0 +1,75 @@
+<div class="modal-header">
+  <h5 class="modal-title">
+      <h4 *ngIf="quote.information">Solicitud de informacion {{quote.date}}</h4>
+      <h4 *ngIf="!quote.information">Solicitud de servicio {{quote.date}}</h4>
+  </h5>
+  <button (click)="closeModal()" type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <h5 class="text-center">Informacion de contacto</h5>
+  <br>
+  <p><b>Compañia: </b>{{quote.company.company}}</p>
+  <p><b>Rif: </b>{{quote.company.rif}}</p>
+  <p><b>Direccion: </b>{{quote.company.address}}</p>
+  <p><b>Nombre de contacto: </b>{{quote.company.contactName}}</p>
+  <p><b>Numero de contacto: </b>{{quote.company.contactPhone}}</p>
+  <p><b>Correo de contacto: </b>{{quote.company.contactEmail}} <button class="btn btn-primary btn-sm" (click)="emailCopy(quote.company.contactEmail)">Copiar correo <i class="fas fa-copy"></i> </button></p>
+  <br>
+  <h5 *ngIf="quote.information" class="text-center">Informacion solicitada</h5>
+  <h5 *ngIf="!quote.information" class="text-center">Informacion de muestra/servicio</h5>
+  <br>
+  <ng-container
+    *ngIf="quote.information; then information; else service">
+  </ng-container>
+  
+  <ng-template #information>
+    <p>
+      {{quote.information}}
+    </p>
+  </ng-template>
+  <ng-template #service>
+    <p><b>Identificacion: </b>{{quote.service.identification}}</p>
+    <p><b>Estado: </b>{{quote.service.state}}</p>
+    <p><b>Tipo: </b>{{quote.service.type}}</p>
+    <p><b>Uso: </b>{{quote.service.use}}</p>
+    <p><b>Cantidad: </b>{{quote.service.quantity}}</p>
+    <p><b>Servicio solicitado: </b>{{quote.service.service.name}}</p>
+    <p><b>Otros servicios: </b>{{quote.service.others}}</p>
+    <p><b>Observaciones: </b>{{quote.service.observations}}</p>
+  </ng-template>
+  
+  
+</div>
+<div class="modal-footer">
+    <button
+    (click)="sendMail()"
+    type="button"
+    class="btn btn-primary"
+    data-toggle="tooltip" 
+    data-placement="top" 
+    title="Responder desde la aplicacion de uso frecuente"
+  >
+  <i class="fas fa-envelope"></i> Responder Correo 
+  </button>
+    <button
+    (click)="sendGmail()"
+    type="button"
+    class="btn btn-danger"
+    data-toggle="tooltip" 
+    data-placement="top" 
+    title="Responder desde gmail directamente"
+  >
+  <i class="fab fa-google"></i> Responder en Gmail 
+  </button>
+  <button
+    (click)="closeModal()"
+    type="button"
+    class="btn btn-secondary"
+    data-dismiss="modal"
+  >
+    Cerrar
+  </button>
+
+</div>

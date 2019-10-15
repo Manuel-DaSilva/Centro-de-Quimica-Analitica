@@ -5,6 +5,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { LaboratoryComponent } from "./laboratory.component";
 import { ContactComponent } from "./pages/contact/contact.component";
 import { QuotesComponent } from "./pages/quotes/quotes.component";
+import { ServicesComponent } from './pages/services/services.component';
 
 const routes: Routes = [
   {
@@ -24,8 +25,12 @@ const routes: Routes = [
         component: QuotesComponent
       },
       {
+        path: "servicios",
+        component: ServicesComponent
+      },
+      {
         path: "",
-        redirectTo: "contacto"
+        redirectTo: "servicios"
       }
     ]
   }

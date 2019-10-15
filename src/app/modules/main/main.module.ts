@@ -7,7 +7,6 @@ import { MainRoutingModule } from "./main-routing.module";
 // pages
 import { HomeComponent } from "./pages/home/home.component";
 import { MainComponent } from "./main.component";
-import { ServicesComponent } from "./pages/services/services.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { EquipmentComponent } from "./pages/equipment/equipment.component";
@@ -21,7 +20,6 @@ import { HttpClientModule } from "@angular/common/http";
   declarations: [
     HomeComponent,
     MainComponent,
-    ServicesComponent,
     HeaderComponent,
     FooterComponent,
     EquipmentComponent,

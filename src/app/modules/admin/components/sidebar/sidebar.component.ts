@@ -13,24 +13,19 @@ export class SidebarComponent implements OnInit {
       icon: "fa-tachometer-alt"
     },
     {
-      path: "instrumentos",
-      name: "Instrumentos",
-      icon: "fa-hammer"
+      path: "cotizaciones",
+      name: "Cotizaciones",
+      icon: "fa-file-contract"
     },
     {
       path: "equipos",
-      name: "Equipos",
+      name: "Equipo",
       icon: "fa-toolbox"
     },
     {
       path: "investigaciones",
       name: "Investigaciones",
       icon: "fa-scroll"
-    },
-    {
-      path: "laboratorios",
-      name: "Laboratorios",
-      icon: "fa-warehouse"
     },
     {
       path: "servicios",
@@ -41,7 +36,8 @@ export class SidebarComponent implements OnInit {
       path: "miembros",
       name: "Miembros",
       icon: "fa-users"
-    }
+    },
+    
   ];
   constructor() {}
 

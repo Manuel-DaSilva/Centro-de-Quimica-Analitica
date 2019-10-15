@@ -13,24 +13,19 @@ export class HeaderComponent implements OnInit {
     },
     {
       path: "investigaciones",
-      name: "Investigaciones"
+      name: "Investigación"
     },
     {
       path: "equipos",
-      name: "Equipos"
-    },
-    {
-      path: "servicios",
-      name: "Servicios"
+      name: "Equipo"
     },
     {
       path: "contacto",
       name: "Contacto"
     },
     {
-      path: "laboratorio",
-      name: "Laboratorio",
-      class: "lab"
+      path: "servicios",
+      name: "Servicios",
     }
   ];
 

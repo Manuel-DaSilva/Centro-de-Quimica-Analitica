@@ -6,31 +6,33 @@
     <li data-target="#myCarousel" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active carousel-ucv carousel-bg-img">
+    <div class="carousel-item active carousel-banner1 carousel-bg-img">
       <div class="container text-center">
         <div class="carousel-caption">
-          <h1>Universidad Central de Venezuela</h1>
+          <h1>CENTRO DE QUÍMICA ANALÍTICA</h1>
           <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit</p>
         </div>
         <img class="carousel-img" src="./assets/images/logo-ucv.png" alt="ucv logo">
+        <img class="carousel-img mr-2 ml-2 carousel-img-ucv" src="./assets/images/logo-cqa.png" alt="centro de quimica analitica logo">
+        <img class="carousel-img" src="./assets/images/logo-ciencias.png" alt="ciencias logo">
       </div>
     </div>
-    <div class="carousel-item carousel-ciencias carousel-bg-img">
+    <div class="carousel-item carousel-banner2 carousel-bg-img">
       <div class="container text-center">
         <div class="carousel-caption">
           <h1>Facultad de Ciencias</h1>
           <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit</p>
         </div>
-        <img class="carousel-img" src="./assets/images/logo-ciencias.png" alt="ciencias logo">
+        <img class="carousel-img carousel-img-ucv" src="./assets/images/logo-ciencias.png" alt="ciencias logo">
       </div>
     </div>
-    <div class="carousel-item carousel-cqa carousel-bg-img">
+    <div class="carousel-item carousel-banner3 carousel-bg-img">
     <div class="container text-center">
       <div class="carousel-caption">
         <h1>Centro de Quimica analitica</h1>
         <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit</p>
       </div>
-      <img class="carousel-img" src="./assets/images/logo-cqa.png" alt="centro de quimica analitica logo">
+      <img class="carousel-img carousel-img-ucv" src="./assets/images/logo-cqa.png" alt="centro de quimica analitica logo">
     </div>
   </div>
   </div>
@@ -68,7 +70,7 @@
         <br />
         <br />
         Adicionalmente, el CQA gerencia una
-        <a [routerLink]="['/sitio', 'cotizaciones']">División de Servicios</a>
+        <a [routerLink]="['/sitio', 'servicios','contacto']">División de Servicios</a>
         que realiza servicios de análisis químico a cualquier interesado,
         público o privado, dentro y fuera del ámbito universitario.
       </h5>
@@ -137,17 +139,3 @@
   </div>
 </div>
 <!-- members end-->
-<!-- organigrama -->
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h1 class="text-center mb-5 mt-5">Organigrama del centro</h1>
-      <img
-        class="organigrama-img mt-2"
-        src="./assets/images/organigrama.png"
-        alt="Organigrama"
-      />
-    </div>
-  </div>
-</div>
-<!-- organigrama end-->

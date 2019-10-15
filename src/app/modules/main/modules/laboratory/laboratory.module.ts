@@ -14,13 +14,15 @@ import { HeaderComponent } from "./components/header/header.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { ServicesComponent } from './pages/services/services.component';
 
 @NgModule({
   declarations: [
     ContactComponent,
     LaboratoryComponent,
     HeaderComponent,
-    QuotesComponent
+    QuotesComponent,
+    ServicesComponent
   ],
   imports: [
     CommonModule,

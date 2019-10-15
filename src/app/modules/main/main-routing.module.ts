@@ -4,7 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 // components
 import { MainComponent } from "./main.component";
 import { HomeComponent } from "./pages/home/home.component";
-import { ServicesComponent } from "./pages/services/services.component";
+import { ServicesComponent } from "./modules/laboratory/pages/services/services.component";
 import { EquipmentComponent } from "./pages/equipment/equipment.component";
 import { ContactComponent } from "./pages/contact/contact.component";
 import { ResearchesComponent } from "./pages/researches/researches.component";
@@ -27,15 +27,11 @@ const routes: Routes = [
         component: EquipmentComponent
       },
       {
-        path: "servicios",
-        component: ServicesComponent
-      },
-      {
         path: "contacto",
         component: ContactComponent
       },
       {
-        path: "laboratorio",
+        path: "servicios",
         loadChildren: "./modules/laboratory/laboratory.module#LaboratoryModule"
       },
       {

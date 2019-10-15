@@ -4,11 +4,13 @@ import { FormGroup, FormControl } from "@angular/forms";
 import { Service } from "src/app/models/service.interface";
 import { ServicesService } from "../../../../services/services.service";
 import { ToastrService } from "ngx-toastr";
+
 @Component({
   selector: "app-services-modal",
   templateUrl: "./services-modal.component.html",
   styles: []
 })
+
 export class ServicesModalComponent implements OnInit {
   public mode: string;
   public serviceForm: FormGroup;
@@ -20,6 +22,10 @@ export class ServicesModalComponent implements OnInit {
     {
       id: 2,
       name: "Categoria 2"
+    },
+    {
+      id: 3,
+      name: "Categoria 3"
     }
   ];
 
@@ -40,7 +46,9 @@ export class ServicesModalComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.getCategories();
+  }
 
   /*
    * @desc handle the type of action over the service
@@ -55,16 +63,20 @@ export class ServicesModalComponent implements OnInit {
     }
   }
 
+  /*
+   * @desc sets the icoming data of the service on the forms
+   * @param service to be edited
+   */
   setForEdit(service: Service) {
     this.serviceForm.controls["name"].setValue(service.name);
-    this.serviceForm.controls["category"].setValue(service.category);
+    this.serviceForm.controls["category"].setValue(service.category.id);
     this.serviceForm.controls["description"].setValue(service.description);
   }
 
-  closeModal() {
-    this.activeModal.close();
-  }
-
+  /*
+   * @desc handle the petition to edit the service
+   * @param service to edit
+   */
   editService() {
     // edit code
     this.servicesService.updateService(this.serviceForm.value).subscribe(
@@ -83,6 +95,9 @@ export class ServicesModalComponent implements OnInit {
     );
   }
 
+  /*
+   * @desc handle the petition to create a service
+   */
   createService() {
     // create code
     this.servicesService.createService(this.serviceForm.value).subscribe(
@@ -101,6 +116,9 @@ export class ServicesModalComponent implements OnInit {
     );
   }
 
+  /*
+   * @desc handle the petition to get all categories for the services
+   */
   getCategories() {
     this.servicesService.reqCategories().subscribe(
       (res: any) => {
@@ -111,5 +129,9 @@ export class ServicesModalComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  closeModal() {
+    this.activeModal.close();
   }
 }

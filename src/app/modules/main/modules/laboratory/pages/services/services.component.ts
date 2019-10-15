@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Service } from "src/app/models/service.interface";
-import { DataService } from "../../services/data.service";
+import { DataService } from "../../../../services/data.service";
 
 @Component({
   selector: "app-services",
@@ -13,40 +13,58 @@ export class ServicesComponent implements OnInit {
   // !test
   public services: Service[] = [
     {
-      id: "1",
+      id: 1,
       name: "Servicio agua1",
       description: "Descripcion servicio 1",
-      category: "Tratamiento de agua"
+      category: {
+        id: 1,
+        name: 'Suelos'
+      }
     },
     {
-      id: "2",
+      id: 2,
       name: "Servicio agua2",
       description: "Descripcion servicio 1",
-      category: "Tratamiento de agua"
+      category: {
+        id: 2,
+        name: 'Aguas'
+      }
     },
     {
-      id: "3",
+      id: 3,
       name: "Servicio agua3",
       description: "Descripcion servicio 1",
-      category: "Tratamiento de agua"
+      category: {
+        id: 3,
+        name: 'Quimico'
+      }
     },
     {
-      id: "4",
+      id: 4,
       name: "Servicio suelos1",
       description: "Descripcion servicio 1",
-      category: "Suelos"
+      category: {
+        id: 3,
+        name: 'Quimico'
+      }
     },
     {
-      id: "5",
+      id: 5,
       name: "Servicio suelos2",
       description: "Descripcion servicio 1",
-      category: "Suelos"
+      category: {
+        id: 1,
+        name: 'Suelos'
+      }
     },
     {
-      id: "5",
+      id: 6,
       name: "Servicio suelos3",
       description: "Descripcion servicio 1",
-      category: "Quimicos"
+      category: {
+        id: 2,
+        name: 'Aguas'
+      }
     }
   ];
 
@@ -66,7 +84,7 @@ export class ServicesComponent implements OnInit {
     // creating new map
     const servicesOrganized = new Map();
     this.services.forEach(item => {
-      let key = item.category;
+      let key = item.category.name;
       if (servicesOrganized.has(key)) {
         // do nothing, category was added
       } else {
@@ -85,7 +103,7 @@ export class ServicesComponent implements OnInit {
   getServicesByKey(key) {
     let collection = [];
     this.services.forEach(item => {
-      if (item.category === key) {
+      if (item.category.name === key) {
         collection.push(item);
       }
     });
@@ -114,6 +132,6 @@ export class ServicesComponent implements OnInit {
     setTimeout(() => {
       this.serviceCard.nativeElement.classList.remove('fadeIn');
     }, 800);
-    
+    this.serviceCard.nativeElement.scrollIntoView({ behavior: "smooth" });
   }
 }

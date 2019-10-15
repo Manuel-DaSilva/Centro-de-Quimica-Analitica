@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="text-center mt-2">Servicios ofrecidos</h1>
+  <h4 class="text-center mt-2">Servicios ofrecidos</h4>
 
   <div class="row">
     <div class="col-12 col-md-6 mt-2">
@@ -29,7 +29,12 @@
           >
             <div class="card-body">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item service-item" (click)="setService(service)" *ngFor="let service of group['1']">{{service.name}}</li>
+                    <li class="list-group-item custom-header" (click)="setService(service)" *ngFor="let service of group['1']">
+                      {{service.name}}
+                        <div class="plus-symbol text-white">
+                          <i class="fas fa-search"></i>
+                        </div>
+                    </li>
                   </ul>
       
               <br />
@@ -44,12 +49,14 @@
     </div>
 
     <div #serviceCard class="col-12 col-md-6 mt-2" >
+        <h4 *ngIf="selectedService" class="text-center">Descripcion</h4>
+
         <div class="card" *ngIf="selectedService">
             <div class="card-body">
               <h5 class="card-title">{{selectedService.name}}</h5>
               <p class="card-text">{{selectedService.description}}</p>
               <p class="card-text small">{{selectedService.category}}</p>
-              <button class="btn btn-primary btn-block" [routerLink]="[ '/sitio','laboratorio', 'cotizacion', selectedService.id ]"> Cotizar o consultar sobre este servicio!</button>
+              <button class="btn btn-primary btn-block" [routerLink]="['/sitio','servicios','cotizacion', selectedService.id ]"> Cotizar o consultar sobre este servicio!</button>
             </div>
           </div>
     

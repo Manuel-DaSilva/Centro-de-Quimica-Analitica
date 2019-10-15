@@ -11,24 +11,34 @@ import { ToastrService } from "ngx-toastr";
   styles: []
 })
 export class ServicesComponent implements OnInit {
+
   // ! test data
-  public services = [
+  public services: Service[] = [
     {
       id: 1,
       name: "name1",
-      category: "category1",
+      category: {
+        id: 1,
+        name: 'category1'
+      },
       description: "desc1"
     },
     {
       id: 2,
       name: "name2",
-      category: "category1",
+      category: {
+        id: 2,
+        name: 'category2'
+      },
       description: "desc2"
     },
     {
       id: 3,
       name: "name3",
-      category: "category3",
+      category: {
+        id: 3,
+        name: 'category3'
+      },
       description: "desc3"
     }
   ];
@@ -39,7 +49,9 @@ export class ServicesComponent implements OnInit {
     private toastService: ToastrService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.getServices();
+  }
 
   /*
    * @desc open the modal to create or update element
@@ -53,7 +65,9 @@ export class ServicesComponent implements OnInit {
     serviceModalRef.componentInstance.inputServiceData = modalData;
     serviceModalRef.result
       .then((res: any) => {
+        // modal closed
         if (res && res.success) {
+          // if there is a service created or updated
           this.getServices();
         }
       })
@@ -62,10 +76,13 @@ export class ServicesComponent implements OnInit {
       });
   }
 
+  /*
+   * @desc does the request to get all services
+   */
   getServices() {
     this.servicesService.reqServices().subscribe(
-      (res: any) => {
-        this.services = res.data;
+      (res: Service[]) => {
+        this.services = res;
       },
       err => {
         console.log("error getting services");
@@ -74,9 +91,14 @@ export class ServicesComponent implements OnInit {
     );
   }
 
-  deleteServices(service) {
+  /*
+   * @desc does the request to delete the service
+   * @param service to be deleted
+  */
+  deleteServices(service: Service) {
     this.servicesService.deleteService(service).subscribe(
       (res: any) => {
+        // successfully deleted
         this.toastService.success("correctamente", "Servicio eliminado");
         this.removeFromArray(service.id);
       },
@@ -88,6 +110,9 @@ export class ServicesComponent implements OnInit {
     );
   }
 
+  /*
+   * @desc deletes the service from the array
+  */
   removeFromArray(id) {
     let pos = this.services
       .map(e => {
