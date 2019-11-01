@@ -26,7 +26,7 @@ export class EquipmentComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    // this.getEquipment();
+    this.getEquipment();
     // this.getInstruments();
   }
 
@@ -36,6 +36,7 @@ export class EquipmentComponent implements OnInit {
   getEquipment() {
     this.dataService.reqEquipment().subscribe(
       (res: Equipment[]) => {
+        console.log(res);
         this.equipment = res;
       },
       err => {

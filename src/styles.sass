@@ -23,6 +23,9 @@ $font-size-root: 12px;
 
 /** bootstrap re-theme **/
 
+.disabled
+  cursor: not-allowed !important;
+
 .bg-primary
   background-color: $primary!important;
 
@@ -96,27 +99,21 @@ body
 .carousel-img
   margin-top: 20px;
   width: auto;
-  max-width: 150px;
+  max-width: 300px;
   height: auto;
 
-.carousel-img-ucv
-  max-width: 250px;
-
-.carousel-bg-img
-  background-position: center;
-  background-size: cover;
-  -webkit-box-shadow: inset 0px -183px 60px -57px rgba(0,0,0,0.72);
-  -moz-box-shadow: inset 0px -183px 60px -57px rgba(0,0,0,0.72);
-  box-shadow: inset 0px -183px 60px -57px rgba(0,0,0,0.72);
-
-.carousel-banner1
+.carousel-ucv
   background-image: url("./assets/images/fondo1.png");
+  background-size: cover;
 
-.carousel-banner2
+.carousel-ciencias
   background-image: url("./assets/images/ciencias.png");
+  background-size: cover;
 
-.carousel-banner3
+.carousel-cqa
   background-image: url("./assets/images/centro.png");
+  background-size: cover;
+
 
 /* login */
 
@@ -398,3 +395,7 @@ li.nav-option.active > .nav-link,li.nav-option:hover > .nav-link
   background: rgb(60,98,153);
   background: linear-gradient(90deg, rgba(60,98,153,1) 0%, rgba(76,127,197,1) 100%);
 
+/* admin */
+.member-admin-img
+  width: 75px!important;
+  height: auto!important;

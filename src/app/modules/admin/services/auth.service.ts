@@ -46,4 +46,16 @@ export class AuthService {
   isUserLogged() {
     return this.userLogged;
   }
+
+
+  getSummary(){
+    // url of api endpoint
+    const url = "api/summary";
+    // needed config
+    const headers = new HttpHeaders({});
+    const config = { headers: headers };
+
+    // returning the petition
+    return this.http.get(url, config);
+  }
 }

@@ -13,6 +13,7 @@ import { EquipmentComponent } from "./pages/equipment/equipment.component";
 import { InvestigationsComponent } from "./pages/investigations/investigations.component";
 import { AccountComponent } from "./pages/account/account.component";
 import { QuotesComponent } from './pages/quotes/quotes.component';
+import { MembersComponent } from './pages/members/members.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: "cotizaciones",
         component: QuotesComponent
+      },
+      {
+        path: "miembros",
+        component: MembersComponent
       },
       {
         path: "",

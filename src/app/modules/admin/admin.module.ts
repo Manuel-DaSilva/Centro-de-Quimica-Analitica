@@ -22,7 +22,6 @@ import { QuotesComponent } from './pages/quotes/quotes.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
-
 @NgModule({
   declarations: [
     DashboardComponent,

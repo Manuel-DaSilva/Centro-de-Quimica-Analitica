@@ -1,9 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+
+// components
+import { CategoryModalComponent } from './components/category-modal/category-modal.component';
 import { ServicesModalComponent } from "./components/services-modal/services-modal.component";
-import { Service } from "src/app/models/service.interface";
-import { ServicesService } from "../../services/services.service";
+// services
 import { ToastrService } from "ngx-toastr";
+import { ServicesService } from "../../services/services.service";
+import { CategoryService } from '../../services/category.service';
+// models
+import { Service } from "src/app/models/service.interface";
+import { Category } from 'src/app/models/category.interface';
 
 @Component({
   selector: "app-services",
@@ -43,9 +50,26 @@ export class ServicesComponent implements OnInit {
     }
   ];
 
+  // ! test data
+  public categories: Category[] = [
+    {
+      id: 1,
+      name: 'categoria 1'
+    },
+    {
+      id: 2,
+      name: 'categoria 2'
+    },
+    {
+      id: 3,
+      name: 'categoria 3'
+    }
+  ];
+
   constructor(
     private modalService: NgbModal,
     private servicesService: ServicesService,
+    private categoryService: CategoryService,
     private toastService: ToastrService
   ) {}
 
@@ -57,13 +81,36 @@ export class ServicesComponent implements OnInit {
    * @desc open the modal to create or update element
    * @param service to be edited if it is passed
    */
-  openModal(service: Service = null) {
+  openServiceModal(service: Service = null) {
     let modalData = service;
     const serviceModalRef = this.modalService.open(ServicesModalComponent, {
       size: "lg"
     });
     serviceModalRef.componentInstance.inputServiceData = modalData;
     serviceModalRef.result
+      .then((res: any) => {
+        // modal closed
+        if (res && res.success) {
+          // if there is a service created or updated
+          this.getServices();
+        }
+      })
+      .catch(() => {
+        console.log("error closing modal");
+      });
+  }
+
+  /*
+   * @desc open the modal to create or update element
+   * @param service to be edited if it is passed
+   */
+  openCategoryModal(category: Category = null) {
+    let modalData = category;
+    const categoryModalRef = this.modalService.open(CategoryModalComponent, {
+      size: "lg"
+    });
+    categoryModalRef.componentInstance.inputCategoryData = modalData;
+    categoryModalRef.result
       .then((res: any) => {
         // modal closed
         if (res && res.success) {
@@ -91,16 +138,31 @@ export class ServicesComponent implements OnInit {
     );
   }
 
+   /*
+   * @desc does the request to get all services
+   */
+  getCategories() {
+    this.categoryService.reqCategories().subscribe(
+      (res: Category[]) => {
+        this.categories = res;
+      },
+      err => {
+        console.log("error getting categories");
+        console.log(err);
+      }
+    );
+  }
+
   /*
    * @desc does the request to delete the service
    * @param service to be deleted
   */
-  deleteServices(service: Service) {
+  deleteService(service: Service) {
     this.servicesService.deleteService(service).subscribe(
       (res: any) => {
         // successfully deleted
         this.toastService.success("correctamente", "Servicio eliminado");
-        this.removeFromArray(service.id);
+        this.removeService(service.id);
       },
       err => {
         console.log("error deleting the service");
@@ -110,10 +172,29 @@ export class ServicesComponent implements OnInit {
     );
   }
 
+   /*
+   * @desc does the request to delete the category
+   * @param category to be deleted
+  */
+  deleteCategory(category: Category) {
+    this.categoryService.deleteCategory(category).subscribe(
+      (res: any) => {
+        // successfully deleted
+        this.toastService.success("correctamente", "Categoria eliminada");
+        this.removeService(category.id);
+    },
+    err => {
+      console.log("error deleting the category");
+      console.log(err);
+      this.toastService.error("la categoria", "Error al eliminar");
+    }
+  );
+}
+
   /*
    * @desc deletes the service from the array
   */
-  removeFromArray(id) {
+  removeService(id) {
     let pos = this.services
       .map(e => {
         return e.id;
@@ -123,4 +204,18 @@ export class ServicesComponent implements OnInit {
       this.services.splice(pos, 1);
     }
   }
+
+  /*
+   * @desc deletes the category from the array
+  */
+ removeCategory(id) {
+  let pos = this.categories
+    .map(e => {
+      return e.id;
+    })
+    .indexOf(id);
+  if (pos > -1) {
+    this.categories.splice(pos, 1);
+  }
+}
 }

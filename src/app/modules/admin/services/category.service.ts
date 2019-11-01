@@ -1,23 +1,22 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { URL_SERVICES } from "src/app/config/config";
-
+import { URL_SERVICES } from 'src/app/config/config';
 // models
-import { Equipment } from 'src/app/models/equipment.interface';
-
+import { Category } from 'src/app/models/category.interface';
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
-export class EquipmentService {
+export class CategoryService {
+
   constructor(private http: HttpClient) {}
 
   /*
-   * @desc handles the petition to the backend API to get all equipment data
+   * @desc handles the petition to the backend API to get all category data
    */
-  reqEquiments() {
+  reqCategories() {
     // url of api endpoint
-    const url = URL_SERVICES + "equipos";
+    const url = URL_SERVICES + "api/url/categories";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
@@ -26,49 +25,49 @@ export class EquipmentService {
   }
 
   /*
-   * @desc handles the petition to the backend API to create a new equipment
+   * @desc handles the petition to the backend API to create a new category
    */
-  createEquiment(equipment: Equipment) {
+  createCategory(category: Category) {
     // url of api endpoint
-    const url = URL_SERVICES + "equipos/nuevo";
+    const url = URL_SERVICES + "api/new/category";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
     const body = {
-      name: equipment.name,
+      name: category.name,
     };
     // returning the petition
     return this.http.post(url, body, config);
   }
 
   /*
-   * @desc handles the petition to the backend API to update equipment
+   * @desc handles the petition to the backend API to update category
    */
-  updateEquiment(equipment: Equipment) {
+  updateCategory(category: Category) {
     // url of api endpoint
-    const url = URL_SERVICES + "equipos/editar";
+    const url = URL_SERVICES + "api/update/category";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
     const body = {
-      id: equipment.id,
-      name: equipment.name,
+      id: category.id,
+      name: category.name,
     };
     // returning the petition
     return this.http.post(url, body, config);
   }
 
   /*
-   * @desc handles the petition to the backend API to delete laboratory
+   * @desc handles the petition to the backend API to delete a category
    */
-  deleteEquiment(equipment: Equipment) {
+  deleteCategory(category: Category) {
     // url of api endpoint
-    const url = URL_SERVICES + "equipos/eliminar";
+    const url = URL_SERVICES + "api/delete/category";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
     const body = {
-      id: equipment.id
+      id: category.id
     };
     // returning the petition
     return this.http.post(url, body, config);

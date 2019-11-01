@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { FormGroup, FormControl } from "@angular/forms";
-import { Service } from "src/app/models/service.interface";
-import { ServicesService } from "../../../../services/services.service";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
+import { ServicesService } from "../../../../services/services.service";
+import { Service } from "src/app/models/service.interface";
 
 @Component({
   selector: "app-services-modal",
@@ -14,6 +14,7 @@ import { ToastrService } from "ngx-toastr";
 export class ServicesModalComponent implements OnInit {
   public mode: string;
   public serviceForm: FormGroup;
+  public invalidAttempt = false;
   public categories = [
     {
       id: 1,
@@ -40,9 +41,9 @@ export class ServicesModalComponent implements OnInit {
     private toastService: ToastrService
   ) {
     this.serviceForm = new FormGroup({
-      name: new FormControl(""),
-      category: new FormControl(""),
-      description: new FormControl("")
+      name: new FormControl("", Validators.required),
+      category: new FormControl("", Validators.required),
+      description: new FormControl("", Validators.required)
     });
   }
 
@@ -78,7 +79,10 @@ export class ServicesModalComponent implements OnInit {
    * @param service to edit
    */
   editService() {
-    // edit code
+    if(this.serviceForm.invalid){
+      this.invalidAttempt = true;
+      return;
+    }
     this.servicesService.updateService(this.serviceForm.value).subscribe(
       res => {
         this.toastService.success("correctamente", "Servicio actualizado");
@@ -99,7 +103,10 @@ export class ServicesModalComponent implements OnInit {
    * @desc handle the petition to create a service
    */
   createService() {
-    // create code
+    if(this.serviceForm.invalid){
+      this.invalidAttempt = true;
+      return;
+    }
     this.servicesService.createService(this.serviceForm.value).subscribe(
       res => {
         this.toastService.success("correctamente", "Servicio creado");

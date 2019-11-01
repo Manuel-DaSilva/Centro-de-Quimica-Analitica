@@ -55,7 +55,7 @@
             <div class="card-body">
               <h5 class="card-title">{{selectedService.name}}</h5>
               <p class="card-text">{{selectedService.description}}</p>
-              <p class="card-text small">{{selectedService.category}}</p>
+              <p class="card-text small">{{selectedService.category.name}}</p>
               <button class="btn btn-primary btn-block" [routerLink]="['/sitio','servicios','cotizacion', selectedService.id ]"> Cotizar o consultar sobre este servicio!</button>
             </div>
           </div>

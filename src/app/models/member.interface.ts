@@ -5,5 +5,5 @@ export interface Member {
   phone: string;
   position: string;
   cv: string;
-  imagePath: string;
+  imagePath?: string;
 }

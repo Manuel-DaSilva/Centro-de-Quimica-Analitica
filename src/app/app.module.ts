@@ -13,8 +13,13 @@ import { ToastrModule } from "ngx-toastr";
 // modals
 import { ServicesModalComponent } from "./modules/admin/pages/services/components/services-modal/services-modal.component";
 import { QuoteModalComponent } from './modules/admin/pages/quotes/components/quote-modal/quote-modal.component';
+import { CategoryModalComponent } from './modules/admin/pages/services/components/category-modal/category-modal.component';
+import { MemberModalComponent } from './modules/admin/pages/members/components/member-modal/member-modal.component';
+import { EquipmentModalComponent } from './modules/admin/pages/equipment/components/equipment-modal/equipment-modal.component';
+import { InvestigationModalComponent } from './modules/admin/pages/investigations/components/investigation-modal/investigation-modal.component';
+
 @NgModule({
-  declarations: [AppComponent, ServicesModalComponent,QuoteModalComponent],
+  declarations: [AppComponent, ServicesModalComponent,QuoteModalComponent,CategoryModalComponent,MemberModalComponent,EquipmentModalComponent,InvestigationModalComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +30,6 @@ import { QuoteModalComponent } from './modules/admin/pages/quotes/components/quo
     ToastrModule.forRoot()
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ServicesModalComponent,QuoteModalComponent]
+  entryComponents: [ServicesModalComponent,QuoteModalComponent,CategoryModalComponent,MemberModalComponent,EquipmentModalComponent,InvestigationModalComponent]
 })
 export class AppModule {}
