@@ -162,4 +162,6 @@ export class InvestigationModalComponent implements OnInit {
     );
   }
 
+  get formData() { return <FormArray>this.investigationForm.get('researches'); }
+
 }

@@ -28,7 +28,7 @@
         />
       </div>
       <label for="serviceCategory">Investigadores</label>
-      <div class="form-group" *ngFor="let formData of investigationForm.controls['researches'].controls; let i = index;">
+      <div class="form-group" *ngFor="let formData of formData.controls; let i = index;">
         <div formArrayName="researches">
           <select  formControlName="{{i}}" class="form-control">
             <option value="" selected="selected" disabled
