@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-12 text-center mt-2">
       <h4 *ngIf="selectedServiceId">¿Que deseas realizar sobre nuestro servicio de <b>{{selectedServiceName}}</b>?</h4>
-      <h4 *ngIf="!selectedServiceId">¿Desear realizar alguna cotizacion o solicitud?</h4>
+      <h4 *ngIf="!selectedServiceId">¿Desea solicitar información o una cotización para un servicio analítico?</h4>
     </div>
     <div class="col mt-2">
       <ngb-tabset justify="center" #tabSet>
-        <ngb-tab title="Tipo de servicio" id="tabType">
+        <ngb-tab title="1er Paso" id="tabType">
           <ng-template ngbTabContent>
             <div class="container pt-5 quote-container">
               <div class="row">
@@ -31,7 +31,7 @@
                     class="card text-white bg-primary mb-3 option-card text-center"
                     (click)="setType('service')"
                   >
-                    <div class="card-header"><h3>Servicio Analitico</h3></div>
+                    <div class="card-header"><h3>Solicitar Servicio Analítico</h3></div>
                     <div class="card-body">
                       <p class="card-text">
                         Some quick example text to build on the card title and
@@ -45,14 +45,8 @@
             <p class="text-center mt-3">Selecciona una de las opciones</p>
           </ng-template>
         </ngb-tab>
-        <ngb-tab title="Informacion" id="tabInfo">
-          <ng-template ngbTabContent>
-            <div
-              *ngIf="type === 'info'; then infoTemplate; else serviceTemplate"
-            ></div>
-          </ng-template>
-        </ngb-tab>
-        <ngb-tab title="Confimacion" id="tabContact">
+     
+        <ngb-tab title="2do Paso" id="tabContact">
           <ng-template ngbTabContent>
             <div class="container pt-5 pb-3 quote-container form-container">
               <p class="text-muted small text-center">
@@ -135,17 +129,25 @@
                     </div>
                   </div>
                   <div class="col-12 text-center">
-                    <button
+                      <button
                       [ngClass]="{ disabled: companyForm.invalid }"
                       class="btn btn-primary"
-                      (click)="sendQuote()"
+                      (click)="setInfoReady()"
                     >
-                      Enviar cotizacion
+                      Continuar
                     </button>
+              
                   </div>
                 </div>
               </form>
             </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="3er Paso" id="tabInfo">
+          <ng-template ngbTabContent>
+            <div
+              *ngIf="type === 'info'; then infoTemplate; else serviceTemplate"
+            ></div>
           </ng-template>
         </ngb-tab>
       </ngb-tabset>
@@ -171,12 +173,12 @@
           </div>
         </div>
         <div class="col-12 text-center">
-          <button
+            <button
             [ngClass]="{ disabled: infoForm.invalid }"
             class="btn btn-primary"
-            (click)="setInfoReady()"
+            (click)="sendQuote()"
           >
-            Continuar
+            Enviar cotizacion
           </button>
         </div>
       </div>
@@ -279,12 +281,12 @@
           </div>
         </div>
         <div class="col-12 text-center">
-          <button
-            [ngClass]="{ disabled: serviceForm.invalid }"
+            <button
+            [ngClass]="{ disabled: service.invalid }"
             class="btn btn-primary"
-            (click)="setInfoReady()"
+            (click)="sendQuote()"
           >
-            Continuar
+            Enviar cotizacion
           </button>
         </div>
       </div>

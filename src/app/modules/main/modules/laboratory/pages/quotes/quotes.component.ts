@@ -74,11 +74,11 @@ export class QuotesComponent implements OnInit {
 
   setType(type: string) {
     this.type = type;
-    this.tabSet.select("tabInfo");
+    this.tabSet.select("tabContact");
   }
 
   setInfoReady() {
-    this.tabSet.select("tabContact");
+    this.tabSet.select("tabInfo");
   }
 
   sendQuote() {
