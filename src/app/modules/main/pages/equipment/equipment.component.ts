@@ -8,20 +8,7 @@ import { Equipment } from "src/app/models/equipment.interface";
   styles: []
 })
 export class EquipmentComponent implements OnInit {
-  public equipment: Equipment[] = [
-    {
-      name: "Equipo 1"
-    },
-    {
-      name: "Equipo 2"
-    },
-    {
-      name: "Equipo 3"
-    },
-    {
-      name: "Equipo 4"
-    }
-  ];
+  public equipment: Equipment[];
 
   constructor(private dataService: DataService) {}
 
@@ -35,9 +22,13 @@ export class EquipmentComponent implements OnInit {
    */
   getEquipment() {
     this.dataService.reqEquipment().subscribe(
-      (res: Equipment[]) => {
+      (res: any) => {
         console.log(res);
-        this.equipment = res;
+        this.equipment = res.data.map(item => {
+          item['id'] = item._id.$oid;
+          delete item['_id'];
+          return item
+        });
       },
       err => {
         console.log("error getting equipment");

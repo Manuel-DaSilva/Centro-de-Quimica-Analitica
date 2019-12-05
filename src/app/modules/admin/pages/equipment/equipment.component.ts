@@ -11,27 +11,16 @@ import { EquipmentModalComponent } from './components/equipment-modal/equipment-
   styles: []
 })
 export class EquipmentComponent implements OnInit {
-  public equipments: Equipment[] = [
-    {
-      id: 1,
-      name: 'equipo 1'
-    },
-    {
-      id: 2,
-      name: 'equipo 2'
-    },
-    {
-      id: 3,
-      name: 'equipo 3'
-    }
-  ];
+  public equipments: Equipment[];
   constructor(
     private modalService: NgbModal,
     private equipmentService: EquipmentService,
     private toastService: ToastrService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getEquipment();
+  }
 
     /*
    * @desc open the modal to create or update element
@@ -61,8 +50,13 @@ export class EquipmentComponent implements OnInit {
    */
   getEquipment() {
     this.equipmentService.reqEquiments().subscribe(
-      (res: Equipment[]) => {
-        this.equipments = res;
+      (res: any) => {
+        this.equipments = res.data.map(item => {
+          item['id'] = item._id.$oid;
+          delete item['_id'];
+          return item
+        });
+        console.log(this.equipments);
       },
       err => {
         console.log("error getting equipment");

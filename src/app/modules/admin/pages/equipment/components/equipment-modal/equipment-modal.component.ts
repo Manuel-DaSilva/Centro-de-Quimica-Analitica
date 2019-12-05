@@ -28,6 +28,7 @@ export class EquipmentModalComponent implements OnInit {
   ) {
     this.equipmentForm = new FormGroup({
       name: new FormControl("", Validators.required),
+      id: new FormControl()
     });
   }
 
@@ -53,6 +54,7 @@ export class EquipmentModalComponent implements OnInit {
    */
   setForEdit(equipment: Equipment) {
     this.equipmentForm.controls["name"].setValue(equipment.name);
+    this.equipmentForm.controls["id"].setValue(equipment.id);
   }
 
   /*

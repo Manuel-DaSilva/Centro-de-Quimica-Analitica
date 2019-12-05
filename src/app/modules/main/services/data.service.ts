@@ -86,7 +86,9 @@ export class DataService {
     // url of api endpoint
     const url = URL_SERVICES + "equipos";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({
+      'Content-Type':'application/json'
+    });
     const config = { headers: headers };
     // returning the petition
     return this.http.get(url, config);

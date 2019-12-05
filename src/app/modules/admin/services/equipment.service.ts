@@ -19,7 +19,9 @@ export class EquipmentService {
     // url of api endpoint
     const url = URL_SERVICES + "equipos";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({
+      'Content-Type':'application/json'
+    });
     const config = { headers: headers };
     // returning the petition
     return this.http.get(url, config);
@@ -32,7 +34,9 @@ export class EquipmentService {
     // url of api endpoint
     const url = URL_SERVICES + "equipos/nuevo";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({
+      'Content-Type':'application/json'
+    });
     const config = { headers: headers };
     const body = {
       name: equipment.name,
@@ -48,7 +52,9 @@ export class EquipmentService {
     // url of api endpoint
     const url = URL_SERVICES + "equipos/editar";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({
+      'Content-Type':'application/json'
+    });
     const config = { headers: headers };
     const body = {
       id: equipment.id,
@@ -63,9 +69,11 @@ export class EquipmentService {
    */
   deleteEquiment(equipment: Equipment) {
     // url of api endpoint
-    const url = URL_SERVICES + "equipos/eliminar";
+    const url = URL_SERVICES + "equipos/borrar";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({
+      'Content-Type':'application/json'
+    });
     const config = { headers: headers };
     const body = {
       id: equipment.id

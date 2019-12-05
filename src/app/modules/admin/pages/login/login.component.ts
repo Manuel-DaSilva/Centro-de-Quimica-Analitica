@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
     this.userForm = new FormGroup({
-      email: new FormControl("", [Validators.required, Validators.email]),
+      name: new FormControl("", [Validators.required]),
       password: new FormControl("", Validators.required)
     });
   }
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService
       .login(
-        this.userForm.controls["email"].value,
+        this.userForm.controls["name"].value,
         this.userForm.controls["password"].value
       )
       .subscribe(

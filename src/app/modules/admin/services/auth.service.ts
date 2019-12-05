@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-
+import { URL_SERVICES } from "../../../config/config";
 @Injectable({
   providedIn: "root"
 })
@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     // !test
-    this.userLogged = true;
+    this.userLogged = false;
     // !test
   }
 
@@ -21,7 +21,7 @@ export class AuthService {
    */
   login(email, password) {
     // url of api endpoint
-    const url = "api/login";
+    const url = URL_SERVICES + "login";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
@@ -50,11 +50,11 @@ export class AuthService {
 
   getSummary(){
     // url of api endpoint
-    const url = "api/summary";
+    const url = URL_SERVICES + "api/summary";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
-
+    
     // returning the petition
     return this.http.get(url, config);
   }
