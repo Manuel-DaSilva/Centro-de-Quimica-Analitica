@@ -4,19 +4,43 @@
       <h1 class="mt-2 mb-4">Equipos</h1>
       <p><b>El Centro de Química Analítica (CQA)</b> está estructurado en <b>Laboratorios</b>, <b>Líneas de Investigación</b> y la <b>División de Servicios</b>, los cuales dependen de la <b>Coordinación del CQA</b>. El órgano rector es el <b>Consejo Técnico Administrativo</b>, conformado por los investigadores responsables de los Laboratorios. </p>
     </div>
-    <div class="accordion w-100" id="equipmentAccordion">
-      <div class="card" *ngFor="let equip of equipment; let i = index">
+    <div class="accordion w-100" id="researchAccordion">
+      <div class="card" *ngFor="let equipment of equipmentByCategory; let i = index">
         <div
           class="card-header custom-header"
-          [id]="'EquipHeading' + i"
+          [id]="'ResearchHeading' + i"
           data-toggle="collapse"
-          [attr.data-target]="'#EquipCollapse' + i"
+          [attr.data-target]="'#ResearchCollapse' + i"
           aria-expanded="true"
-          [attr.aria-controls]="'EquipCollapse' + i"
+          [attr.aria-controls]="'ResearchCollapse' + i"
         >
           <h4 class="mb-0 text-white">
-            {{ equip.name }}
+            {{ equipment.title }} 
           </h4>
+          <div class="plus-symbol text-white">
+            <i class="fas fa-plus"></i>
+          </div>
+        </div>
+
+        <div
+          [id]="'ResearchCollapse' + i"
+          class="collapse"
+          [attr.aria-labelledby]="'ResearchHeading' + i"
+          data-parent="#researchAccordion"
+        >
+          <div class="card-body">
+            <ul class="list-group">
+                <ul class="list-group list-group-flush" *ngFor="let instrument of equipment.instruments">
+                    <li class="list-group-item" >
+                        <p>{{ instrument }}</p>
+                       
+                    </li>
+                  </ul>
+            
+            </ul>
+
+            
+          </div>
         </div>
       </div>
     </div>

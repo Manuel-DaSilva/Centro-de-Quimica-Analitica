@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-12 text-center mt-2">
       <h4 *ngIf="selectedServiceId">¿Que deseas realizar sobre nuestro servicio de <b>{{selectedServiceName}}</b>?</h4>
-      <h4 *ngIf="!selectedServiceId">¿Desea solicitar información o una cotización para un servicio analítico?</h4>
+      <h4 *ngIf="!selectedServiceId">División de Servicios Analíticos del CQA</h4>
     </div>
     <div class="col mt-2">
       <ngb-tabset justify="center" #tabSet>
-        <ngb-tab title="1er Paso" id="tabType">
+        <!-- <ngb-tab title="1er Paso" id="tabType">
           <ng-template ngbTabContent>
             <div class="container pt-5 quote-container">
               <div class="row">
@@ -44,9 +44,9 @@
             </div>
             <p class="text-center mt-3">Selecciona una de las opciones</p>
           </ng-template>
-        </ngb-tab>
+        </ngb-tab> -->
      
-        <ngb-tab title="2do Paso" id="tabContact">
+        <ngb-tab title="1er Paso" id="tabContact">
           <ng-template ngbTabContent>
             <div class="container pt-5 pb-3 quote-container form-container">
               <p class="text-muted small text-center">
@@ -105,7 +105,7 @@
                   <div class="col-12 col-md-4">
                     <div class="form-group">
                       <label for="exampleFormControlInput1"
-                        >Numero de contacto:</label
+                        >Teléfono de Contacto:</label
                       >
                       <input
                         type="number"
@@ -143,7 +143,7 @@
             </div>
           </ng-template>
         </ngb-tab>
-        <ngb-tab title="3er Paso" id="tabInfo">
+        <ngb-tab title="2do Paso" id="tabInfo">
           <ng-template ngbTabContent>
             <div
               *ngIf="type === 'info'; then infoTemplate; else serviceTemplate"
@@ -192,23 +192,23 @@
       <div class="row">
         <div class="col-12 col-md-6">
           <div class="form-group">
-            <label for="exampleFormControlInput1">Identificacion:</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="identification"
-              placeholder="Identificacion de la muestra"
-            />
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="form-group">
             <label for="exampleFormControlInput1">Tipo:</label>
             <input
               type="text"
               class="form-control"
               formControlName="type"
               placeholder="Tipo de la muestra"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Estado físico:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="state"
+              placeholder="Estado físico de la muestra"
             />
           </div>
         </div>
@@ -225,18 +225,7 @@
         </div>
         <div class="col-12 col-md-6">
           <div class="form-group">
-            <label for="exampleFormControlInput1">Estado fisico:</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="state"
-              placeholder="Estado de la muestra"
-            />
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Numero de muestras:</label>
+            <label for="exampleFormControlInput1">Número de muestras:</label>
             <input
               type="number"
               class="form-control"
@@ -247,10 +236,23 @@
         </div>
         <div class="col-12 col-md-6">
           <div class="form-group">
-            <label for="exampleFormControlInput1">Servicio:</label>
+            <label for="exampleFormControlInput1">Identificación:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="identification"
+              placeholder="Identificacion de la muestra"
+            />
+          </div>
+        </div>
+       
+        
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Servicio solicitado:</label>
             <select class="form-control" formControlName="service">
               <option value="" disabled selected="selected"
-                >Seleccionar servicio</option
+                >Seleccione el servicio analítico</option
               >
               <option *ngFor="let item of services" [value]="item.id">{{
                 item.name
@@ -265,7 +267,7 @@
               type="text"
               class="form-control"
               formControlName="others"
-              placeholder="Otros servicios"
+              placeholder="Indique si requiere algún otro servicio no ofertado"
             />
           </div>
         </div>
