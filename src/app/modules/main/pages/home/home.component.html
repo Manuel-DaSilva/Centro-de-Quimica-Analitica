@@ -46,7 +46,7 @@
         <span class="text-primary">El Centro de Química Analítica (CQA)</span>
         es una dependencia de investigación creada en 1984  adscrita a la
         Dirección de la Escuela de Química de la Facultad de Ciencias de la
-        Universidad Central de Venezuela
+        Universidad Central de Venezuela.
         <br />
         <br />
         <b
@@ -90,7 +90,10 @@
           >Líneas de Investigación</a
         >
         y la <a href="!#">División de Servicios</a>, los cuales dependen de la
-        <a href="!#">Coordinación del CQA</a>. El órgano rector es el
+        <a href="!#">Coordinación del CQA</a>. 
+        <br>
+        <br>
+        El órgano rector es el
         <a href="!#">Consejo Técnico Administrativo</a>, conformado por los
         investigadores responsables de los Laboratorios.
       </h5>
@@ -104,7 +107,7 @@
   <div class="row mb-4">
     <div class="col">
       <h1 class="text-center mb-5 mt-5">Miembros</h1>
-      <div class="row" *ngFor="let member of members; let i = index">
+      <div style="margin-bottom: 24px;" class="row" *ngFor="let member of members; let i = index">
         <div
           class="col-2 col-md-2 mt-2 mb-2 v-align text-center"
           *ngIf="i % 2 === 0"
@@ -123,7 +126,7 @@
           <h5>{{ member.position }}</h5>
           <h5>Correo: {{ member.email }}</h5>
           <h5>Telefono: {{ member.phone }}</h5>
-          <h5>Curriculum Vitae: <a href="descargar">(descargar)</a></h5>
+          <h5 *ngIf="member.cv">Curriculum Vitae: <a href="{{member.cv}}" download>(descargar)</a></h5>
         </div>
         <div class="col-2 col-md-2 text-center v-align" *ngIf="i % 2 != 0">
           <img

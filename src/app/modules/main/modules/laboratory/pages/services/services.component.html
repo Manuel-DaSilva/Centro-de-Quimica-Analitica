@@ -1,17 +1,20 @@
 <div class="container">
+  <br>
   <h4 class="text-center mt-2">División de Servicios del CQA</h4>
+  <br>
   <p>
     <b> La División de Servicios</b> que gerencia el entro de Química Analítica (CQA) realiza servicios de química analítica a cualquier interesado, público o privado, dentro y fuera del ámbito universitario. 
     <br>
+    <br>
     Los servicios analíticos se realizan en los Laboratorios de investigación del CQA bajo la supervisión de sus investigadores, siguiendo los procedimientos contemplados en las normas COVENIN, Standard Methods AOAC, ASTM, o las requeridas de acuerdo a las necesidades del cliente.
+    <br>
     <br>
     <b>La División de Servicios del CQA</b> conforma parte del Comité Técnico CT16, para envases y empaques para alimentos, reconocido por el Ministerio de Salud.
     <br>
-   <b>La División de Servicios del CQA</b> conforma parte del Comité Técnico CT16, para envases y empaques para alimentos, reconocido por el Ministerio de Salud.
 
   </p>
   <div class="row">
-    <div class="col-12 col-md-6 mt-2">
+    <div class="col-12 col-md-8 mt-2">
       <div class="accordion w-100" id="ServiceAccordion">
         <div class="card" *ngFor="let group of organizedServices; let i = index">
             <div
@@ -57,7 +60,7 @@
       </div>
     </div>
 
-    <div #serviceCard class="col-12 col-md-6 mt-2" >
+    <div #serviceCard class="col-12 col-md-4 mt-2" >
         <h4 *ngIf="selectedService" class="text-center">Descripcion</h4>
 
         <div class="card" *ngIf="selectedService">

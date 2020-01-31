@@ -14,58 +14,157 @@ export class ServicesComponent implements OnInit {
   public services: Service[] = [
     {
       id: 1,
-      name: "Servicio agua1",
-      description: "Descripcion servicio 1",
+      name: "Agua destilada",
+      description: "",
       category: {
         id: 1,
-        name: 'Suelos'
+        name: 'APOYO TECNOLÓGICO (Alquiler y uso temporal de equipos)'
       }
     },
     {
       id: 2,
-      name: "Servicio agua2",
-      description: "Descripcion servicio 1",
+      name: "Destilador de ácidos",
+      description: "",
       category: {
-        id: 2,
-        name: 'Aguas'
+        id: 1,
+        name: 'APOYO TECNOLÓGICO (Alquiler y uso temporal de equipos)'
       }
     },
     {
       id: 3,
-      name: "Servicio agua3",
-      description: "Descripcion servicio 1",
+      name: "Estufa de secado ",
+      description: "",
       category: {
-        id: 3,
-        name: 'Quimico'
+        id: 1,
+        name: 'APOYO TECNOLÓGICO (Alquiler y uso temporal de equipos)'
       }
     },
     {
       id: 4,
-      name: "Servicio suelos1",
-      description: "Descripcion servicio 1",
+      name: "Mufla",
+      description: "",
       category: {
-        id: 3,
-        name: 'Quimico'
+        id: 1,
+        name: 'APOYO TECNOLÓGICO (Alquiler y uso temporal de equipos)'
       }
     },
     {
       id: 5,
-      name: "Servicio suelos2",
-      description: "Descripcion servicio 1",
+      name: "Congelación y conservación de muestras",
+      description: "",
       category: {
         id: 1,
-        name: 'Suelos'
+        name: 'APOYO TECNOLÓGICO (Alquiler y uso temporal de equipos)'
       }
     },
     {
       id: 6,
-      name: "Servicio suelos3",
-      description: "Descripcion servicio 1",
+      name: "Digestión con horno microondas",
+      description: "",
+      category: {
+        id: 1,
+        name: 'APOYO TECNOLÓGICO (Alquiler y uso temporal de equipos)'
+      }
+    },
+    {
+      id: 7,
+      name: "Liofilización de muestras",
+      description: "",
+      category: {
+        id: 1,
+        name: 'APOYO TECNOLÓGICO (Alquiler y uso temporal de equipos)'
+      }
+    },
+    {
+      id: 8,
+      name: "Análisis fisicoquímicos",
+      description: "Densidad, turbidez, pH, carbonatos, sulfatos, fosfatos, cloruros, otros.",
       category: {
         id: 2,
-        name: 'Aguas'
+        name: 'ANÁLISIS QUÍMICO'
       }
-    }
+    },
+    {
+      id: 9,
+      name: "Análisis de especies inorgánicas",
+      description: "Metales y metaloides, incluyendo metales pesados y tóxicos, en Aguas, Alimentos, Bebidas, Fluidos biológicos, Suelos, Fertilizantes, Combustibles, Materia prima y terminada, etc.",
+      category: {
+        id: 2,
+        name: 'ANÁLISIS QUÍMICO'
+      }
+    },
+    {
+      id: 10,
+      name: "Análisis de especies orgánicas",
+      description: "Análisis de alcoholes, aldehídos, hidrocarburos y otras especies. Análisis tensoactivos iónicos en detergentes.",
+      category: {
+        id: 2,
+        name: 'ANÁLISIS QUÍMICO'
+      }
+    },
+    {
+      id: 11,
+      name: "Análisis de migración Global",
+      description: "Envases, empaques comerciales, laminados, materiales quirúrgicos y otros.",
+      category: {
+        id: 2,
+        name: 'ANÁLISIS QUÍMICO'
+      }
+    },
+    {
+      id: 12,
+      name: "PREPARACIÓN DE PRODUCTOS BAJO FÓRMULA",
+      description: "Soluciones bactericidas, solventes, materiales para desinfección, detergentes.",
+      category: {
+        id: 3,
+        name: 'PREPARACIÓN DE PRODUCTOS BAJO FÓRMULA'
+      }
+    },
+    {
+      id: 13,
+      name: "OPTIMIZACIÓN DE MÉTODOS DE ANÁLISIS QUÍMICO",
+      description: "",
+      category: {
+        id: 4,
+        name: 'OPTIMIZACIÓN DE MÉTODOS DE ANÁLISIS QUÍMICO'
+      }
+    },
+    {
+      id: 14,
+      name: "ESTUDIOS AMBIENTALES",
+      description: "Monitoreo y evaluación ambiental y riesgo laboral. Análisis de compuestos orgánicos y metales en muestras ambientales. Consultoría ambiental.",
+      category: {
+        id: 5,
+        name: 'ESTUDIOS AMBIENTALES'
+      }
+    },
+    {
+      id: 15,
+      name: "CURSOS DE ACTUALIZACIÓN TEÓRICO-PRÁCTICA",
+      description: "",
+      category: {
+        id: 6,
+        name: 'CURSOS DE ACTUALIZACIÓN TEÓRICO-PRÁCTICA'
+      }
+    },
+    {
+      id: 16,
+      name: "ADIESTRAMIENTO EN EL USO DEL INSTRUMENTAL ANALÍTICO",
+      description: "",
+      category: {
+        id: 7,
+        name: 'ADIESTRAMIENTO EN EL USO DEL INSTRUMENTAL ANALÍTICO'
+      }
+    },
+    {
+      id: 16,
+      name: "ASESORÍAS EN QUÍMICA ANALÍTICA",
+      description: "",
+      category: {
+        id: 8,
+        name: 'ASESORÍAS EN QUÍMICA ANALÍTICA'
+      }
+    },
   ];
 
   @ViewChild('serviceCard') serviceCard: ElementRef;
