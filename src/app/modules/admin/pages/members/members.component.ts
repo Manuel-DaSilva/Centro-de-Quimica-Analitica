@@ -14,26 +14,7 @@ import { MemberModalComponent } from './components/member-modal/member-modal.com
 })
 export class MembersComponent implements OnInit {
   // !test data
-  public members: Member[]  = [
-    {
-      id: '1',
-      name: 'Antonio Jose',
-      email: 'email@email.com',
-      phone: '1282939123',
-      position: 'Director',
-      cv: "urltocv",
-      imagePath: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUq71y6yGEk94T1hyj89lV-khy9OMkgZt0Dl1hecguJxUpLU6a"
-    },
-    {
-      id: '2',
-      name: 'Antonio Jose2',
-      email: 'email2@email.com',
-      phone: '1282932229123',
-      position: 'Director 2',
-      cv: "urltocv",
-      imagePath: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUq71y6yGEk94T1hyj89lV-khy9OMkgZt0Dl1hecguJxUpLU6a"
-    }
-  ];
+  public members: Member[]  = [];
   constructor(
     private modalService: NgbModal,
     private toastService: ToastrService,
@@ -41,6 +22,7 @@ export class MembersComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.getMembers();
   }
      /*
    * @desc open the modal to create or update element
@@ -70,8 +52,11 @@ export class MembersComponent implements OnInit {
    */
   getMembers() {
     this.membersService.reqMembers().subscribe(
-      (res: Member[]) => {
-        this.members = res;
+      (res: any) => {
+        this.members = res.map(item => {
+          item['id'] = item._id.$oid;
+          return item;
+        });
       },
       err => {
         console.log("error getting members");

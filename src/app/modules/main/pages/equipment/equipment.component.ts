@@ -9,44 +9,34 @@ import { Equipment } from "src/app/models/equipment.interface";
 })
 export class EquipmentComponent implements OnInit {
   public equipment: Equipment[] = [
-    
+    {
+      id: "equiId",
+      name: "equiName",
+      category: {
+        id: "catId",
+        name: "catName"
+      }
+    },
+    {
+      id: "equiId2",
+      name: "equiName2",
+      category: {
+        id: "catId",
+        name: "catName"
+      }
+    },
+    {
+      id: "equiId3",
+      name: "equiName3",
+      category: {
+        id: "catId2",
+        name: "catName2"
+      }
+    },
   ];
 
-  public equipmentByCategory = [
-    {
-      title: "ESPECTROSCOPÍA",
-      instruments: [
-        "Espectrómetro de emisión óptica con plasma acoplado inductivamente,  Thermo Jarrell Ash,  IRIS- HR",
-        "Espectrómetro de absorción atómica con horno de grafito, Perkin Elmer, Simaa 6000 ",
-        "Espectrómetro de Absorción atómica con llama, Analityk Jena, NovAA350",
-        "Espectrómetro de florescencia atómica, Analityk Jena, MERCUR PLUS",
-        "Espectrómetro Uv-visible, THERMO, Genesys 10",
-      ]
-    },
-    {
-      title: "CROMATOGRAFÍA",
-      instruments: [
-        "HPLC, Hewlett Packard, Bomba HP 1100 y Detector IR HP 1047",
-        "HPLC, HEWLETT  PACKARD, Serie 1100, Detector UV-Vis DAD, Detector UV-Vis, Detector de Fluorescencia",
-        "Cromatógrafo de gases, Thermo Finnigan, Trace GC, AS 2000",
-      ]
-    },
-    {
-      title: "TRATAMIENTO DE MUESTRA",
-      instruments: [
-        "Digestor de microondas, CEM, MDS 2000, Microware digestion System",
-        "Liofilizador, Labconco, Freezone",
-        "Ultra Centrifuga, Eppendorf, Centrifuge 5804R",
-        "Centrifuga, Thermo, IEC Centra Cl2",
-        "Destilador de teflón Sub Boiling Point",
-        "Mufla, NEY, Serie 2-160",
-        "Estufa, Imperial, 3476",
-        "Baños de ultrasonido",
-        "Congelador, Thermo (-15ºC)",
-        "Neveras",
-      ]
-    }
-  ];
+
+  public equipmentByCategory = [];
   
 
   constructor(private dataService: DataService) {}
@@ -54,6 +44,7 @@ export class EquipmentComponent implements OnInit {
   ngOnInit() {
     this.getEquipment();
     // this.getInstruments();
+    this.setEquipmentsByCat(this.equipment);
   }
 
   /*
@@ -75,4 +66,35 @@ export class EquipmentComponent implements OnInit {
       }
     );
   }
+
+  setEquipmentsByCat(equipment: Equipment[]){
+    let categories = [];
+    let instruments = [];
+    let result = [];
+    equipment.forEach( equip => {
+
+      let index = categories.indexOf(equip.category.name);
+      if(index < 0){
+        instruments = [];
+        categories.push(equip.category.name);
+
+
+        equipment.forEach(equip2 => {
+          if(equip2.category.name === equip.category.name){
+            instruments.push(equip.name);
+          }
+        });
+
+        result.push({
+          title: equip.category.name,
+          instruments: instruments
+        });
+
+      }
+    });
+   
+    this.equipmentByCategory = result;
+  }
+
+  
 }

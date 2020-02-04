@@ -15,11 +15,12 @@ export class CategoryModalComponent implements OnInit {
   public mode: string;
   public categoryForm: FormGroup;
   public invalidAttempt = false;
-
+  public category: Category;
   // input fields
   @Input()
   set inputCategoryData(category: Category) {
     this.setCategory(category);
+    this.category = category;
   }
   constructor(
     private activeModal: NgbActiveModal,
@@ -64,8 +65,12 @@ export class CategoryModalComponent implements OnInit {
       this.invalidAttempt = true;
       return;
     }
+
+    let category = this.categoryForm.value;
+    category.id = this.category.id;
+
     // edit code
-    this.categoryService.updateCategory(this.categoryForm.value).subscribe(
+    this.categoryService.updateCategory(category).subscribe(
       res => {
         this.toastService.success("correctamente", "Categoria actualizada");
         this.activeModal.close({ success: true });

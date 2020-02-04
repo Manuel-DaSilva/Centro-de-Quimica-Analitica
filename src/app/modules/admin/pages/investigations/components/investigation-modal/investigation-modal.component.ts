@@ -21,19 +21,19 @@ export class InvestigationModalComponent implements OnInit {
       id: '1',
       name: 'Antonio Jose',
       email: 'email@email.com',
-      phone: '1282939123',
+      phonenumber: '1282939123',
       position: 'Director',
       cv: "urltocv",
-      imagePath: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUq71y6yGEk94T1hyj89lV-khy9OMkgZt0Dl1hecguJxUpLU6a"
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUq71y6yGEk94T1hyj89lV-khy9OMkgZt0Dl1hecguJxUpLU6a"
     },
     {
       id: '2',
       name: 'Antonio Jose2',
       email: 'email2@email.com',
-      phone: '1282932229123',
+      phonenumber: '1282932229123',
       position: 'Director 2',
       cv: "urltocv",
-      imagePath: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUq71y6yGEk94T1hyj89lV-khy9OMkgZt0Dl1hecguJxUpLU6a"
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUq71y6yGEk94T1hyj89lV-khy9OMkgZt0Dl1hecguJxUpLU6a"
     }
   ];
 
@@ -78,8 +78,8 @@ export class InvestigationModalComponent implements OnInit {
    * @param service to be edited
    */
   setForEdit(investigation: Investigation) {
-    this.investigationForm.controls["name"].setValue(investigation.name);
-    this.investigationForm.controls["description"].setValue(investigation.description);
+    this.investigationForm.controls["name"].setValue(investigation.researcher);
+    this.investigationForm.controls["description"].setValue(investigation.position);
     investigation.researches.forEach( researcher => {
       (<FormArray>this.investigationForm.controls['researches']).push(
         new FormControl(researcher, Validators.required)

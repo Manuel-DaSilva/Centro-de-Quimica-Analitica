@@ -9,28 +9,32 @@ import { Investigation } from 'src/app/models/investigation.interface';
 })
 export class ResearchesComponent implements OnInit {
 
-  public researchesByMembers = [
+  public researchesByMembers: Investigation[] = [
     {
-      researcher: "Dra. María de los Ángeles Álvarez González",
-      position: "Jefe del Laboratorio de Espectrometría de Absorción Atómica",
+      researcher: "Lider",
+      position: "Posicion",
       researches: [
         {
-          name: "Determinación de niveles base y biacumulación de metales pesados",
-          description: "Niveles base del contenido de metales pesados en esponjas, algas y sedimentos en el ambiente marino de Isla de Aves (Venezuela). Bioacumulación de metales pesados en esponjas marinas y sedimentos en ambientes afectados por la industria petrolera en Venezuela.",
+          name: "inve1",
+          description: "desc1",
         },
         {
-          name: "Evaluación del riesgo y distribución espacial de metales pesados",
-          description: "Evaluación del riesgo ambiental por metales pesados en costas de Venezuela empleando biomonitores. Evaluación del riesgo y distribución espacial del Cadmio y otros metales pesados en suelos venezolanos de cultivo de cacao, sus frutos y derivados con destino a la exportación",
+          name: "inve2",
+          description: "desc2",
         }
       ]
     },
     {
-      researcher: "Dra. Rosa María Amaro Fernandes",
-      position: "Jefe del Laboratorio de Separaciones Cromatográficas",
+      researcher: "Lider2",
+      position: "Posicion2",
       researches: [
         {
-          name: "Desarrollo y validación de métodos analíticos para el pre-tratamiento de muestras y análisis con sistemas espectroscópicos y cromatográficos",
-          description: "Desarrollo de métodos analíticos por HPLC para la determinación de ácido fítico en cereales infantiles. Desarrollo de métodos de tratamiento de muestra para el estudio de compuesto orgánicos persistente por GC-MS y HPLC en alimentos, suelos y agua. Desarrollo de métodos analíticos para la retención selectiva  y especiación de metales tóxicos",
+          name: "inve3",
+          description: "desc1",
+        },
+        {
+          name: "inve4",
+          description: "desc2",
         }
       ]
     }

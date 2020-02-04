@@ -1,8 +1,12 @@
-import { Member } from './member.interface';
+
+interface _Investigation {
+  name: string;
+  description: string;
+}
 
 export interface Investigation {
   id?: string;
-  name: string;
-  description: string;
-  researches: String[];
+  researcher: string;
+  position: string;
+  researches: _Investigation[];
 }

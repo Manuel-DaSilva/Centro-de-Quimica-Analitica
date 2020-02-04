@@ -14,9 +14,9 @@ export class MemberService {
    */
   reqMembers() {
     // url of api endpoint
-    const url = URL_SERVICES + "api/url/memberes";
+    const url = URL_SERVICES + "miembros";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
     const config = { headers: headers };
     // returning the petition
     return this.http.get(url, config);
@@ -27,17 +27,17 @@ export class MemberService {
    */
   createMember(member: Member, image, cv) {
     // url of api endpoint
-    const url = URL_SERVICES + "api/new/member";
+    const url = URL_SERVICES + "miembros/nuevo";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
     const config = { headers: headers };
     const body = {
       name: member.name,
       email: member.email,
-      phone: member.phone,
+      phonenumber: member.phonenumber,
       position: member.position,
-      cv: cv,
-      image: image
+      cv: "test",
+      image: "test"
     };
     // returning the petition
     return this.http.post(url, body, config);
@@ -48,18 +48,18 @@ export class MemberService {
    */
   updateMember(member: Member, image, cv) {
     // url of api endpoint
-    const url = URL_SERVICES + "api/update/member";
+    const url = URL_SERVICES + "miembros/editar";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
     const config = { headers: headers };
     const body = {
       id: member.id,
       name: member.name,
       email: member.email,
-      phone: member.phone,
+      phonenumber: member.phonenumber,
       position: member.position,
-      cv: cv,
-      image: image
+      cv: "test",
+      image: "test"
     };
     // returning the petition
     return this.http.post(url, body, config);
@@ -70,9 +70,9 @@ export class MemberService {
    */
   deleteMember(member: Member) {
     // url of api endpoint
-    const url = URL_SERVICES + "api/delete/member";
+    const url = URL_SERVICES + "miembros/borrar";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
     const config = { headers: headers };
     const body = {
       id: member.id

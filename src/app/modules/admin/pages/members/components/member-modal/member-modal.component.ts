@@ -42,8 +42,9 @@ export class MemberModalComponent implements OnInit {
     this.memberForm = new FormGroup({
       name: new FormControl("", Validators.required),
       email: new FormControl("", Validators.required),
-      phone: new FormControl("", Validators.required),
+      phonenumber: new FormControl("", Validators.required),
       position: new FormControl("", Validators.required),
+
     });
   }
 
@@ -71,7 +72,7 @@ export class MemberModalComponent implements OnInit {
   setForEdit(member: Member) {
     this.memberForm.controls["name"].setValue(member.name);
     this.memberForm.controls["email"].setValue(member.email);
-    this.memberForm.controls["phone"].setValue(member.phone);
+    this.memberForm.controls["phonenumber"].setValue(member.phonenumber);
     this.memberForm.controls["position"].setValue(member.position);
   }
 
@@ -85,7 +86,9 @@ export class MemberModalComponent implements OnInit {
       return;
     }
     // edit code
-    this.memberService.updateMember(this.memberForm.value,this.memberImage,this.memberCV).subscribe(
+    let member = this.memberForm.value;
+    member.id = this.member.id;
+    this.memberService.updateMember(member,this.memberImage,this.memberCV).subscribe(
       res => {
         this.toastService.success("correctamente", "Miembro actualizado");
         this.activeModal.close({ success: true });
@@ -102,17 +105,17 @@ export class MemberModalComponent implements OnInit {
   }
 
   /*
-   * @desc handle the petition to create a equipment
+   * @desc handle the petition to create a member
    */
-  createEquipment() {
+  createMember() {
     if(this.memberForm.invalid){
       this.invalidAttempt = true;
       return;
     }
-    if (!this.memberImage || !this.memberCV){
-      this.invalidAttempt = true;
-      return;
-    }
+    // if (!this.memberImage || !this.memberCV){
+    //   this.invalidAttempt = true;
+    //   return;
+    // }
     this.memberService.createMember(this.memberForm.value,this.memberImage,this.memberCV).subscribe(
       res => {
         this.toastService.success("correctamente", "miembro creado");

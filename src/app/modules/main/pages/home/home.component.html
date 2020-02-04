@@ -125,7 +125,7 @@
           <h2>{{ member.name }}</h2>
           <h5>{{ member.position }}</h5>
           <h5>Correo: {{ member.email }}</h5>
-          <h5>Telefono: {{ member.phone }}</h5>
+          <h5>Telefono: {{ member.phonenumber }}</h5>
           <h5 *ngIf="member.cv">Curriculum Vitae: <a href="{{member.cv}}" download>(descargar)</a></h5>
         </div>
         <div class="col-2 col-md-2 text-center v-align" *ngIf="i % 2 != 0">

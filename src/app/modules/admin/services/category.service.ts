@@ -16,7 +16,7 @@ export class CategoryService {
    */
   reqCategories() {
     // url of api endpoint
-    const url = URL_SERVICES + "api/url/categories";
+    const url = URL_SERVICES + "categorias";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
@@ -29,9 +29,9 @@ export class CategoryService {
    */
   createCategory(category: Category) {
     // url of api endpoint
-    const url = URL_SERVICES + "api/new/category";
+    const url = URL_SERVICES + "categorias/nuevo";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
     const config = { headers: headers };
     const body = {
       name: category.name,
@@ -44,10 +44,11 @@ export class CategoryService {
    * @desc handles the petition to the backend API to update category
    */
   updateCategory(category: Category) {
+    console.log('on update : ', category);
     // url of api endpoint
-    const url = URL_SERVICES + "api/update/category";
+    const url = URL_SERVICES + "categorias/editar";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
     const config = { headers: headers };
     const body = {
       id: category.id,
@@ -62,9 +63,9 @@ export class CategoryService {
    */
   deleteCategory(category: Category) {
     // url of api endpoint
-    const url = URL_SERVICES + "api/delete/category";
+    const url = URL_SERVICES + "categorias/borrar";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
     const config = { headers: headers };
     const body = {
       id: category.id

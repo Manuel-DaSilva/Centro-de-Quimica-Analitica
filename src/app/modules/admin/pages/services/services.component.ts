@@ -51,20 +51,7 @@ export class ServicesComponent implements OnInit {
   ];
 
   // ! test data
-  public categories: Category[] = [
-    {
-      id: 1,
-      name: 'categoria 1'
-    },
-    {
-      id: 2,
-      name: 'categoria 2'
-    },
-    {
-      id: 3,
-      name: 'categoria 3'
-    }
-  ];
+  public categories: Category[] = [];
 
   constructor(
     private modalService: NgbModal,
@@ -74,7 +61,8 @@ export class ServicesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.getServices();
+    //this.getServices();
+    this.getCategories();
   }
 
   /*
@@ -114,8 +102,8 @@ export class ServicesComponent implements OnInit {
       .then((res: any) => {
         // modal closed
         if (res && res.success) {
-          // if there is a service created or updated
-          this.getServices();
+          // if there is a category created or updated
+          this.getCategories();
         }
       })
       .catch(() => {
@@ -128,8 +116,12 @@ export class ServicesComponent implements OnInit {
    */
   getServices() {
     this.servicesService.reqServices().subscribe(
-      (res: Service[]) => {
-        this.services = res;
+      (res: any) => {
+        this.services = res.map(item => {
+          item['id'] = item._id.$oid;
+          delete item['_id'];
+          return item;
+        });
       },
       err => {
         console.log("error getting services");
@@ -143,8 +135,13 @@ export class ServicesComponent implements OnInit {
    */
   getCategories() {
     this.categoryService.reqCategories().subscribe(
-      (res: Category[]) => {
-        this.categories = res;
+      (res: any) => {
+        this.categories = res.map(item => {
+          item['id'] = item._id.$oid;
+          delete item['_id'];
+          return item;
+        });
+        console.log(this.categories);
       },
       err => {
         console.log("error getting categories");
@@ -181,18 +178,18 @@ export class ServicesComponent implements OnInit {
       (res: any) => {
         // successfully deleted
         this.toastService.success("correctamente", "Categoria eliminada");
-        this.removeService(category.id);
-    },
-    err => {
-      console.log("error deleting the category");
-      console.log(err);
+        this.removeCategory(category.id);
+      },
+      err => {
+        console.log("error deleting the category");
+        console.log(err);
       this.toastService.error("la categoria", "Error al eliminar");
-    }
-  );
-}
+      }
+    );
+  }
 
   /*
-   * @desc deletes the service from the array
+  * @desc deletes the service from the array
   */
   removeService(id) {
     let pos = this.services
@@ -208,7 +205,7 @@ export class ServicesComponent implements OnInit {
   /*
    * @desc deletes the category from the array
   */
- removeCategory(id) {
+  removeCategory(id) {
   let pos = this.categories
     .map(e => {
       return e.id;

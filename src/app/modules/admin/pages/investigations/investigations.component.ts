@@ -12,20 +12,37 @@ import { InvestigationModalComponent } from './components/investigation-modal/in
 export class InvestigationsComponent implements OnInit {
 
   // !test data
-  public investigations: Investigation[]  = [
+  public investigations: Investigation[] =  [
     {
-      id: '1',
-      name: "investigation 1",
-      description: "Investigaciond escripcion",
-      researches: ['1','2']
+      researcher: "Lider",
+      position: "Posicion",
+      researches: [
+        {
+          name: "inve1",
+          description: "desc1",
+        },
+        {
+          name: "inve2",
+          description: "desc2",
+        }
+      ]
     },
     {
-      id: '2',
-      name: "investigation 2",
-      description: "Investigaciond escripcion2 ",
-      researches: ['1','2']
+      researcher: "Lider2",
+      position: "Posicion2",
+      researches: [
+        {
+          name: "inve3",
+          description: "desc1",
+        },
+        {
+          name: "inve4",
+          description: "desc2",
+        }
+      ]
     }
   ];
+  
   constructor(
     private modalService: NgbModal,
     private toastService: ToastrService,

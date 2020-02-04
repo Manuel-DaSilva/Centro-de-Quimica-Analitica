@@ -30,9 +30,12 @@ export class ServicesModalComponent implements OnInit {
     }
   ];
 
+  public service:Service;
+
   // input fields
   @Input()
   set inputServiceData(service: Service) {
+    this.service = service;
     this.setService(service);
   }
   constructor(
@@ -83,7 +86,10 @@ export class ServicesModalComponent implements OnInit {
       this.invalidAttempt = true;
       return;
     }
-    this.servicesService.updateService(this.serviceForm.value).subscribe(
+
+    let service = this.serviceForm.value;
+    service.id = this.service.id;
+    this.servicesService.updateService(service).subscribe(
       res => {
         this.toastService.success("correctamente", "Servicio actualizado");
         this.activeModal.close({ success: true });

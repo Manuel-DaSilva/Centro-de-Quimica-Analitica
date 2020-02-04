@@ -2,8 +2,8 @@ export interface Member {
   id?: string;
   name: string;
   email: string;
-  phone: string;
+  phonenumber: string;
   position: string;
   cv: string;
-  imagePath?: string;
+  image?: string;
 }

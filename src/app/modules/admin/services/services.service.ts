@@ -13,9 +13,9 @@ export class ServicesService {
    */
   reqServices() {
     // url of api endpoint
-    const url = URL_SERVICES + "api/url/services";
+    const url = URL_SERVICES + "servicios";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
     const config = { headers: headers };
     // returning the petition
     return this.http.get(url, config);
@@ -28,7 +28,7 @@ export class ServicesService {
     // url of api endpoint
     const url = URL_SERVICES + "api/url/categories";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
     const config = { headers: headers };
     // returning the petition
     return this.http.get(url, config);
@@ -39,9 +39,9 @@ export class ServicesService {
    */
   createService(service) {
     // url of api endpoint
-    const url = URL_SERVICES + "api/new/service";
+    const url = URL_SERVICES + "servicios/nuevo";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
     const config = { headers: headers };
     const body = {
       name: service.name,
@@ -57,9 +57,9 @@ export class ServicesService {
    */
   updateService(service) {
     // url of api endpoint
-    const url = URL_SERVICES + "api/update/service";
+    const url = URL_SERVICES + "servicios/editar";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
     const config = { headers: headers };
     const body = {
       id: service.id,
@@ -76,9 +76,9 @@ export class ServicesService {
    */
   deleteService(service) {
     // url of api endpoint
-    const url = URL_SERVICES + "api/delete/service";
+    const url = URL_SERVICES + "servicios/borrar";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
     const config = { headers: headers };
     const body = {
       id: service.id
