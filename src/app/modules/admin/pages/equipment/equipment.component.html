@@ -1,47 +1,82 @@
 <div class="fadeIn">
-  <!-- title -->
-  <div class="row">
-    <div class="col text-center">
-      <h2>Equipos</h2>
-      <hr />
+    <!-- title -->
+    <div class="row">
+        <div class="col text-center">
+            <h2>Equipos</h2>
+            <hr />
+        </div>
     </div>
-  </div>
-  <!-- content -->
-  <!-- create -->
-  <div class="row">
-    <div class="col">
-      <button class="btn btn-primary mb-3" (click)="openEquipmentModal()">
+    <!-- content -->
+    <!-- create -->
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary mb-3" (click)="openEquipmentModal()">
         Crear nuevo equipo <i class="fas fa-plus"></i>
       </button>
+        </div>
     </div>
-  </div>
 
-  <!-- list -->
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col" class="text-center">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let equipment of equipments; let i = index;">
-        <th scope="row">{{i + 1}}</th>
-        <td>{{equipment.name}}</td>
-        <td class="text-center">
-          <button 
-            (click)="openEquipmentModal(equipment)"
-            class="btn btn-icon btn-primary mr-1">
+    <!-- list -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col" class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let equipment of equipments; let i = index;">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{equipment.title}}</td>
+                <td class="text-center">
+                    <button (click)="openEquipmentModal(equipment)" class="btn btn-icon btn-primary mr-1">
             <i class="fas fa-edit"></i>
           </button>
-          <button 
-            (click)="deleteEquipment(equipment)"
-            class="btn btn-icon btn-secondary mr-1">
+                    <button (click)="deleteEquipment(equipment)" class="btn btn-icon btn-secondary mr-1">
             <i class="fas fa-trash"></i>
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Categorias -->
+    <div class="row">
+        <div class="col text-center">
+            <h2>Categorias</h2>
+            <hr />
+        </div>
+    </div>
+    <!-- create -->
+    <div class="row">
+        <div class="col">
+            <button (click)="openCategoryModal()" class="btn btn-primary mb-3">
+        Crear nueva categoria <i class="fas fa-plus"></i>
+      </button>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col" class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let category of categories; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ category.title }}</td>
+                <td class="text-center">
+                    <button (click)="openCategoryModal(category)" class="btn btn-icon btn-primary mr-1">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                    <button class="btn btn-icon btn-secondary mr-1" (click)="deleteCategory(category)">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

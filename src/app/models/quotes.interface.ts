@@ -10,12 +10,12 @@ export interface Quote {
     sample_type: string;
     sample_physical_state: string;
     sample_usage:string;
-    sample_quantity: string;
+    sample_quantity: number;
     sample_identification: string;
     service_id: number;
     other_service: string;
     observations: string;
-    readed: string;
+    readed: boolean;
     title: string;
     description: string;
     category_id: number;

@@ -14,9 +14,9 @@ export class MemberService {
    */
   reqMembers() {
     // url of api endpoint
-    const url = URL_SERVICES + "miembros";
+    const url = URL_SERVICES + "members";
     // needed config
-    const headers = new HttpHeaders({"Content-Type":"application/json"});
+    const headers = new HttpHeaders({});
     const config = { headers: headers };
     // returning the petition
     return this.http.get(url, config);
@@ -34,7 +34,7 @@ export class MemberService {
     const body = {
       name: member.name,
       email: member.email,
-      phonenumber: member.phonenumber,
+      phonenumber: member.phone,
       position: member.position,
       cv: "test",
       image: "test"
@@ -56,7 +56,7 @@ export class MemberService {
       id: member.id,
       name: member.name,
       email: member.email,
-      phonenumber: member.phonenumber,
+      phonenumber: member.phone,
       position: member.position,
       cv: "test",
       image: "test"

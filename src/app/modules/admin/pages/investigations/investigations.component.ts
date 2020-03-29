@@ -12,36 +12,7 @@ import { InvestigationModalComponent } from './components/investigation-modal/in
 export class InvestigationsComponent implements OnInit {
 
   // !test data
-  public investigations: Investigation[] =  [
-    {
-      researcher: "Lider",
-      position: "Posicion",
-      researches: [
-        {
-          name: "inve1",
-          description: "desc1",
-        },
-        {
-          name: "inve2",
-          description: "desc2",
-        }
-      ]
-    },
-    {
-      researcher: "Lider2",
-      position: "Posicion2",
-      researches: [
-        {
-          name: "inve3",
-          description: "desc1",
-        },
-        {
-          name: "inve4",
-          description: "desc2",
-        }
-      ]
-    }
-  ];
+  public investigations: Investigation[] =  [];
   
   constructor(
     private modalService: NgbModal,
@@ -50,6 +21,7 @@ export class InvestigationsComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.getInvestigations();
   }
      /*
    * @desc open the modal to create or update element
@@ -79,11 +51,11 @@ export class InvestigationsComponent implements OnInit {
    */
   getInvestigations() {
     this.investigationService.reqInvestigations().subscribe(
-      (res: Investigation[]) => {
-        this.investigations = res;
+      (res: any) => {
+        this.investigations = res.data;
       },
       err => {
-        console.log("error getting members");
+        console.log("error getting investigations");
         console.log(err);
       }
     );

@@ -24,14 +24,6 @@ export class DashboardComponent implements OnInit {
     // this.getSummary();
   }
 
-  getSummary(){
-    this.authService.getSummary().subscribe( (res:any) => {
-      this.quantity = res.data;
-    }, err => {
-      console.log('error getting summary');
-      console.log(err);
-      this.error = true;
-    });
-  }
+
 
 }

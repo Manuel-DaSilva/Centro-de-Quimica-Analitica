@@ -1,43 +1,43 @@
 <div class="fadeIn">
-  <!-- title -->
-  <div class="row">
-    <div class="col text-center">
-      <h2>Cotizaciones</h2>
-      <hr />
+    <!-- title -->
+    <div class="row">
+        <div class="col text-center">
+            <h2>Cotizaciones</h2>
+            <hr />
+        </div>
     </div>
-  </div>
-  <!-- content -->
+    <!-- content -->
 
-  <!-- list -->
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Compañia</th>
-        <th scope="col">Fecha</th>
-        <th scope="col">Tipo</th>
-        <th scope="col" class="text-center">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let quote of quotes; let i = index">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ quote.company.contactName }}</td>
-        <td>{{ quote.company.company }}</td>
-        <td>{{ quote.date }}</td>
-        <td *ngIf="quote.information">Informacion</td>
-        <td *ngIf="!quote.information">Servicio</td>
-
-        <td class="text-center">
-          <button
-            (click)="openModal(quote)"
-            class="btn btn-primary mr-1"
-          > Ver
+    <!-- list -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Compañia</th>
+                <th scope="col">Fecha</th>
+                <th scope="col" class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="{'unread': !quote.readed}" *ngFor="let quote of quotes; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ quote.contact_name }}</td>
+                <td>{{ quote.company_name }}</td>
+                <td>{{ quote.received_date | date }}</td>
+                <td class="text-center">
+                    <button (click)="openModal(quote)" class="btn btn-primary mr-1"> Ver
             <i class="fas fa-eye"></i>
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation" class="text-center">
+        <button *ngIf="page != 1" (click)="onPageChange(-1)" aria-label="Previous"><span>&laquo;</span></button>
+        <button><a>{{ page }}</a></button>
+        <button *ngIf="page != lastPage" (click)="onPageChange(+1)" aria-label="Previous"><span>&raquo;</span></button>
+
+    </nav>
 </div>

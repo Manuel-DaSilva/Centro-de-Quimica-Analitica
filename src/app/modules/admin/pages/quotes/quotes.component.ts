@@ -7,9 +7,13 @@ import { QuotesService } from '../../services/quotes.service';
 @Component({
   selector: 'app-quotes',
   templateUrl: './quotes.component.html',
-  styles: []
+  styles: ['.unread{background-color: #d4ebd0;}']
 })
 export class QuotesComponent implements OnInit {
+
+  public page;
+  public lastPage;
+
 
   // !test
   public quotes: Quote[] = []
@@ -19,7 +23,7 @@ export class QuotesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getQuotes();
+    this.getQuotes(1);
   }
 
   /*
@@ -28,6 +32,13 @@ export class QuotesComponent implements OnInit {
    */
   openModal(quote: Quote) {
     let modalData = quote;
+    
+    
+    this.quoteService.updateReaded(quote).subscribe(
+      res => {this.quotes[this.quotes.indexOf(quote)].readed = true; console.log(res);
+      },
+      err => console.log(err)
+    );
     const serviceModalRef = this.modalService.open(QuoteModalComponent, {
       size: "lg"
     });
@@ -35,19 +46,43 @@ export class QuotesComponent implements OnInit {
     
   }
 
-  getQuotes(){
-    this.quoteService.reqQuotes().subscribe(
+  getQuotes(page){
+    this.quoteService.reqQuotes(page).subscribe(
         (res: any) => {
-          this.quotes = res.map(item => {
-            item['id'] = item._id.$oid;
-            return item;
-          });
+          console.log(res);
+          
+          this.lastPage = res.pages;
+          this.page = res.actualPage;
+          this.quotes = res.data;
         },
         err => {
           console.log("error getting quotes");
           console.log(err);
         }
       );
+  }
+
+  /*
+   * @desc takes control over page change
+   * @param action  -1 or +1 depeding on the direction of the next page
+   */
+  onPageChange(action) {
+    let nextPage = this.page + action;
+    if (nextPage <= 0 || nextPage > this.lastPage) {
+      // getting out of the limits
+      return;
+    } else {
+      this.reqPage(nextPage);
+    }
+  }
+
+    /*
+   * @param page  page to be set
+   */
+  reqPage(page) {
+    this.page = page;
+    // setting the corrects alerts
+    this.getQuotes(page);
   }
 
 }

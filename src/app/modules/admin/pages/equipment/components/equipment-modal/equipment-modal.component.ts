@@ -1,9 +1,10 @@
+import { Equipment } from './../../../../../../models/equipment.interface';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { EquipmentService } from 'src/app/modules/admin/services/equipment.service';
-import { Equipment } from 'src/app/models/equipment.interface';
+import { EquipmentCategory } from 'src/app/models/equipment.category.interface';
 
 @Component({
   selector: 'app-equipment-modal',
@@ -11,11 +12,13 @@ import { Equipment } from 'src/app/models/equipment.interface';
   styles: []
 })
 export class EquipmentModalComponent implements OnInit {
-
+  public equipment: Equipment;
   public mode: string;
   public equipmentForm: FormGroup;
   public invalidAttempt = false;
 
+
+  public categories: EquipmentCategory[] = [];
   // input fields
   @Input()
   set inputEquipmentData(equipment: Equipment) {
@@ -27,12 +30,14 @@ export class EquipmentModalComponent implements OnInit {
     private toastService: ToastrService
   ) {
     this.equipmentForm = new FormGroup({
-      name: new FormControl("", Validators.required),
-      id: new FormControl()
+      title: new FormControl("", Validators.required),
+      id: new FormControl(),
+      category_id: new FormControl("",Validators.required),
     });
   }
 
   ngOnInit() {
+    this.getCategories();
   }
 
   /*
@@ -40,6 +45,7 @@ export class EquipmentModalComponent implements OnInit {
    * @param equipment to edit
    */
   setEquipment(equipment: Equipment) {
+    this.equipment = equipment;
     if (equipment) {
       this.mode = "edit";
       this.setForEdit(equipment);
@@ -53,8 +59,9 @@ export class EquipmentModalComponent implements OnInit {
    * @param equipment to be edited
    */
   setForEdit(equipment: Equipment) {
-    this.equipmentForm.controls["name"].setValue(equipment.name);
+    this.equipmentForm.controls["title"].setValue(equipment.title);
     this.equipmentForm.controls["id"].setValue(equipment.id);
+    this.equipmentForm.controls["category_id"].setValue(equipment.category_id);
   }
 
   /*
@@ -111,4 +118,24 @@ export class EquipmentModalComponent implements OnInit {
   closeModal() {
     this.activeModal.close();
   }
+
+  getCategories(){
+    this.equipmentService.reqCategories().subscribe(
+      (res: any) => {
+        this.categories = res.data;
+        console.log(this.categories);
+        if(this.equipment){
+          if(this.equipment.category_id){
+            this.equipmentForm.controls['category_id'].setValue(this.equipment.category_id);
+          }
+        }
+      },
+      err => {
+        console.log("error getting equipment categories");
+        console.log(err);
+      }
+    );
+  }
+
+
 }

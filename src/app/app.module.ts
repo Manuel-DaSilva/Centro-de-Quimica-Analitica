@@ -17,9 +17,19 @@ import { CategoryModalComponent } from './modules/admin/pages/services/component
 import { MemberModalComponent } from './modules/admin/pages/members/components/member-modal/member-modal.component';
 import { EquipmentModalComponent } from './modules/admin/pages/equipment/components/equipment-modal/equipment-modal.component';
 import { InvestigationModalComponent } from './modules/admin/pages/investigations/components/investigation-modal/investigation-modal.component';
+import { EquipmentCategoryModalComponent } from './modules/admin/pages/equipment/components/category-modal/equipment.category-modal.component';
 
 @NgModule({
-  declarations: [AppComponent, ServicesModalComponent,QuoteModalComponent,CategoryModalComponent,MemberModalComponent,EquipmentModalComponent,InvestigationModalComponent],
+  declarations: [
+    AppComponent,
+    ServicesModalComponent,
+    QuoteModalComponent,
+    CategoryModalComponent,
+    MemberModalComponent,
+    EquipmentModalComponent,
+    InvestigationModalComponent,
+    EquipmentCategoryModalComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +40,13 @@ import { InvestigationModalComponent } from './modules/admin/pages/investigation
     ToastrModule.forRoot()
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ServicesModalComponent,QuoteModalComponent,CategoryModalComponent,MemberModalComponent,EquipmentModalComponent,InvestigationModalComponent]
+  entryComponents: [
+    ServicesModalComponent,
+    QuoteModalComponent,
+    CategoryModalComponent,
+    MemberModalComponent,
+    EquipmentModalComponent,
+    InvestigationModalComponent,
+    EquipmentCategoryModalComponent]
 })
 export class AppModule {}

@@ -22,7 +22,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    //!
+    this.userForm.controls['name'].setValue('test@test.com');
+    this.userForm.controls['password'].setValue('123456a');
+    this.login();
+  }
 
   /*
    * @desc handles the request to get user data and authenticated
@@ -38,7 +43,7 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         (res: any) => {
-          this.authService.setUser(res.data);
+          this.authService.setUser(res.user);
           this.router.navigate(["/admin", "dashboard"]);
           this.toastService.success("Inicio exito", "Bienvenido");
         },

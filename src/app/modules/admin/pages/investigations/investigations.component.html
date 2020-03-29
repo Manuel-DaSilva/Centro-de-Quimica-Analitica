@@ -1,49 +1,47 @@
 <div class="fadeIn">
-  <!-- title -->
-  <div class="row">
-    <div class="col text-center">
-      <h2>Lineas de investigacion</h2>
-      <hr />
+    <!-- title -->
+    <div class="row">
+        <div class="col text-center">
+            <h2>Investigación</h2>
+            <hr />
+        </div>
     </div>
-  </div>
-  <!-- content -->
-  <!-- create -->
-  <div class="row">
-    <div class="col">
-      <button class="btn btn-primary mb-3" (click)="openInvestigationModal()">
-        Crear nueva linea <i class="fas fa-plus"></i>
+    <!-- content -->
+    <!-- create -->
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary mb-3" (click)="openInvestigationModal()">
+        Crear nueva investigación <i class="fas fa-plus"></i>
       </button>
+        </div>
     </div>
-  </div>
 
-  <!-- list -->
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Descripcion</th>
-        <th scope="col" class="text-center">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let investigation of investigations; let i = index;">
-        <th scope="row">{{i + 1}}</th>
-        <td>{{investigation.name}}</td>
-        <td>{{investigation.description}}</td>
-        <td class="text-center">
-          <button 
-            (click)="openInvestigationModal(investigation)"
-            class="btn btn-icon btn-primary mr-1">
+    <!-- list -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Miembro</th>
+                <th scope="col" class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let investigation of investigations; let i = index;">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{investigation.title}}</td>
+                <td>{{investigation.description}}</td>
+                <td>{{investigation.name}}</td>
+                <td class="text-center">
+                    <button (click)="openInvestigationModal(investigation)" class="btn btn-icon btn-primary mr-1">
             <i class="fas fa-edit"></i>
           </button>
-          <button
-            (click)="deleteInvestigation(investigation)"  
-            class="btn btn-icon btn-secondary mr-1">
+                    <button (click)="deleteInvestigation(investigation)" class="btn btn-icon btn-secondary mr-1">
             <i class="fas fa-trash"></i>
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

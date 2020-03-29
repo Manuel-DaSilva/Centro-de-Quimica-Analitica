@@ -10,7 +10,7 @@ import { ToastrService } from "ngx-toastr";
 })
 export class QuoteModalComponent implements OnInit {
 
-  public quote;
+  public quote: Quote;
   // input fields
   @Input()
   set inputQuoteData(quote: Quote) {
@@ -47,19 +47,19 @@ export class QuoteModalComponent implements OnInit {
   sendGmail(){
     const url = 
     "https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=" 
-    + this.quote.company.contactEmail 
+    + this.quote.contact_email 
     + "&su=" 
     + 'Cotizacion Centro de Quimica Analitica ' 
-    + this.quote.date;
+    + this.quote.received_date;
     window.open(url, "_blank");
   }
   sendMail(){
     const url = 
     "mailto:" 
-    + this.quote.company.contactEmail 
+    + this.quote.contact_email 
     + "?subject=" 
     + 'Cotizacion Centro de Quimica Analitica ' 
-    + this.quote.date;
+    + this.quote.received_date;
     window.open(url);
   }
 }

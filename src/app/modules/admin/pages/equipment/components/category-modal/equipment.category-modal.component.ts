@@ -3,28 +3,29 @@ import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 // models
-import { ServiceCategory } from 'src/app/models/service.category.interface';
-import { ServicesService } from '../../../../services/services.service';
+import { EquipmentCategory } from 'src/app/models/equipment.category.interface';
+import { EquipmentService } from '../../../../services/equipment.service';
 
 @Component({
   selector: 'app-category-modal',
-  templateUrl: './category-modal.component.html',
+  templateUrl: './equipment.category-modal.component.html',
 })
-export class CategoryModalComponent implements OnInit {
+export class EquipmentCategoryModalComponent implements OnInit {
 
   public mode: string;
   public categoryForm: FormGroup;
   public invalidAttempt = false;
-  public category: ServiceCategory;
+
+  public category: EquipmentCategory;
   // input fields
   @Input()
-  set inputCategoryData(category: ServiceCategory) {
+  set inputCategoryData(category: EquipmentCategory) {
     this.setCategory(category);
     this.category = category;
   }
   constructor(
     private activeModal: NgbActiveModal,
-    private servicesService: ServicesService,
+    private equipmentService: EquipmentService,
     private toastService: ToastrService
   ) {
     this.categoryForm = new FormGroup({
@@ -40,7 +41,7 @@ export class CategoryModalComponent implements OnInit {
    * @desc handle the type of action over the category
    * @param category to edit
    */
-  setCategory(category: ServiceCategory) {
+  setCategory(category: EquipmentCategory) {
     if (category) {
       this.mode = "edit";
       this.setForEdit(category);
@@ -53,7 +54,7 @@ export class CategoryModalComponent implements OnInit {
    * @desc sets the icoming data of the category on the forms
    * @param category to be edited
    */
-  setForEdit(category: ServiceCategory) {
+  setForEdit(category: EquipmentCategory) {
     this.categoryForm.controls["id"].setValue(category.id);
     this.categoryForm.controls["title"].setValue(category.title);
   }
@@ -72,7 +73,7 @@ export class CategoryModalComponent implements OnInit {
     category.id = this.category.id;
 
     // edit code
-    this.servicesService.updateCategory(category).subscribe(
+    this.equipmentService.updateCategory(category).subscribe(
       res => {
         this.toastService.success("correctamente", "Categoria actualizada");
         this.activeModal.close({ success: true });
@@ -96,7 +97,7 @@ export class CategoryModalComponent implements OnInit {
       this.invalidAttempt = true;
       return;
     }
-    this.servicesService.createCategory(this.categoryForm.value).subscribe(
+    this.equipmentService.createCategory(this.categoryForm.value).subscribe(
       res => {
         this.toastService.success("correctamente", "categoria creada");
         this.activeModal.close({ success: true });

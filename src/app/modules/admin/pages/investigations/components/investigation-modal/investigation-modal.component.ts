@@ -12,30 +12,11 @@ import { MemberService } from 'src/app/modules/admin/services/member.service';
   styles: []
 })
 export class InvestigationModalComponent implements OnInit {
-
+  private investigation: Investigation;
   public mode: string;
   public investigationForm: FormGroup;
   public invalidAttempt = false;
-  public members: Member[] = [
-    {
-      id: '1',
-      name: 'Antonio Jose',
-      email: 'email@email.com',
-      phonenumber: '1282939123',
-      position: 'Director',
-      cv: "urltocv",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUq71y6yGEk94T1hyj89lV-khy9OMkgZt0Dl1hecguJxUpLU6a"
-    },
-    {
-      id: '2',
-      name: 'Antonio Jose2',
-      email: 'email2@email.com',
-      phonenumber: '1282932229123',
-      position: 'Director 2',
-      cv: "urltocv",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUq71y6yGEk94T1hyj89lV-khy9OMkgZt0Dl1hecguJxUpLU6a"
-    }
-  ];
+  public members: Member[] = [];
 
   // input fields
   @Input()
@@ -49,14 +30,15 @@ export class InvestigationModalComponent implements OnInit {
     private toastService: ToastrService
   ) {
     this.investigationForm = new FormGroup({
-      name: new FormControl("", Validators.required),
+      id: new FormControl(),
+      title: new FormControl("", Validators.required),
       description: new FormControl("", Validators.required),
-      researches: new FormArray([])
+      member_id: new FormControl("", Validators.required),
     });
   }
 
   ngOnInit() {
-    // this.getMembers();
+    this.getMembers();
   }
 
   /*
@@ -64,12 +46,13 @@ export class InvestigationModalComponent implements OnInit {
    * @param service to edit
    */
   setInvestigation(investigation: Investigation) {
+    this.investigation = investigation;
     if (investigation) {
       this.mode = "edit";
       this.setForEdit(investigation);
     } else {
       this.mode = "create";
-      this.addResearcherArray();
+      
     }
   }
 
@@ -78,13 +61,11 @@ export class InvestigationModalComponent implements OnInit {
    * @param service to be edited
    */
   setForEdit(investigation: Investigation) {
-    this.investigationForm.controls["name"].setValue(investigation.researcher);
-    this.investigationForm.controls["description"].setValue(investigation.position);
-    investigation.researches.forEach( researcher => {
-      (<FormArray>this.investigationForm.controls['researches']).push(
-        new FormControl(researcher, Validators.required)
-      )
-    });
+    
+    this.investigationForm.controls["title"].setValue(investigation.title);
+    this.investigationForm.controls["id"].setValue(investigation.id);
+    this.investigationForm.controls["description"].setValue(investigation.description);
+    this.investigationForm.controls["member_id"].setValue(investigation.member_id);
   }
   
 
@@ -116,7 +97,7 @@ export class InvestigationModalComponent implements OnInit {
   /*
    * @desc handle the petition to create a service
    */
-  createService() {
+  createInvestigation() {
     if(this.investigationForm.invalid){
       this.invalidAttempt = true;
       return;
@@ -142,8 +123,14 @@ export class InvestigationModalComponent implements OnInit {
    */
   getMembers() {
     this.memberService.reqMembers().subscribe(
-      (res: Member[]) => {
-        this.members = res;
+      (res: any) => {
+        this.members = res.data;
+
+        if(this.investigation){
+          if(this.investigation.member_id){
+            this.investigationForm.controls['member_id'].setValue(this.investigation.member_id);
+          }
+        }
       },
       err => {
         console.log("error getting members");
@@ -155,13 +142,5 @@ export class InvestigationModalComponent implements OnInit {
   closeModal() {
     this.activeModal.close();
   }
-
-  addResearcherArray(){
-    (<FormArray>this.investigationForm.controls['researches']).push(
-      new FormControl('', Validators.required)
-    );
-  }
-
-  get formData() { return <FormArray>this.investigationForm.get('researches'); }
 
 }

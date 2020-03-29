@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { ServicesService } from "../../../../services/services.service";
 import { Service } from "src/app/models/service.interface";
+import { ServiceCategory } from '../../../../../../models/service.category.interface';
 
 @Component({
   selector: "app-services-modal",
@@ -12,25 +13,11 @@ import { Service } from "src/app/models/service.interface";
 })
 
 export class ServicesModalComponent implements OnInit {
+  public service: Service;
   public mode: string;
   public serviceForm: FormGroup;
   public invalidAttempt = false;
-  public categories = [
-    {
-      id: 1,
-      name: "Cateogria 1"
-    },
-    {
-      id: 2,
-      name: "Categoria 2"
-    },
-    {
-      id: 3,
-      name: "Categoria 3"
-    }
-  ];
-
-  public service:Service;
+  public categories: ServiceCategory[] = [];
 
   // input fields
   @Input()
@@ -44,14 +31,15 @@ export class ServicesModalComponent implements OnInit {
     private toastService: ToastrService
   ) {
     this.serviceForm = new FormGroup({
-      name: new FormControl("", Validators.required),
-      category: new FormControl("", Validators.required),
+      id: new FormControl(),
+      title: new FormControl("", Validators.required),
+      category_id: new FormControl("", Validators.required),
       description: new FormControl("", Validators.required)
     });
   }
 
   ngOnInit() {
-    // this.getCategories();
+    this.getCategories();
   }
 
   /*
@@ -72,8 +60,9 @@ export class ServicesModalComponent implements OnInit {
    * @param service to be edited
    */
   setForEdit(service: Service) {
-    this.serviceForm.controls["name"].setValue(service.name);
-    this.serviceForm.controls["category"].setValue(service.category.id);
+    this.serviceForm.controls["id"].setValue(service.id);
+    this.serviceForm.controls["title"].setValue(service.title);
+    this.serviceForm.controls["category_id"].setValue(service.category_id);
     this.serviceForm.controls["description"].setValue(service.description);
   }
 
@@ -86,10 +75,7 @@ export class ServicesModalComponent implements OnInit {
       this.invalidAttempt = true;
       return;
     }
-
-    let service = this.serviceForm.value;
-    service.id = this.service.id;
-    this.servicesService.updateService(service).subscribe(
+    this.servicesService.updateService(this.serviceForm.value).subscribe(
       res => {
         this.toastService.success("correctamente", "Servicio actualizado");
         this.activeModal.close({ success: true });

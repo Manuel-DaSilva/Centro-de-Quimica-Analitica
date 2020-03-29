@@ -1,21 +1,23 @@
 import { Injectable } from "@angular/core";
 import { URL_SERVICES } from "src/app/config/config";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { AuthService } from './auth.service';
+import { Investigation } from '../../../models/investigation.interface';
 
 @Injectable({
   providedIn: "root"
 })
 export class InvestigationsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   /*
    * @desc handles the petition to the backend API to get all investigations data
    */
   reqInvestigations() {
     // url of api endpoint
-    const url = URL_SERVICES + "api/url/investigations";
+    const url = URL_SERVICES + "investigations";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = this.authService.getAuthHeader();
     const config = { headers: headers };
     // returning the petition
     return this.http.get(url, config);
@@ -24,16 +26,16 @@ export class InvestigationsService {
   /*
    * @desc handles the petition to the backend API to create a new instrument
    */
-  createInvestigation(investigation) {
+  createInvestigation(investigation: Investigation) {
     // url of api endpoint
-    const url = URL_SERVICES + "api/new/investigation";
+    const url = URL_SERVICES + "investigations/create";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = this.authService.getAuthHeader();
     const config = { headers: headers };
     const body = {
-      name: investigation.name,
+      title: investigation.title,
       description: investigation.description,
-      members: investigation.members
+      memberId: investigation.member_id
     };
     // returning the petition
     return this.http.post(url, body, config);
@@ -42,35 +44,35 @@ export class InvestigationsService {
   /*
    * @desc handles the petition to the backend API to update investigation
    */
-  updateInvestigation(investigation) {
+  updateInvestigation(investigation: Investigation) {
     // url of api endpoint
-    const url = URL_SERVICES + "api/update/investigation";
+    const url = URL_SERVICES + "investigations/update";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = this.authService.getAuthHeader();
     const config = { headers: headers };
     const body = {
       id: investigation.id,
-      name: investigation.name,
+      title: investigation.title,
       description: investigation.description,
-      members: investigation.members
+      memberId: investigation.member_id
     };
     // returning the petition
-    return this.http.post(url, body, config);
+    return this.http.put(url, body, config);
   }
 
   /*
    * @desc handles the petition to the backend API to delete investigation
    */
-  deleteInvestigation(investigation) {
+  deleteInvestigation(investigation: Investigation) {
     // url of api endpoint
-    const url = URL_SERVICES + "api/delete/investigation";
+    const url = URL_SERVICES + "investigations/delete";
     // needed config
-    const headers = new HttpHeaders({});
-    const config = { headers: headers };
+    const headers = this.authService.getAuthHeader();
     const body = {
       id: investigation.id
     };
+    const config = { headers: headers, body: body };
     // returning the petition
-    return this.http.post(url, body, config);
+    return this.http.delete(url, config);
   }
 }

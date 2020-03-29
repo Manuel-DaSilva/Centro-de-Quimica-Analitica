@@ -1,87 +1,50 @@
 <div class="modal-header">
     <h5 class="modal-title">
-      <span *ngIf="mode === 'create'">Crear investigacion</span>
-      <span *ngIf="mode === 'edit'">Editar investigacion</span>
+        <span *ngIf="mode === 'create'">Crear investigacion</span>
+        <span *ngIf="mode === 'edit'">Editar investigacion</span>
     </h5>
     <button (click)="closeModal()" type="button" class="close" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
+</div>
+<div class="modal-body">
     <form [formGroup]="investigationForm">
-      <div class="form-group">
-        <label for="serviceName">Nombre</label>
-        <input
-          formControlName="name"
-          type="text"
-          class="form-control"
-          placeholder="Nombre de la investigacion"
-        />
-      </div>
-      <div class="form-group">
-        <label for="serviceName">Descripcion</label>
-        <input
-          formControlName="description"
-          type="text"
-          class="form-control"
-          placeholder="Description de la investigacion"
-        />
-      </div>
-      <label for="serviceCategory">Investigadores</label>
-      <div class="form-group" *ngFor="let formData of formData.controls; let i = index;">
-        <div formArrayName="researches">
-          <select  formControlName="{{i}}" class="form-control">
-            <option value="" selected="selected" disabled
-              >Agregar investigador</option
-            >
-            <option *ngFor="let researcher of members" [value]="researcher.id">{{
-              researcher.name
-            }}</option>
-          </select>
+        <div class="form-group">
+            <label for="serviceName">Nombre</label>
+            <input formControlName="title" type="text" class="form-control" placeholder="Nombre de la investigacion" />
         </div>
-      </div>
-      <button
-        (click)="addResearcherArray()"
-        type="button"
-        class="btn btn-primary"
-        >
-        Agregar
-      </button>
+        <div class="form-group">
+            <label for="serviceName">Descripcion</label>
+            <textarea class="form-control" rows="5" placeholder="Description de la investigacion" formControlName="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Investigador:</label>
+            <select class="form-control" formControlName="member_id">
+            <option value="" disabled selected="selected"
+              >Selecciona el miembro</option
+            >
+            <option *ngFor="let member of members" [value]="member.id">{{
+              member.name
+            }}</option>
+      </select>
+        </div>
     </form>
-  </div>
-  <div class="row pr-3 pl-3">
+</div>
+<div class="row pr-3 pl-3">
     <div class="col">
-      <div *ngIf="invalidAttempt" class="alert alert-danger" role="alert">
-        Debe llenar todos los datos
-      </div>
+        <div *ngIf="invalidAttempt" class="alert alert-danger" role="alert">
+            Debe llenar todos los datos
+        </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button
-      (click)="closeModal()"
-      type="button"
-      class="btn btn-secondary"
-      data-dismiss="modal"
-    >
+</div>
+<div class="modal-footer">
+    <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">
       Cancelar
     </button>
-    <button
-      *ngIf="mode === 'create'"
-      (click)="createInvestigarion()"
-      [ngClass]="{'disabled': investigationForm.invalid}"
-      type="button"
-      class="btn btn-primary"
-    >
+    <button *ngIf="mode === 'create'" (click)="createInvestigation()" [ngClass]="{'disabled': investigationForm.invalid}" type="button" class="btn btn-primary">
       Crear
     </button>
-    <button
-      *ngIf="mode === 'edit'"
-      (click)="editInvestigation()"
-      [ngClass]="{'disabled': investigationForm.invalid}"
-      type="button"
-      class="btn btn-primary"
-    >
+    <button *ngIf="mode === 'edit'" (click)="editInvestigation()" [ngClass]="{'disabled': investigationForm.invalid}" type="button" class="btn btn-primary">
       Guardar cambios
     </button>
-  </div>
-  
+</div>
