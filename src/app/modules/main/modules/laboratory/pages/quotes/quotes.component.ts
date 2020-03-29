@@ -26,7 +26,8 @@ export class QuotesComponent implements OnInit {
     private toastService: ToastrService,
   ) {
 
-    this.selectedService = this.dataService.getActiveService();
+
+
 
     this.getServices();
 
@@ -49,9 +50,13 @@ export class QuotesComponent implements OnInit {
       otherService: new FormControl("", Validators.required),
       observations: new FormControl("", Validators.required)
     });
+
+
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.selectedService = this.dataService.getActiveService();
+  }
 
 
   getServices() {
@@ -73,10 +78,12 @@ export class QuotesComponent implements OnInit {
       return;
     }
     this.tabSet.select("tabInfo");
+    if(this.selectedService){
+      this.serviceForm.controls['serviceId'].setValue(this.selectedService.id);
+    }
   }
 
   sendQuote() {
-    debugger;
     if(this.serviceForm.invalid){
       return;
     }
