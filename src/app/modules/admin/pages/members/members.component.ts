@@ -53,10 +53,9 @@ export class MembersComponent implements OnInit {
   getMembers() {
     this.membersService.reqMembers().subscribe(
       (res: any) => {
-        this.members = res.map(item => {
-          item['id'] = item._id.$oid;
-          return item;
-        });
+        this.members = res.data;
+        console.log(res.data);
+        
       },
       err => {
         console.log("error getting members");

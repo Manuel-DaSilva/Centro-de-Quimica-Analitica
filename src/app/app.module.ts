@@ -18,6 +18,7 @@ import { MemberModalComponent } from './modules/admin/pages/members/components/m
 import { EquipmentModalComponent } from './modules/admin/pages/equipment/components/equipment-modal/equipment-modal.component';
 import { InvestigationModalComponent } from './modules/admin/pages/investigations/components/investigation-modal/investigation-modal.component';
 import { EquipmentCategoryModalComponent } from './modules/admin/pages/equipment/components/category-modal/equipment.category-modal.component';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EquipmentCategoryModalComponent } from './modules/admin/pages/equipment
     MemberModalComponent,
     EquipmentModalComponent,
     InvestigationModalComponent,
-    EquipmentCategoryModalComponent
+    EquipmentCategoryModalComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { EquipmentCategoryModalComponent } from './modules/admin/pages/equipment
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    PipesModule
   ],
   bootstrap: [AppComponent],
   entryComponents: [

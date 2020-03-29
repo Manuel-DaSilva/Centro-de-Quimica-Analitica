@@ -110,7 +110,7 @@
         >
           <img
             class="member-img"
-            [src]="member.image_path || 'https://image.flaticon.com/icons/svg/21/21104.svg'"
+            [src]="member.image_path | imagePath"
             [alt]="member.name + 'Image'"
           />
         </div>
@@ -122,12 +122,12 @@
           <h5>{{ member.position }}</h5>
           <h5>Correo: {{ member.email }}</h5>
           <h5>Telefono: {{ member.phone }}</h5>
-          <h5 *ngIf="member.cv_path">Curriculum Vitae: <a href="{{member.cv_path}}" download>(descargar)</a></h5>
+          <h5 *ngIf="member.cv_path">Curriculum Vitae: <a target="_blank" href="{{member.cv_path | imagePath}}" download>(descargar)</a></h5>
         </div>
         <div class="col-2 col-md-2 text-center v-align" *ngIf="i % 2 != 0">
           <img
             class="member-img"
-            [src]="member.image_path || 'https://image.flaticon.com/icons/svg/21/21104.svg'"
+            [src]="member.image_path | imagePath"
             [alt]="member.name + 'Image'"
           />
         </div>

@@ -21,6 +21,7 @@ import { QuotesComponent } from './pages/quotes/quotes.component';
 // modules
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
     AdminRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    PipesModule
   ]
 })
 export class AdminModule {}

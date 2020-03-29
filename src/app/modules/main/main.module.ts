@@ -15,6 +15,7 @@ import { ResearchesComponent } from "./pages/researches/researches.component";
 
 // modules
 import { HttpClientModule } from "@angular/common/http";
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,6 @@ import { HttpClientModule } from "@angular/common/http";
     ContactComponent,
     ResearchesComponent
   ],
-  imports: [CommonModule, MainRoutingModule, HttpClientModule]
+  imports: [CommonModule, MainRoutingModule, HttpClientModule,PipesModule]
 })
 export class MainModule {}

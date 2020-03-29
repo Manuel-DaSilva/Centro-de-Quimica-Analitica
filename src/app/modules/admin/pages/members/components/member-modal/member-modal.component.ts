@@ -15,7 +15,7 @@ export class MemberModalComponent implements OnInit {
   public mode: string;
   public memberForm: FormGroup;
   public invalidAttempt = false;
-  public member;
+  public member: Member;
   // image variables
   public validImageExtensions = ["png", "jpg", "gif", "jpeg"];
   public invalidFile = false;
@@ -29,6 +29,8 @@ export class MemberModalComponent implements OnInit {
   public memberCV;
   public cvReady = false;
 
+  updatingFile = false;
+
   // input fields
   @Input()
   set inputMemberData(member: Member) {
@@ -40,9 +42,10 @@ export class MemberModalComponent implements OnInit {
     private toastService: ToastrService
   ) {
     this.memberForm = new FormGroup({
+      id: new FormControl(),
       name: new FormControl("", Validators.required),
       email: new FormControl("", Validators.required),
-      phonenumber: new FormControl("", Validators.required),
+      phone: new FormControl("", Validators.required),
       position: new FormControl("", Validators.required),
 
     });
@@ -70,9 +73,10 @@ export class MemberModalComponent implements OnInit {
    * @param equipment to be edited
    */
   setForEdit(member: Member) {
+    this.memberForm.controls["id"].setValue(member.id);
     this.memberForm.controls["name"].setValue(member.name);
     this.memberForm.controls["email"].setValue(member.email);
-    this.memberForm.controls["phonenumber"].setValue(member.phonenumber);
+    this.memberForm.controls["phone"].setValue(member.phone);
     this.memberForm.controls["position"].setValue(member.position);
   }
 
@@ -81,14 +85,14 @@ export class MemberModalComponent implements OnInit {
    * @param equipment to edit
    */
   editMember() {
-    if(this.memberForm.invalid){
+    if(this.memberForm.invalid || !this.cvReady || !this.imageReady){
       this.invalidAttempt = true;
       return;
     }
     // edit code
     let member = this.memberForm.value;
     member.id = this.member.id;
-    this.memberService.updateMember(member,this.memberImage,this.memberCV).subscribe(
+    this.memberService.updateMember(member).subscribe(
       res => {
         this.toastService.success("correctamente", "Miembro actualizado");
         this.activeModal.close({ success: true });
@@ -108,7 +112,7 @@ export class MemberModalComponent implements OnInit {
    * @desc handle the petition to create a member
    */
   createMember() {
-    if(this.memberForm.invalid){
+    if(this.memberForm.invalid || !this.cvReady || !this.imageReady){
       this.invalidAttempt = true;
       return;
     }
@@ -116,12 +120,11 @@ export class MemberModalComponent implements OnInit {
     //   this.invalidAttempt = true;
     //   return;
     // }
-    this.memberService.createMember(this.memberForm.value,this.memberImage,this.memberCV).subscribe(
+    this.memberService.createMember(this.memberForm.value,this.memberImage,this.memberCV).then(
       res => {
         this.toastService.success("correctamente", "miembro creado");
         this.activeModal.close({ success: true });
-      },
-      err => {
+      }).catch(err => {
         console.log("error creating member");
         console.log(err);
         this.toastService.error(
@@ -129,8 +132,7 @@ export class MemberModalComponent implements OnInit {
           "Error al crear el miembro"
         );
 
-      }
-    );
+      });
   }
 
   onImageSelection(image: File) {
@@ -180,6 +182,49 @@ export class MemberModalComponent implements OnInit {
 
   closeModal() {
     this.activeModal.close();
+  }
+
+  onChangeFile(){
+    this.updatingFile = !this.updatingFile;
+  }
+
+  updateCv(){
+    if(!this.cvReady){
+      this.invalidAttempt = true;
+      return;
+    }
+
+    this.memberService.updateCV(this.member,this.memberCV).then(
+      res => {
+        this.toastService.success("correctamente", "miembro actualizado");
+        this.activeModal.close({ success: true });
+      }).catch(err => {
+        console.log("error updating member image");
+        console.log(err);
+        this.toastService.error(
+          "el servidor no respondio",
+          "Error al modificar el miembro"
+        );
+      });
+  }
+
+  updateImage(){
+    if(!this.imageReady){
+      this.invalidAttempt = true;
+      return;
+    }
+    this.memberService.updateImage(this.member,this.memberImage).then(
+      res => {
+        this.toastService.success("correctamente", "miembro actualizado");
+        this.activeModal.close({ success: true });
+      }).catch(err => {
+        console.log("error updating member image");
+        console.log(err);
+        this.toastService.error(
+          "el servidor no respondio",
+          "Error al modificar el miembro"
+        );
+      });
   }
 
 }

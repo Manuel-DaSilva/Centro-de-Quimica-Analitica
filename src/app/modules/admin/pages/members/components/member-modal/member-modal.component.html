@@ -1,91 +1,97 @@
 <div class="modal-header">
     <h5 class="modal-title">
-      <span *ngIf="mode === 'create'">Crear miembro</span>
-      <span *ngIf="mode === 'edit'">Editar miembro</span>
+        <span *ngIf="mode === 'create'">Crear miembro</span>
+        <span *ngIf="mode === 'edit'">Editar miembro</span>
     </h5>
     <button (click)="closeModal()" type="button" class="close" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
-        <div *ngIf="mode === 'edit'" class="row">
-                <div class="col-12 text-center">
-                    <img class="member-admin-img" *ngIf="mode === 'edit'" src="{{member.imagePath}}" alt="member image">
-                </div>
-                <div class="col-12 text-center">
-                    <a href="{{member.cv}}" target="_blanck">Curriculum vitae </a>
-                </div>
-            </div>
-    <form [formGroup]="memberForm">
-      <div class="form-group">
-        <label for="serviceName">Nombre</label>
-        <input
-          formControlName="name"
-          type="text"
-          class="form-control"
-          placeholder="Nombre del miembro"
-        />
-      </div>
-      <div class="form-group">
-        <label for="serviceName">Correo</label>
-        <input
-          formControlName="email"
-          type="text"
-          class="form-control"
-          placeholder="Correo del miembro"
-        />
-      </div>
-      <div class="form-group">
-        <label for="serviceName">Telefono</label>
-        <input
-          formControlName="phonenumber"
-          type="text"
-          class="form-control"
-          placeholder="Telefono del miembro"
-        />
-      </div>
-      <div class="form-group">
-            <label for="serviceName">Posición</label>
-            <input
-              formControlName="position"
-              type="text"
-              class="form-control"
-              placeholder="Posición del miembro"
-            />
-          </div>
-      <div class="form-group">
-        <label *ngIf="mode === 'create'"  for="serviceName">Imagen</label>
-        <label *ngIf="mode === 'edit'"  for="serviceName">Nueva imagen</label>
-        <input
-        class="form-control mb-2"
-        (change)="onImageSelection($event.target.files[0])"
-        name="member"
-        type="file"
-        />
-        <p class="text-center">
-            <img  *ngIf="imagePreview" class="member-admin-img" [src]="imagePreview" />
-        </p>
-        <p class="mt-2" *ngIf="invalidFile">
-            <small class="text-danger"
-              >El formato de la imagen no es valido</small
-            >
+</div>
+<div class="modal-body">
+    <div *ngIf="mode === 'edit'" class="row">
+        <div class="col-12 text-center">
+            <img class="member-admin-img" *ngIf="mode === 'edit'" src="{{member.image_path  | imagePath}}" alt="member image">
+        </div>
+        <div class="col-12 text-center">
+            <a href="{{member.cv_path | imagePath}}" target="_blank">Curriculum vitae </a>
+        </div>
+        <div class="col-12 text-center">
+            <button (click)="onChangeFile()" type="button" class="btn btn-primary">Modificar</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="updatingFile">
+        <div class="col-6 text-center">
+            <div class="form-group">
+                <label for="serviceName">Curriculum Vitae (pdf):</label>
+                <input class="form-control  mb-2" (change)="onCvSelection($event.target.files[0])" name="memberCV" type="file" />
+                <p *ngIf="invalidCVFile">
+                    <small class="text-danger">El formato del curriculum no es valido</small
+              >
           </p>
+          <button [ngClass]="{'disabled': !cvReady}" (click)="updateCv()" type="button" class="btn btn-primary">Cambiar curriculum</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label *ngIf="mode === 'create'" for="serviceName">Curriculum Vitae</label>
-        <label *ngIf="mode === 'edit'"  for="serviceName">Nuevo Curriculum Vitae</label>
-        <input
-        class="form-control"
-        (change)="onCvSelection($event.target.files[0])"
-        name="memberCV"
-        type="file"
-        />
-        <p *ngIf="invalidCVFile">
-            <small class="text-danger"
-              >El formato del curriculum no es valido</small
-            >
-        </p>
-      </div>
+      <div class="col-6 text-center">
+        <div class="form-group">
+          <label for="serviceName">Imagen ({{validImageExtensions}}):</label>
+          <input class="form-control mb-2" (change)="onImageSelection($event.target.files[0])" name="member" type="file" />
+          <p class="text-center">
+              <img *ngIf="imagePreview" class="member-admin-img" [src]="imagePreview" />
+          </p>
+          <p class="mt-2" *ngIf="invalidFile">
+            <small class="text-danger">El formato de la imagen no es valido</small>
+                </p>
+                <button [ngClass]="{'disabled': !imageReady}" (click)="updateImage()" type="button" class="btn btn-primary">Cambiar imagen</button>
+            </div>
+        </div>
+    </div>
+
+    <form [formGroup]="memberForm">
+        <div class="form-group">
+            <label for="serviceName">Nombre:</label>
+            <input formControlName="name" type="text" class="form-control" placeholder="Nombre del miembro" />
+        </div>
+        <div class="form-group">
+            <label for="serviceName">Correo:</label>
+            <input formControlName="email" type="text" class="form-control" placeholder="Correo del miembro" />
+        </div>
+        <div class="form-group">
+            <label for="serviceName">Telefono:</label>
+            <input formControlName="phone" type="text" class="form-control" placeholder="Telefono del miembro" />
+        </div>
+        <div class="form-group">
+            <label for="serviceName">Posición:</label>
+            <input formControlName="position" type="text" class="form-control" placeholder="Posición del miembro" />
+        </div>
+        <div *ngIf="mode === 'create'">
+
+            <div class="form-group">
+                <label for="serviceName">Imagen ({{validImageExtensions}}):</label>
+                <input class="form-control mb-2" (change)="onImageSelection($event.target.files[0])" name="member" type="file" />
+                <p class="text-center">
+                    <img *ngIf="imagePreview" class="member-admin-img" [src]="imagePreview" />
+                </p>
+                <p class="mt-2" *ngIf="invalidFile">
+                    <small class="text-danger">El formato de la imagen no es valido</small
+                >
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label for="serviceName">Curriculum Vitae (pdf):</label>
+              <input
+              class="form-control"
+              (change)="onCvSelection($event.target.files[0])"
+              name="memberCV"
+              type="file"
+              />
+              <p *ngIf="invalidCVFile">
+                  <small class="text-danger"
+                    >El formato del curriculum no es valido</small
+                  >
+              </p>
+            </div>
+        </div>
     </form>
    
     
@@ -109,7 +115,7 @@
     <button
       *ngIf="mode === 'create'"
       (click)="createMember()"
-      [ngClass]="{'disabled': memberForm.invalid}"
+      [ngClass]="{'disabled': memberForm.invalid || !imageReady || !cvReady}"
       type="button"
       class="btn btn-primary"
     >
@@ -122,7 +128,6 @@
       type="button"
       class="btn btn-primary"
     >
-      Guardar cambios
+      Modificar datos
     </button>
   </div>
-  

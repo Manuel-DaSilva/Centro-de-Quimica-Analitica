@@ -48,10 +48,10 @@ const routes: Routes = [
         path: "cotizaciones",
         component: QuotesComponent
       },
-      // {
-      //   path: "miembros",
-      //   component: MembersComponent
-      // },
+      {
+        path: "miembros",
+        component: MembersComponent
+      },
       {
         path: "",
         redirectTo: "dashboard"

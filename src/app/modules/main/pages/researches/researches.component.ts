@@ -36,7 +36,7 @@ export class ResearchesComponent implements OnInit {
   }
 
   setResearchesByMember(){
-    let members: Member[] = [];
+    let members = [];
     
     let researches = [];
 

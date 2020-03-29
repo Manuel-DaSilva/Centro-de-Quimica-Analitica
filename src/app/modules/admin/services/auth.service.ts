@@ -54,4 +54,8 @@ export class AuthService {
 
     return headers;
   }
+
+  getToken(){
+    return this.token;
+  }
 }
