@@ -7,73 +7,19 @@ import { Service } from 'src/app/models/service.interface';
   providedIn: "root"
 })
 export class DataService {
-  // !parche
-  public services: Service[] = [
-    {
-      id: 1,
-      name: "Servicio agua1",
-      description: "Descripcion servicio 1",
-      category: {
-        id: 2,
-        name: 'category2'
-      },
-    },
-    {
-      id: 2,
-      name: "Servicio agua2",
-      description: "Descripcion servicio 1",
-      category: {
-        id: 2,
-        name: 'category2'
-      },
-    },
-    {
-      id: 3,
-      name: "Servicio agua3",
-      description: "Descripcion servicio 1",
-      category: {
-        id: 2,
-        name: 'category2'
-      },
-    },
-    {
-      id: 4,
-      name: "Servicio suelos1",
-      description: "Descripcion servicio 1",
-      category: {
-        id: 2,
-        name: 'category2'
-      },
-    },
-    {
-      id: 5,
-      name: "Servicio suelos2",
-      description: "Descripcion servicio 1",
-      category: {
-        id: 2,
-        name: 'category2'
-      },
-    },
-    {
-      id: 6,
-      name: "Servicio suelos3",
-      description: "Descripcion servicio 1",
-      category: {
-        id: 2,
-        name: 'category2'
-      },
-    }
-  ];
+
+  public activeService;
+
   constructor(private http: HttpClient) {}
 
   /*
-   * @desc handles the petition to the backend API to get all instrumentes avaliables
+   * @desc handles the petition to the backend API to get all members
    */
-  reqInstruments() {
+  reqMembers() {
     // url of api endpoint
-    const url = URL_SERVICES + "api/ulr/instruments";
+    const url = URL_SERVICES + "members";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders();
     const config = { headers: headers };
     // returning the petition
     return this.http.get(url, config);
@@ -84,11 +30,9 @@ export class DataService {
    */
   reqEquipment() {
     // url of api endpoint
-    const url = URL_SERVICES + "equipos";
+    const url = URL_SERVICES + "equipment";
     // needed config
-    const headers = new HttpHeaders({
-      'Content-Type':'application/json'
-    });
+    const headers = new HttpHeaders();
     const config = { headers: headers };
     // returning the petition
     return this.http.get(url, config);
@@ -99,34 +43,7 @@ export class DataService {
    */
   reqInvestigations() {
     // url of api endpoint
-    const url = URL_SERVICES + "api/ulr/investigations";
-    // needed config
-    const headers = new HttpHeaders({});
-    const config = { headers: headers };
-    // returning the petition
-    return this.http.get(url, config);
-  }
-
-  
-  /*
-   * @desc handles the petition to the backend API to get all investigations data
-   */
-  reqInvestigationsByMember() {
-    // url of api endpoint
-    const url = URL_SERVICES + "api/ulr/investigationsbymember";
-    // needed config
-    const headers = new HttpHeaders({});
-    const config = { headers: headers };
-    // returning the petition
-    return this.http.get(url, config);
-  }
-
-  /*
-   * @desc handles the petition to the backend API to get all laboratories data
-   */
-  reqLaboratories() {
-    // url of api endpoint
-    const url = URL_SERVICES + "api/ulr/laboratories";
+    const url = URL_SERVICES + "investigations";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
@@ -139,7 +56,7 @@ export class DataService {
    */
   reqServices() {
     // url of api endpoint
-    const url = URL_SERVICES + "api/ulr/services";
+    const url = URL_SERVICES + "services";
     // needed config
     const headers = new HttpHeaders({});
     const config = { headers: headers };
@@ -147,38 +64,31 @@ export class DataService {
     return this.http.get(url, config);
   }
 
-  /*
-   * @desc sends the petition to the backend API to create a new info quote
-   */
-  sendInfoQuote(serviceData, companyData) {
-    // url of api endpoint
-    const url = URL_SERVICES + "api/new/infoQuote";
-    // needed config
-    const headers = new HttpHeaders({});
-    const config = { headers: headers };
-    const body = {};
-    // returning the petition
-    return this.http.post(url, body, config);
-  }
+ 
   /*
    * @desc sends the petition to the backend API to create a new service quote
    */
-  sendServiceQuote(infoData, companyData) {
+  sendQuote(quoteData) {
     // url of api endpoint
-    const url = URL_SERVICES + "api/new/infoQuote";
+    const url = URL_SERVICES + "quotes/create";
     // needed config
-    const headers = new HttpHeaders({});
+    const headers = new HttpHeaders({
+      // 'Content-Type':'application/x-www-form-urlencoded'
+    });
     const config = { headers: headers };
-    const body = {};
+    const body = quoteData;
     // returning the petition
-    return this.http.post(url, body, config);
+    console.log(body);
+    
+    return this.http.post(url, quoteData, config);
   }
 
-  getServices(){
-    return this.services;
+  setActiveService(service: Service){
+    this.activeService = service;
   }
 
-  setServices(services){
-    this.services = services;
+  getActiveService(){
+    return this.activeService;
   }
+
 }

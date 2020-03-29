@@ -8,43 +8,14 @@ import { Equipment } from "src/app/models/equipment.interface";
   styles: []
 })
 export class EquipmentComponent implements OnInit {
-  public equipment: Equipment[] = [
-    {
-      id: "equiId",
-      name: "equiName",
-      category: {
-        id: "catId",
-        name: "catName"
-      }
-    },
-    {
-      id: "equiId2",
-      name: "equiName2",
-      category: {
-        id: "catId",
-        name: "catName"
-      }
-    },
-    {
-      id: "equiId3",
-      name: "equiName3",
-      category: {
-        id: "catId2",
-        name: "catName2"
-      }
-    },
-  ];
-
-
+  public equipment: Equipment[];
   public equipmentByCategory = [];
-  
-
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.getEquipment();
-    // this.getInstruments();
-    this.setEquipmentsByCat(this.equipment);
+    //this.getInstruments();
+    //this.setEquipmentsByCat(this.equipment);
   }
 
   /*
@@ -53,12 +24,15 @@ export class EquipmentComponent implements OnInit {
   getEquipment() {
     this.dataService.reqEquipment().subscribe(
       (res: any) => {
-        console.log(res);
-        this.equipment = res.data.map(item => {
-          item['id'] = item._id.$oid;
-          delete item['_id'];
-          return item
-        });
+        // console.log(res);
+        this.equipment = res.data;
+
+        this.setEquipmentsByCat();
+        // this.equipment = res.data.map(item => {
+        //   item['id'] = item._id.$oid;
+        //   delete item['_id'];
+        //   return item
+        // });
       },
       err => {
         console.log("error getting equipment");
@@ -67,26 +41,26 @@ export class EquipmentComponent implements OnInit {
     );
   }
 
-  setEquipmentsByCat(equipment: Equipment[]){
+  setEquipmentsByCat(){
     let categories = [];
     let instruments = [];
     let result = [];
-    equipment.forEach( equip => {
+    this.equipment.forEach( equip => {
 
-      let index = categories.indexOf(equip.category.name);
+      let index = categories.indexOf(equip.category_title);
       if(index < 0){
         instruments = [];
-        categories.push(equip.category.name);
+        categories.push(equip.category_title);
 
 
-        equipment.forEach(equip2 => {
-          if(equip2.category.name === equip.category.name){
-            instruments.push(equip.name);
+        this.equipment.forEach(equip2 => {
+          if(equip2.category_title === equip.category_title){
+            instruments.push(equip.title);
           }
         });
 
         result.push({
-          title: equip.category.name,
+          title: equip.category_title,
           instruments: instruments
         });
 

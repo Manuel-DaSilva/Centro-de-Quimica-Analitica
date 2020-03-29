@@ -1,56 +1,52 @@
 <!-- carousel start -->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active carousel-cqa" data-interval="2000">
-      <div class="container text-center">
-        <div class="carousel-caption">
-          <h1>Centro de Química Analítica</h1>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit</p>
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active carousel-cqa" data-interval="2000">
+            <div class="container text-center">
+                <div class="carousel-caption">
+                    <h1>Centro de Química Analítica</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit</p>
+                </div>
+                <img class="carousel-img" src="./assets/images/logo-cqa.png" alt="centro de quimica analitica logo">
+            </div>
         </div>
-        <img class="carousel-img" src="./assets/images/logo-cqa.png" alt="centro de quimica analitica logo">
-      </div>
-    </div>
-    <div class="carousel-item carousel-ucv" data-interval="2000">
-      <div class="container text-center">
-        <div class="carousel-caption">
-          <h1>Universidad Central de Venezuela</h1>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit</p>
+        <div class="carousel-item carousel-ucv" data-interval="2000">
+            <div class="container text-center">
+                <div class="carousel-caption">
+                    <h1>Universidad Central de Venezuela</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit</p>
+                </div>
+                <img class="carousel-img" src="./assets/images/logo-ucv.png" alt="ucv logo">
+            </div>
         </div>
-        <img class="carousel-img" src="./assets/images/logo-ucv.png" alt="ucv logo">
-      </div>
-    </div>
-    <div class="carousel-item carousel-ciencias" data-interval="2000">
-      <div class="container text-center">
-        <div class="carousel-caption">
-          <h1>Facultad de Ciencias</h1>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit</p>
+        <div class="carousel-item carousel-ciencias" data-interval="2000">
+            <div class="container text-center">
+                <div class="carousel-caption">
+                    <h1>Facultad de Ciencias</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit</p>
+                </div>
+                <img class="carousel-img" src="./assets/images/logo-ciencias.png" alt="ciencias logo">
+            </div>
         </div>
-        <img class="carousel-img" src="./assets/images/logo-ciencias.png" alt="ciencias logo">
-      </div>
     </div>
-  </div>
 </div>
 <!-- carousel end -->
 <!-- presentation -->
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h1 class="text-center mt-5">Quienes somos</h1>
-      <br />
-      <h5 class="mx-5 mb-5 text-center">
-        <span class="text-primary">El Centro de Química Analítica (CQA)</span>
-        es una dependencia de investigación creada en 1984  adscrita a la
-        Dirección de la Escuela de Química de la Facultad de Ciencias de la
-        Universidad Central de Venezuela.
-        <br />
-        <br />
-        <b
-          >La actividad del CQA se orienta principalmente a la investigación
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mt-5">Quienes somos</h1>
+            <br />
+            <h5 class="mx-5 mb-5 text-center">
+                <span class="text-primary">El Centro de Química Analítica (CQA)</span> es una dependencia de investigación creada en 1984 adscrita a la Dirección de la Escuela de Química de la Facultad de Ciencias de la Universidad Central de Venezuela.
+                <br />
+                <br />
+                <b>La actividad del CQA se orienta principalmente a la investigación
           básica y aplicada en el área de Química Analítica y a la formación de
           recursos humanos en esta disciplina.</b
         >
@@ -114,7 +110,7 @@
         >
           <img
             class="member-img"
-            [src]="member.imagePath"
+            [src]="member.image_path || 'https://image.flaticon.com/icons/svg/21/21104.svg'"
             [alt]="member.name + 'Image'"
           />
         </div>
@@ -125,13 +121,13 @@
           <h2>{{ member.name }}</h2>
           <h5>{{ member.position }}</h5>
           <h5>Correo: {{ member.email }}</h5>
-          <h5>Telefono: {{ member.phonenumber }}</h5>
-          <h5 *ngIf="member.cv">Curriculum Vitae: <a href="{{member.cv}}" download>(descargar)</a></h5>
+          <h5>Telefono: {{ member.phone }}</h5>
+          <h5 *ngIf="member.cv_path">Curriculum Vitae: <a href="{{member.cv_path}}" download>(descargar)</a></h5>
         </div>
         <div class="col-2 col-md-2 text-center v-align" *ngIf="i % 2 != 0">
           <img
             class="member-img"
-            [src]="member.imagePath"
+            [src]="member.image_path || 'https://image.flaticon.com/icons/svg/21/21104.svg'"
             [alt]="member.name + 'Image'"
           />
         </div>

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { URL_SERVICES } from 'src/app/config/config';
 // models
-import { Category } from 'src/app/models/category.interface';
+import { Category } from 'src/app/models/equipment.category.interface';
 @Injectable({
   providedIn: 'root'
 })

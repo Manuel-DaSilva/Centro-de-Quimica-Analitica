@@ -10,7 +10,7 @@ import { ServicesService } from "../../services/services.service";
 import { CategoryService } from '../../services/category.service';
 // models
 import { Service } from "src/app/models/service.interface";
-import { Category } from 'src/app/models/category.interface';
+import { Category } from 'src/app/models/equipment.category.interface';
 
 @Component({
   selector: "app-services",

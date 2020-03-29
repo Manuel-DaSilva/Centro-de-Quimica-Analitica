@@ -1,98 +1,40 @@
 <div class="container fadeIn">
-  <div class="row">
-    <div class="col-12 text-center mt-2">
-      <h4 *ngIf="selectedServiceId">¿Que deseas realizar sobre nuestro servicio de <b>{{selectedServiceName}}</b>?</h4>
-      <h4 *ngIf="!selectedServiceId">División de Servicios Analíticos del CQA</h4>
-    </div>
-    <div class="col mt-2">
-      <ngb-tabset justify="center" #tabSet>
-        <!-- <ngb-tab title="1er Paso" id="tabType">
-          <ng-template ngbTabContent>
-            <div class="container pt-5 quote-container">
-              <div class="row">
-                <div class="col col-md-6">
-                  <div
-                    class="card text-white bg-primary mb-3 option-card text-center"
-                    (click)="setType('info')"
-                  >
-                    <div class="card-header">
-                      <h3>Solicitar informacion</h3>
-                    </div>
-                    <div class="card-body">
-                      <p class="card-text">
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col col-md-6">
-                  <div
-                    class="card text-white bg-primary mb-3 option-card text-center"
-                    (click)="setType('service')"
-                  >
-                    <div class="card-header"><h3>Solicitar Servicio Analítico</h3></div>
-                    <div class="card-body">
-                      <p class="card-text">
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p class="text-center mt-3">Selecciona una de las opciones</p>
-          </ng-template>
-        </ngb-tab> -->
-     
-        <ngb-tab title="1er Paso" id="tabContact">
-          <ng-template ngbTabContent>
-            <div class="container pt-5 pb-3 quote-container form-container">
-              <p class="text-muted small text-center">
-                Llene el siguiente formulario
-              </p>
-              <form [formGroup]="companyForm">
-                <div class="row">
-                  <div class="col-12 col-md-8">
-                    <div class="form-group">
-                      <label for="exampleFormControlInput1">Compañia:</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        formControlName="company"
-                        placeholder="Nombre de la compañia"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-4">
-                    <div class="form-group">
-                      <label for="exampleFormControlInput1">RIF:</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        formControlName="rif"
-                        placeholder="RIF de la compañia"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <div class="form-group">
-                      <label for="exampleFormControlInput1"
-                        >Direccion fiscal:</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        formControlName="address"
-                        placeholder="Direccion fiscal de la compañia"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <div class="form-group">
-                      <label for="exampleFormControlInput1"
-                        >Persona de contacto:</label
+    <div class="row">
+        <div class="col-12 text-center mt-2">
+            <h4 *ngIf="selectedService">¿Que deseas realizar sobre nuestro servicio de <b>{{selectedService.title}}</b>?</h4>
+            <h4 *ngIf="!selectedService">División de Servicios Analíticos del CQA</h4>
+        </div>
+        <div class="col mt-2">
+            <ngb-tabset justify="center" #tabSet>
+                <ngb-tab title="1er Paso" id="tabContact">
+                    <ng-template ngbTabContent>
+                        <div class="container pt-5 pb-3 quote-container form-container">
+                            <p class="text-muted small text-center">
+                                Llene el siguiente formulario
+                            </p>
+                            <form [formGroup]="companyForm">
+                                <div class="row">
+                                    <div class="col-12 col-md-8">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Compañia:</label>
+                                            <input type="text" class="form-control" formControlName="companyName" placeholder="Nombre de la compañia" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">RIF:</label>
+                                            <input type="text" class="form-control" formControlName="companyRif" placeholder="RIF de la compañia" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Direccion fiscal:</label>
+                                            <input type="text" class="form-control" formControlName="companyAddress" placeholder="Direccion fiscal de la compañia" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Persona de contacto:</label
                       >
                       <input
                         type="text"
@@ -130,168 +72,96 @@
                   </div>
                   <div class="col-12 text-center">
                       <button
+                      type="button"
                       [ngClass]="{ disabled: companyForm.invalid }"
                       class="btn btn-primary"
                       (click)="setInfoReady()"
                     >
                       Continuar
                     </button>
-              
+                    
                   </div>
                 </div>
               </form>
             </div>
-          </ng-template>
+                    </ng-template>
         </ngb-tab>
         <ngb-tab title="2do Paso" id="tabInfo">
           <ng-template ngbTabContent>
-            <div
-              *ngIf="type === 'info'; then infoTemplate; else serviceTemplate"
-            ></div>
-          </ng-template>
+            <div >
+              <div class="container pt-5 pb-3 quote-container form-container">
+                <p class="text-center small text-muted">Llene el siguiente formulario</p>
+                <form [formGroup]="serviceForm">
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Tipo:</label>
+                                            <input type="text" class="form-control" formControlName="sampleType" placeholder="Tipo de la muestra" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Estado físico:</label>
+                                            <input type="text" class="form-control" formControlName="samplePhysicalState" placeholder="Estado físico de la muestra" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Uso:</label>
+                                            <input type="text" class="form-control" formControlName="sampleUsage" placeholder="uso de la muestra" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Número de muestras:</label>
+                                            <input type="number" class="form-control" formControlName="sampleQuantity" placeholder="Numero de muestras" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Identificación de las muestras :</label>
+                                            <input type="text" class="form-control" formControlName="sampleIdentification" placeholder="Identificacion de la muestra" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Servicio solicitado:</label>
+                                            <select class="form-control" formControlName="serviceId">
+                                              <option value="" disabled selected="selected"
+                                                >Seleccione el servicio analítico</option
+                                              >
+                                              <option *ngFor="let item of services" [value]="item.id">{{
+                                                item.title
+                                              }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Otros servicios:</label>
+                                            <input type="text" class="form-control" formControlName="otherService" placeholder="Indique si requiere algún otro servicio no ofertado" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Observaciones:</label>
+                                            <textarea class="form-control" rows="5" placeholder="Observaciones..." formControlName="observations"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button class="btn btn-primary" (click)="sendQuote()">
+                                           Enviar cotizacion
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+        </div>
+        </ng-template>
         </ngb-tab>
-      </ngb-tabset>
+        </ngb-tabset>
     </div>
-  </div>
 </div>
-<ng-template #infoTemplate>
-  <div class="container pt-5 pb-3 quote-container form-container">
-    <p class="text-center text-muted small">Llene el siguiente formulario</p>
-    <form [formGroup]="infoForm">
-      <div class="row">
-        <div class="col-12 col-md-12">
-          <div class="form-group">
-            <label for="exampleFormControlInput1"
-              >Informacion a solicitar:</label
-            >
-            <textarea
-              class="form-control"
-              rows="5"
-              placeholder="Informacion..."
-              formControlName="information"
-            ></textarea>
-          </div>
-        </div>
-        <div class="col-12 text-center">
-            <button
-            [ngClass]="{ disabled: infoForm.invalid }"
-            class="btn btn-primary"
-            (click)="sendQuote()"
-          >
-            Enviar cotizacion
-          </button>
-        </div>
-      </div>
-    </form>
-  </div>
-</ng-template>
-<ng-template #serviceTemplate>
-  <div class="container pt-5 pb-3 quote-container form-container">
-    <p class="text-center small text-muted">Llene el siguiente formulario</p>
-    <form [formGroup]="serviceForm">
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Tipo:</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="type"
-              placeholder="Tipo de la muestra"
-            />
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Estado físico:</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="state"
-              placeholder="Estado físico de la muestra"
-            />
-          </div>
-        </div>
-        <div class="col-12 col-md-12">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Uso:</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="use"
-              placeholder="uso de la muestra"
-            />
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Número de muestras:</label>
-            <input
-              type="number"
-              class="form-control"
-              formControlName="quantity"
-              placeholder="Numero de muestras"
-            />
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Identificación de las muestras :</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="identification"
-              placeholder="Identificacion de la muestra"
-            />
-          </div>
-        </div>
-       
-        
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Servicio solicitado:</label>
-            <select class="form-control" formControlName="service">
-              <option value="" disabled selected="selected"
-                >Seleccione el servicio analítico</option
-              >
-              <option *ngFor="let item of services" [value]="item.id">{{
-                item.name
-              }}</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Otros servicios:</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="others"
-              placeholder="Indique si requiere algún otro servicio no ofertado"
-            />
-          </div>
-        </div>
-        <div class="col-12 col-md-12">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Observaciones:</label>
-            <textarea
-              class="form-control"
-              rows="5"
-              placeholder="Observaciones..."
-              formControlName="observations"
-            ></textarea>
-          </div>
-        </div>
-        <div class="col-12 text-center">
-            <button
-            [ngClass]="{ disabled: service.invalid }"
-            class="btn btn-primary"
-            (click)="sendQuote()"
-          >
-            Enviar cotizacion
-          </button>
-        </div>
-      </div>
-    </form>
-  </div>
-</ng-template>
+</div>

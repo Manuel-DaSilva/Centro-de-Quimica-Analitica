@@ -4,7 +4,6 @@ import { Routes, RouterModule } from "@angular/router";
 // components
 import { MainComponent } from "./main.component";
 import { HomeComponent } from "./pages/home/home.component";
-import { ServicesComponent } from "./modules/laboratory/pages/services/services.component";
 import { EquipmentComponent } from "./pages/equipment/equipment.component";
 import { ContactComponent } from "./pages/contact/contact.component";
 import { ResearchesComponent } from "./pages/researches/researches.component";

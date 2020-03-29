@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { CategoryService } from 'src/app/modules/admin/services/category.service';
 // models
-import { Category } from 'src/app/models/category.interface';
+import { Category } from 'src/app/models/equipment.category.interface';
 
 @Component({
   selector: 'app-category-modal',

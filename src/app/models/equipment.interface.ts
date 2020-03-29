@@ -1,8 +1,6 @@
 export interface Equipment {
-  id?: string;
-  name: string;
-  category: {
-    id: string;
-    name: string;
-  }
+  id?: number;
+  title: string;
+  category_id: number;
+  category_title: string;
 }

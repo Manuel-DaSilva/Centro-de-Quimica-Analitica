@@ -1,55 +1,45 @@
 <div class="container">
-  <div class="row">
-      <div class="col text-center">
-          <h1 class="mt-2 mb-4">Investigación</h1>
-          <br>
-          <p>En los Laboratorios del CQA se desarrollan las Líneas de Investigación que lideran sus investigadores, especialmente en las áreas de espectroscopía de absorción atómica, espectroscopía de emisión atómica, espectrometría de masas y separaciones cromatográficas, en las cuales se realiza investigación básica y aplicada en diferentes campos: Geoquímica, Química Ambiental, Química Analítica Clínica, Alimentos y otras.</p>
-          <br>
-        </div>
-    <div class="accordion w-100" id="researchAccordion">
-      <div class="card" *ngFor="let research of researchesByMembers; let i = index">
-        <div
-          class="card-header custom-header"
-          [id]="'ResearchHeading' + i"
-          data-toggle="collapse"
-          [attr.data-target]="'#ResearchCollapse' + i"
-          aria-expanded="true"
-          [attr.aria-controls]="'ResearchCollapse' + i"
-        >
-          <h4 class="mb-0 text-white">
-            {{ research.researcher }} <br> <small>{{research.position}}</small>
+    <div class="row">
+        <div class="col text-center">
+            <h1 class="mt-2 mb-4">Investigación</h1>
             <br>
-          </h4>
-          <div class="plus-symbol text-white">
-            <i class="fas fa-plus"></i>
-          </div>
+            <p>En los Laboratorios del CQA se desarrollan las Líneas de Investigación que lideran sus investigadores, especialmente en las áreas de espectroscopía de absorción atómica, espectroscopía de emisión atómica, espectrometría de masas y separaciones
+                cromatográficas, en las cuales se realiza investigación básica y aplicada en diferentes campos: Geoquímica, Química Ambiental, Química Analítica Clínica, Alimentos y otras.</p>
+            <br>
         </div>
+        <div class="accordion w-100" id="researchAccordion">
+            <div class="card" *ngFor="let member of researchesByMembers; let i = index">
+                <div class="card-header custom-header" [id]="'ResearchHeading' + i" data-toggle="collapse" [attr.data-target]="'#ResearchCollapse' + i" aria-expanded="true" [attr.aria-controls]="'ResearchCollapse' + i">
+                    <h4 class="mb-0 text-white">
 
-        <div
-          [id]="'ResearchCollapse' + i"
-          class="collapse"
-          [attr.aria-labelledby]="'ResearchHeading' + i"
-          data-parent="#researchAccordion"
-        >
-          <div class="card-body">
-            <h6>Investigaciones desarrolladas en la actualidad:</h6>
-            <ul class="list-group">
-                <ul class="list-group list-group-flush" *ngFor="let title of research.researches">
-                    <li class="list-group-item" >
-                        <p>{{ title.name }}</p>
-                        <p class="small">
-                          {{title.description}}
-                         
-                        </p>
-                    </li>
-                  </ul>
-            
-            </ul>
+                        {{ member.member.name }} <br> <small>{{member.member.position}}</small>
+                        <br>
+                    </h4>
+                    <div class="plus-symbol text-white">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </div>
 
-            
-          </div>
+                <div [id]="'ResearchCollapse' + i" class="collapse" [attr.aria-labelledby]="'ResearchHeading' + i" data-parent="#researchAccordion">
+                    <div class="card-body">
+                        <h6>Investigaciones desarrolladas en la actualidad:</h6>
+                        <ul class="list-group">
+                            <ul class="list-group list-group-flush" *ngFor="let research of member.researches">
+                                <li class="list-group-item">
+                                    <p>{{ research.title }}</p>
+                                    <p class="small">
+                                        {{research.description}}
+
+                                    </p>
+                                </li>
+                            </ul>
+
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

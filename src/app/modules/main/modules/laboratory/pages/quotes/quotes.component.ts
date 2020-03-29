@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators, Form } from "@angular/forms";
 import { NgbTabset } from "@ng-bootstrap/ng-bootstrap";
 import { DataService } from "../../../../services/data.service";
 import { ToastrService } from "ngx-toastr";
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-quotes",
@@ -11,15 +10,12 @@ import { ActivatedRoute } from '@angular/router';
   styles: []
 })
 export class QuotesComponent implements OnInit {
-  private type;
 
   public companyForm: FormGroup;
-  public infoForm: FormGroup;
 
   public serviceForm: FormGroup;
 
-  public selectedServiceId;
-  public selectedServiceName; 
+  public selectedService;
 
   // !test
   public services;
@@ -28,114 +24,87 @@ export class QuotesComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private toastService: ToastrService,
-    private activatedRoute: ActivatedRoute,
   ) {
-    this.services = this.dataService.getServices();
-    this.companyForm = new FormGroup({
-      company: new FormControl("", Validators.required),
-      rif: new FormControl("", Validators.required),
-      address: new FormControl("", Validators.required),
-      contactName: new FormControl("", Validators.required),
-      contactPhone: new FormControl("", Validators.required),
-      contactEmail: new FormControl("", [Validators.required, Validators.email])
-    });
 
-    this.infoForm = new FormGroup({
-      information: new FormControl("", Validators.required)
+    this.selectedService = this.dataService.getActiveService();
+
+    this.getServices();
+
+    this.companyForm = new FormGroup({
+      companyName: new FormControl("", Validators.required),
+      companyRif: new FormControl("", Validators.required),
+      companyAddress: new FormControl("", Validators.required),
+      contactName: new FormControl("", [Validators.required,Validators.pattern("[a-zA-Z]+")]),
+      contactPhone: new FormControl("", Validators.required),
+      contactEmail: new FormControl("", [Validators.required, Validators.email, Validators.pattern(".+.com$")])
     });
 
     this.serviceForm = new FormGroup({
-      identification: new FormControl("", Validators.required),
-      type: new FormControl("", Validators.required),
-      use: new FormControl("", Validators.required),
-      state: new FormControl("", Validators.required),
-      quantity: new FormControl("", Validators.required),
-      service: new FormControl("", Validators.required),
-      others: new FormControl("", Validators.required),
+      sampleType: new FormControl("", Validators.required),
+      sampleIdentification: new FormControl("", Validators.required),
+      sampleUsage: new FormControl("", Validators.required),
+      samplePhysicalState: new FormControl("", Validators.required),
+      sampleQuantity: new FormControl("", [Validators.required,Validators.min(1)]),
+      serviceId: new FormControl("", Validators.required),
+      otherService: new FormControl("", Validators.required),
       observations: new FormControl("", Validators.required)
     });
-
-    this.activatedRoute.params.subscribe(params => {
-      if(params.id){
-        let serviceId = params.id;
-        this.selectedServiceId = serviceId;
-        
-        this.serviceForm.controls['service'].setValue(serviceId);
-        this.selectedServiceName = this.getServiceName(serviceId);
-      }
-    });
-
-    this.serviceForm.controls['service'].valueChanges.subscribe(change => {
-      this.selectedServiceName =  this.getServiceName(change);
-    })
   }
 
   ngOnInit() {}
 
-  setType(type: string) {
-    this.type = type;
-    this.tabSet.select("tabContact");
+
+  getServices() {
+    this.dataService.reqServices().subscribe(
+      (res: any) => {
+        this.services = res.data;
+      },
+      err => {
+        console.log("error getting services");
+        console.log(err);
+      }
+    );
   }
 
   setInfoReady() {
+    if(this.companyForm.invalid){
+      console.log(this.companyForm);
+      
+      return;
+    }
     this.tabSet.select("tabInfo");
   }
 
   sendQuote() {
-    if (this.type === "info") {
-
-      this.dataService
-        .sendInfoQuote(this.infoForm.value, this.companyForm.value)
-        .subscribe(
-          (res: any) => {
-            // show success alert
-            this.toastService.success(
-              "¡Cotizacion enviada",
-              "Te contactaremos pronto"
-            );
-            this.infoForm.reset();
-            this.companyForm.reset();
-            this.tabSet.select("tabType");
-          },
-          err => {
-            this.toastService.error("Error al enviar", "Intenta mas tarde");
-            console.log("error sending info quote");
-            console.log(err);
-          }
-        );
-    } else {
-      this.dataService
-        .sendServiceQuote(this.serviceForm.value, this.companyForm.value)
-        .subscribe(
-          (res: any) => {
-            // show success alert
-            this.toastService.success(
-              "¡Cotizacion enviada",
-              "Te contactaremos pronto"
-            );
-            this.infoForm.reset();
-            this.companyForm.reset();
-            this.tabSet.select("tabType");
-          },
-          err => {
-            this.toastService.error("Error al enviar", "Intenta mas tarde");
-            console.log("error sending info quote");
-            console.log(err);
-          }
-        );
+    debugger;
+    if(this.serviceForm.invalid){
+      return;
     }
+
+    const quoteInfo = {
+      ...this.serviceForm.value,
+      ...this.companyForm.value
+    };
+
+      this.dataService
+        .sendQuote(quoteInfo)
+        .subscribe(
+          (res: any) => {
+            // show success alert
+            this.toastService.success(
+              "¡Cotizacion enviada",
+              "Te contactaremos pronto"
+            );
+            this.companyForm.reset();
+            this.serviceForm.reset();
+            this.tabSet.select("tabContact");
+          },
+          err => {
+            this.toastService.error("Error al enviar", "Intenta mas tarde");
+            console.log("error sending info quote");
+            console.log(err);
+          }
+      );
   }
 
-  getServiceName(id){
-    let services = this.dataService.getServices();
-    let serviceName;
-    services.forEach(service => {
-      if(service.id === id){
-        serviceName = service.name;
-        return
-      }
-    });
-    return serviceName;
-
-  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../services/data.service";
 import { Investigation } from 'src/app/models/investigation.interface';
+import { Member } from 'src/app/models/member.interface';
 
 @Component({
   selector: "app-researches",
@@ -8,56 +9,73 @@ import { Investigation } from 'src/app/models/investigation.interface';
   styles: []
 })
 export class ResearchesComponent implements OnInit {
-
-  public researchesByMembers: Investigation[] = [
-    {
-      researcher: "Lider",
-      position: "Posicion",
-      researches: [
-        {
-          name: "inve1",
-          description: "desc1",
-        },
-        {
-          name: "inve2",
-          description: "desc2",
-        }
-      ]
-    },
-    {
-      researcher: "Lider2",
-      position: "Posicion2",
-      researches: [
-        {
-          name: "inve3",
-          description: "desc1",
-        },
-        {
-          name: "inve4",
-          description: "desc2",
-        }
-      ]
-    }
-  ]
+  public researches: Investigation[] = [];
+  public researchesByMembers = [];
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    // this.getResearches();
+    this.getResearches();
   }
 
   /*
   * @desc handles the request to get the researches data
   */
   getResearches() {
-    this.dataService.reqInvestigationsByMember().subscribe(
+    this.dataService.reqInvestigations().subscribe(
       (res: any) => {
-        this.researchesByMembers = res.data;
+        this.researches = res.data;
+        this.setResearchesByMember();
+        console.log(this.researchesByMembers);
+        
       },
       err => {
         console.log("error getting researches");
         console.log(err);
       }
     );
+  }
+
+  setResearchesByMember(){
+    let members: Member[] = [];
+    
+    let researches = [];
+
+    let result = [];
+    this.researches.forEach( research => {
+
+      let found = false;
+      
+      members.forEach(member => {
+        if(member.name === research.name){
+          found = true;
+          return;
+        }
+      });
+
+      if(!found){
+        researches = [];
+        
+
+        members.push(research);
+
+
+        this.researches.forEach(research2 => {
+          if(research2.name === research.name){
+            researches.push(research);
+          }
+        });
+
+        result.push({
+          member: research,
+          researches: researches
+        });
+
+        
+
+      }
+    });
+   
+    this.researchesByMembers = result;
   }
   
 }

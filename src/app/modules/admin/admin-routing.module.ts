@@ -16,54 +16,54 @@ import { QuotesComponent } from './pages/quotes/quotes.component';
 import { MembersComponent } from './pages/members/members.component';
 
 const routes: Routes = [
-  {
-    path: "login",
-    component: LoginComponent
-  },
-  {
-    path: "",
-    component: AdminComponent,
-    children: [
-      {
-        path: "dashboard",
-        component: DashboardComponent
-      },
-      {
-        path: "equipos",
-        component: EquipmentComponent
-      },
-      {
-        path: "investigaciones",
-        component: InvestigationsComponent
-      },
-      {
-        path: "servicios",
-        component: ServicesComponent
-      },
-      {
-        path: "cuenta",
-        component: AccountComponent
-      },
-      {
-        path: "cotizaciones",
-        component: QuotesComponent
-      },
-      {
-        path: "miembros",
-        component: MembersComponent
-      },
-      {
-        path: "",
-        redirectTo: "dashboard"
-      }
-    ],
-    canActivate: [AuthGuard]
-  },
-  {
-    path: "**",
-    redirectTo: "dashboard",
-    pathMatch: "full"
-  }
+  // {
+  //   path: "login",
+  //   component: LoginComponent
+  // },
+  // {
+  //   path: "",
+  //   component: AdminComponent,
+  //   children: [
+  //     {
+  //       path: "dashboard",
+  //       component: DashboardComponent
+  //     },
+  //     {
+  //       path: "equipos",
+  //       component: EquipmentComponent
+  //     },
+  //     {
+  //       path: "investigaciones",
+  //       component: InvestigationsComponent
+  //     },
+  //     {
+  //       path: "servicios",
+  //       component: ServicesComponent
+  //     },
+  //     {
+  //       path: "cuenta",
+  //       component: AccountComponent
+  //     },
+  //     {
+  //       path: "cotizaciones",
+  //       component: QuotesComponent
+  //     },
+  //     {
+  //       path: "miembros",
+  //       component: MembersComponent
+  //     },
+  //     {
+  //       path: "",
+  //       redirectTo: "dashboard"
+  //     }
+  //   ],
+  //   canActivate: [AuthGuard]
+  // },
+  // {
+  //   path: "**",
+  //   redirectTo: "dashboard",
+  //   pathMatch: "full"
+  // }
 ];
 
 @NgModule({
