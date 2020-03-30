@@ -89,7 +89,7 @@ export class MemberModalComponent implements OnInit {
       this.invalidAttempt = true;
       return;
     }
-    // edit code
+    // edit c ode
     let member = this.memberForm.value;
     member.id = this.member.id;
     this.memberService.updateMember(member).subscribe(
