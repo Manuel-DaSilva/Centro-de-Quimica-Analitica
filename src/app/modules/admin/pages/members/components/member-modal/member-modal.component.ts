@@ -85,7 +85,7 @@ export class MemberModalComponent implements OnInit {
    * @param equipment to edit
    */
   editMember() {
-    if(this.memberForm.invalid || !this.cvReady || !this.imageReady){
+    if(this.memberForm.invalid){
       this.invalidAttempt = true;
       return;
     }
