@@ -23,10 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    //!
-    this.userForm.controls['name'].setValue('test@test.com');
-    this.userForm.controls['password'].setValue('123456a');
-    this.login();
+  
   }
 
   /*
